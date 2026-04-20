@@ -1,0 +1,173 @@
+{
+  "domain": 1,
+  "title": "CMMC Ecosystem",
+  "exam_weight": "5%",
+  "core_principle": "The CMMC ecosystem is a structured network of organizations and individuals with defined roles, responsibilities, and relationships. Knowing who does what and who they answer to is what this domain tests.",
+  "governing_authorities": [
+    {
+      "name": "Office of the Undersecretary of Defense (OUSD)",
+      "role": "The DoD authority responsible for CMMC policy. Establishes cybersecurity standards and best practices and maps controls across CMMC levels. Responsible for DFARS 252.204-7012 which created the original verification component for contractor cybersecurity requirements."
+    },
+    {
+      "name": "CMMC Accreditation Body (CMMC-AB)",
+      "role": "The independent accreditation body that oversees the CMMC ecosystem. Accredits C3PAOs, certifies assessors and instructors, and maintains the integrity of the certification program."
+    },
+    {
+      "name": "CMMC Assessors and Instructors Certification Organization (CAICO)",
+      "role": "Part of the CMMC-AB structure. Oversees certification of individual assessors and instructors including CCPs, CCAs, and CCIs."
+    }
+  ],
+  "organizations": [
+    {
+      "acronym": "OSC",
+      "full_name": "Organization Seeking Certification",
+      "also_known_as": "OSA — Organization Seeking Assessment",
+      "definition": "A defense contractor seeking CMMC certification to be eligible for DoD contracts that require it.",
+      "purpose": "Must achieve the appropriate CMMC level to be awarded contracts requiring that certification."
+    },
+    {
+      "acronym": "C3PAO",
+      "full_name": "CMMC Third-Party Assessment Organization",
+      "definition": "An accredited organization authorized to conduct official CMMC Level 2 certification assessments.",
+      "purpose": "Performs third-party assessments on OSCs, reviews assessment reports before submission to SPRS, and issues Certificates of CMMC Status.",
+      "key_fact": "C3PAOs are accredited by the CMMC-AB. Without C3PAO accreditation an organization cannot conduct official CMMC assessments."
+    },
+    {
+      "acronym": "RPO",
+      "full_name": "Registered Provider Organization",
+      "definition": "An organization registered with the CMMC-AB to provide CMMC consulting and implementation services to OSCs.",
+      "purpose": "Employs Registered Practitioners (RPs) who help contractors prepare for CMMC assessments. RPOs advise and implement — they do not assess.",
+      "key_distinction": "RPOs help OSCs get ready. C3PAOs assess whether they are ready."
+    },
+    {
+      "acronym": "LPP",
+      "full_name": "Licensed Partner Publisher",
+      "definition": "Organizations licensed to develop and publish CMMC training content.",
+      "purpose": "Create the curriculum and materials used by Licensed Training Providers."
+    },
+    {
+      "acronym": "LTP",
+      "full_name": "Licensed Training Provider",
+      "definition": "Organizations licensed to deliver CMMC training including the mandatory CCP preparatory course.",
+      "purpose": "Deliver training to candidates seeking CMMC certifications. Completing an LTP course is a prerequisite for the CCP exam."
+    }
+  ],
+  "individuals": [
+    {
+      "credential": "RP",
+      "full_name": "Registered Practitioner",
+      "definition": "Individual registered with the CMMC-AB who works for an RPO providing CMMC consulting services.",
+      "role": "Advises, consults, and makes recommendations to clients. Helps implement security controls. Does NOT participate in certified CMMC assessments.",
+      "key_distinction": "RPs are implementers and consultants. They are not assessors."
+    },
+    {
+      "credential": "CCP",
+      "full_name": "Certified CMMC Professional",
+      "definition": "Individual who has passed the CCP exam and is certified to assist on CMMC assessment teams.",
+      "role": "Assists the assessment team during CMMC assessments. Cannot lead assessments or make independent scoring determinations.",
+      "pathway": "CCP is the entry-level assessment credential. Required before pursuing CCA certification.",
+      "key_fact": "CCP certification is a prerequisite for CCA and CCI certifications."
+    },
+    {
+      "credential": "CCA",
+      "full_name": "Certified CMMC Assessor",
+      "definition": "Individual certified to conduct CMMC assessments as a full assessment team member.",
+      "role": "Conducts assessments, makes scoring determinations. Works under the Lead Assessor.",
+      "prerequisite": "Must hold CCP certification first."
+    },
+    {
+      "credential": "CCI",
+      "full_name": "Certified CMMC Instructor",
+      "definition": "Individual certified to teach CMMC courses at Licensed Training Providers.",
+      "role": "Delivers official CMMC training including CCP preparatory courses.",
+      "prerequisite": "Must hold CCP certification first."
+    },
+    {
+      "credential": "Lead Assessor",
+      "full_name": "CMMC Lead Assessor",
+      "definition": "Senior certified individual who leads CMMC assessment teams.",
+      "role": "Leads the assessment, makes final scoring decisions, drafts and submits the final assessment report.",
+      "key_fact": "The Lead Assessor is the only person who can submit the final assessment report."
+    },
+    {
+      "credential": "PA",
+      "full_name": "Provisional Assessor",
+      "definition": "Legacy credential from early CMMC program. Being sunset as CCP and CCA credentials mature.",
+      "status": "Sunsetting — being replaced by CCP/CCA pathway."
+    },
+    {
+      "credential": "PI",
+      "full_name": "Provisional Instructor",
+      "definition": "Legacy credential from early CMMC program. Being sunset as CCI credential matures.",
+      "status": "Sunsetting — being replaced by CCI pathway."
+    }
+  ],
+  "assessment_team_structure": {
+    "roles": {
+      "CCP": "Assists. Cannot lead or make independent determinations.",
+      "CCA": "Assesses. Makes scoring determinations under Lead Assessor.",
+      "Lead_Assessor": "Leads. Makes final decisions. Submits report."
+    },
+    "key_rule": "CCP assists. CCA assesses. Lead Assessor leads."
+  },
+  "ecosystem_relationships": {
+    "who_accredits_C3PAOs": "CMMC-AB",
+    "who_certifies_individuals": "CAICO (part of CMMC-AB)",
+    "who_licenses_training": "CMMC-AB licenses LTPs and LPPs",
+    "who_conducts_Level2_assessments": "C3PAOs using teams of CCPs and CCAs led by Lead Assessors",
+    "who_conducts_Level3_assessments": "DCMA DIBCAC",
+    "who_advises_OSCs": "RPOs employing RPs"
+  },
+  "flashcards": [
+    {
+      "id": "d1_001",
+      "question": "What is the difference between an RPO and a C3PAO?",
+      "answer": "RPOs help OSCs prepare for assessments — they advise, consult, and implement. C3PAOs conduct the official assessments. RPOs get you ready, C3PAOs determine if you are ready."
+    },
+    {
+      "id": "d1_002",
+      "question": "What can a Registered Practitioner NOT do?",
+      "answer": "RPs cannot participate in certified CMMC assessments. They are implementers and consultants only."
+    },
+    {
+      "id": "d1_003",
+      "question": "What credential must you hold before pursuing CCA or CCI certification?",
+      "answer": "CCP — Certified CMMC Professional. It is a prerequisite for both CCA and CCI."
+    },
+    {
+      "id": "d1_004",
+      "question": "What is the difference between CCP, CCA, and Lead Assessor on an assessment team?",
+      "answer": "CCP assists. CCA assesses and makes scoring determinations. Lead Assessor leads the team, makes final scoring decisions, and submits the final report."
+    },
+    {
+      "id": "d1_005",
+      "question": "Who accredits C3PAOs?",
+      "answer": "The CMMC-AB — Cybersecurity Maturity Model Certification Accreditation Body."
+    },
+    {
+      "id": "d1_006",
+      "question": "What is the difference between an LPP and an LTP?",
+      "answer": "LPPs develop and publish training content. LTPs deliver that training to candidates. LPPs create the curriculum, LTPs teach it."
+    },
+    {
+      "id": "d1_007",
+      "question": "Who conducts Level 3 CMMC assessments?",
+      "answer": "DCMA DIBCAC — the Defense Contract Management Agency's Defense Industrial Base Cybersecurity Assessment Center."
+    },
+    {
+      "id": "d1_008",
+      "question": "What are Provisional Assessors and Provisional Instructors?",
+      "answer": "Legacy credentials from the early CMMC program that are being sunset as the CCP/CCA/CCI pathway matures."
+    },
+    {
+      "id": "d1_009",
+      "question": "What is an OSC?",
+      "answer": "Organization Seeking Certification — a defense contractor pursuing CMMC certification to be eligible for DoD contracts requiring it. Also called OSA (Organization Seeking Assessment)."
+    },
+    {
+      "id": "d1_010",
+      "question": "What is the OUSD's role in the CMMC ecosystem?",
+      "answer": "The DoD authority responsible for CMMC policy. Establishes cybersecurity standards, maps controls across levels, and is responsible for DFARS 252.204-7012."
+    }
+  ]
+}

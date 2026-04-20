@@ -1,0 +1,129 @@
+{
+  "domain": 6,
+  "title": "CMMC Scoping",
+  "exam_weight": "15%",
+  "core_principle": "Scoping defines what is being assessed. Get it wrong and the whole assessment is meaningless. Too narrow and you miss FCI exposure. Too broad and you assess things that don't need to be assessed.",
+  "organizational_scoping": {
+    "levels": [
+      {
+        "level": "Organization",
+        "definition": "The entire legal entity seeking certification. The top level.",
+        "plain_terms": "The whole company."
+      },
+      {
+        "level": "Host Unit",
+        "definition": "The specific business unit within the organization that handles FCI or CUI and is the primary subject of the assessment.",
+        "plain_terms": "The team that actually touches FCI. This is who the assessment is really about."
+      },
+      {
+        "level": "Supporting Units",
+        "definition": "Other parts of the organization that provide services to the host unit relevant to the assessment scope.",
+        "plain_terms": "Teams that support the host unit's ability to handle FCI — IT, HR, facilities, legal. They touch the environment but not the data directly. Still in scope because they support the systems and people that do."
+      }
+    ],
+    "key_distinction": "Host Unit directly handles FCI/CUI. Supporting Units support the Host Unit but don't directly handle FCI/CUI themselves. Both are in scope."
+  },
+  "asset_scoping": {
+    "in_scope_test": "The three-verb test. If an asset processes, stores, OR transmits FCI it is in scope. Any one of the three is sufficient.",
+    "in_scope_verbs": ["Processes FCI", "Stores FCI", "Transmits FCI"],
+    "out_of_scope": "Assets that do none of the three. Exclusion must be documented with an explanation of why the asset doesn't process, store, or transmit FCI.",
+    "specialized_assets": {
+      "definition": "Asset types that are in scope but handled differently from standard assets. May not be fully assessable using standard methods. May qualify as Enduring Exceptions — documented in the system security plan rather than failed outright.",
+      "why_they_cant_be_excluded": "They exist in the environment and may touch FCI. They can't be ignored — but full compliance isn't always achievable due to technical limitations or operational constraints.",
+      "categories": [
+        {
+          "name": "Government Furnished Equipment (GFE)",
+          "description": "Government-owned property on contractor premises. Contractor doesn't own it but it's in their environment."
+        },
+        {
+          "name": "IoT / IIoT",
+          "description": "Internet of things and industrial internet of things devices. Sensors, smart devices, connected equipment. Often cannot run standard security software."
+        },
+        {
+          "name": "Operational Technology (OT)",
+          "description": "Manufacturing equipment, industrial control systems. Patching and standard controls may not be applicable without disrupting operations."
+        },
+        {
+          "name": "Restricted Information Systems",
+          "description": "Systems with specific legal or regulatory handling requirements that limit what assessors can do with them."
+        },
+        {
+          "name": "Test Equipment",
+          "description": "Equipment used for testing that may incidentally touch FCI."
+        }
+      ]
+    }
+  },
+  "scoping_activity_categories": [
+    {
+      "category": "People",
+      "description": "Who handles FCI. Employees, contractors, anyone with access to FCI systems or data."
+    },
+    {
+      "category": "Technology",
+      "description": "What systems, devices, and software touch FCI. Computers, servers, mobile devices, cloud services, applications."
+    },
+    {
+      "category": "Facilities",
+      "description": "Where FCI is processed or stored. Office spaces, server rooms, remote work environments."
+    },
+    {
+      "category": "External Service Providers (ESPs)",
+      "description": "Third parties handling FCI on the OSC's behalf. Cloud providers, managed service providers, managed security service providers, cybersecurity-as-a-service providers.",
+      "exam_trap": "If an ESP handles FCI on behalf of the OSC, that ESP is in scope. The security requirement follows the data. The OSC cannot exclude their ESP from scope just because the ESP is a third party. Their controls count toward the assessment."
+    }
+  ],
+  "key_principle_ESPs": "Security requirements follow the data. If FCI flows to an ESP, the controls must follow it there too. An OSC cannot outsource their way around compliance.",
+  "flashcards": [
+    {
+      "id": "d6_001",
+      "question": "What are the three organizational scoping levels in CMMC?",
+      "answer": "Organization (the whole company), Host Unit (the team that directly handles FCI/CUI), and Supporting Units (teams that support the host unit but don't directly handle FCI themselves)."
+    },
+    {
+      "id": "d6_002",
+      "question": "What is the three-verb test for determining if an asset is in scope?",
+      "answer": "If an asset processes, stores, or transmits FCI it is in scope. Any one of the three verbs is sufficient. All three do not need to apply."
+    },
+    {
+      "id": "d6_003",
+      "question": "What must happen when an asset is excluded from scope?",
+      "answer": "The exclusion must be documented with an explanation of why the asset doesn't process, store, or transmit FCI."
+    },
+    {
+      "id": "d6_004",
+      "question": "What are the five specialized asset categories?",
+      "answer": "Government Furnished Equipment (GFE), IoT/IIoT, Operational Technology (OT), Restricted Information Systems, and Test Equipment."
+    },
+    {
+      "id": "d6_005",
+      "question": "Why can't specialized assets be excluded from scope entirely?",
+      "answer": "They exist in the environment and may touch FCI so they can't be ignored. However full compliance isn't always achievable due to technical limitations, so they may qualify as Enduring Exceptions documented in the system security plan."
+    },
+    {
+      "id": "d6_006",
+      "question": "What are the four scoping activity categories?",
+      "answer": "People, Technology, Facilities, and External Service Providers (ESPs)."
+    },
+    {
+      "id": "d6_007",
+      "question": "Why is an ESP in scope if it handles FCI on behalf of the OSC?",
+      "answer": "Security requirements follow the data. If FCI flows to an ESP, the controls must follow it there too. The OSC cannot outsource their way around compliance — the ESP's controls count toward the assessment."
+    },
+    {
+      "id": "d6_008",
+      "question": "What is the difference between a Host Unit and a Supporting Unit?",
+      "answer": "The Host Unit directly handles FCI/CUI and is the primary subject of the assessment. Supporting Units support the Host Unit but don't directly handle FCI themselves. Both are in scope."
+    },
+    {
+      "id": "d6_009",
+      "question": "What types of organizations qualify as ESPs?",
+      "answer": "Cloud service providers, managed service providers, managed security service providers, and cybersecurity-as-a-service providers — any external party handling FCI on the OSC's behalf."
+    },
+    {
+      "id": "d6_010",
+      "question": "Why does OT sometimes qualify as a specialized asset rather than a standard in-scope asset?",
+      "answer": "Manufacturing equipment and industrial control systems may not support patching or standard security controls without disrupting operations. Full compliance may not be feasible, qualifying them as Enduring Exceptions."
+    }
+  ]
+}

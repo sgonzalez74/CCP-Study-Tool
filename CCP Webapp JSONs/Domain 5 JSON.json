@@ -1,0 +1,202 @@
+{
+  "domain": 5,
+  "title": "CMMC Assessment Process (CAP)",
+  "exam_weight": "25%",
+  "core_principle": "The CCP assists. The CCA assesses. The Lead Assessor leads. The CCP never makes independent assessment determinations.",
+  "roles_on_assessment_team": {
+    "CCP": "Assists the assessment team across all four phases. Collects and examines evidence, supports scoring, helps prepare reports. Cannot make independent scoring decisions.",
+    "CCA": "Certified CMMC Assessor. Conducts the assessment and makes scoring determinations.",
+    "Lead_Assessor": "Leads the assessment team. Makes final scoring decisions. Drafts and submits the final assessment report."
+  },
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Plan and Prepare",
+      "summary": "Everything that happens before the assessment starts.",
+      "tasks": [
+        {
+          "task": "Analyze requirements",
+          "description": "Review the OSC's environment, identify which practices apply, understand what evidence will be needed. CCP assists in reviewing documentation and understanding system boundaries."
+        },
+        {
+          "task": "Develop assessment plan",
+          "description": "Formal document defining assessment scope, practices being assessed, methodology, logistics, team roles, and how evidence will be collected and handled. CCP assists under the Lead Assessor.",
+          "assessment_plan_contents": [
+            "Assessment scope",
+            "Practices being assessed",
+            "Methodology",
+            "Logistics",
+            "Team roles",
+            "Evidence collection and handling approach"
+          ]
+        },
+        {
+          "task": "Readiness Review",
+          "description": "Verifies the OSC is actually prepared before the formal assessment begins. Protects both parties — OSC doesn't burn their assessment on unpreparedness, team doesn't waste time on an unprepared environment. If OSC isn't ready, assessment does not proceed."
+        }
+      ],
+      "CCP_role": "Assist in analyzing requirements, assist in developing assessment plan, assist in verifying readiness."
+    },
+    {
+      "phase": 2,
+      "name": "Conduct Assessment",
+      "summary": "The actual assessment. Evidence collected, practices scored, preliminary results validated.",
+      "tasks": [
+        {
+          "task": "Collect and examine evidence",
+          "description": "Gather evidence for each practice using Examine, Interview, and Test methods. CCP assists in collecting and examining evidence — pulling documentation, sitting in on interviews, observing demonstrations."
+        },
+        {
+          "task": "Score practices and validate preliminary results",
+          "description": "Each practice scored MET, NOT MET, or N/A based on evidence. Team validates preliminary results together. One NOT MET objective = entire practice NOT MET. No partial credit.",
+          "critical_rule": "Practices on a POA&M are scored NOT MET during Phase 2. POA&M evaluation happens in Phase 4, not here."
+        },
+        {
+          "task": "Generate final assessment results",
+          "description": "Team produces final set of findings. Lead Assessor makes final scoring decisions. CCP assists but does not make independent scoring calls."
+        }
+      ],
+      "CCP_role": "Assist in collecting and examining evidence. Assist in scoring practices and validating preliminary results. Assist in generating final assessment results. Cannot make independent assessment determinations."
+    },
+    {
+      "phase": 3,
+      "name": "Report Assessment Results",
+      "summary": "Findings documented, delivered, submitted, and archived.",
+      "tasks": [
+        {
+          "task": "Draft final findings",
+          "description": "Lead Assessor drafts and scores final findings based on validated preliminary results from Phase 2. CCP assists in preparing report content."
+        },
+        {
+          "task": "Deliver preliminary results to OSC",
+          "description": "OSC receives preliminary results before the final report is officially submitted. Gives OSC visibility into findings before anything is recorded."
+        },
+        {
+          "task": "Submit assessment report",
+          "description": "Lead Assessor submits final report to both the C3PAO and the OSC. C3PAO reviews before anything is submitted to SPRS."
+        },
+        {
+          "task": "Package and archive results",
+          "description": "All evidence, findings, and documentation packaged and archived to support any future questions about the assessment. Hashing creates cryptographic fingerprints of evidence at time of collection — proves integrity if anyone later questions whether evidence was altered."
+        }
+      ],
+      "submission_chain": [
+        "Lead Assessor drafts and scores final findings",
+        "Preliminary results delivered to OSC",
+        "Lead Assessor submits report to C3PAO and OSC",
+        "C3PAO reviews",
+        "Results submitted to SPRS"
+      ],
+      "CCP_role": "Assist in delivering recommended assessment results. Assist in packaging and archiving assessment results."
+    },
+    {
+      "phase": 4,
+      "name": "POA&M Evaluation",
+      "summary": "Evaluation of outstanding NOT MET practices to determine if conditional certification is possible.",
+      "key_terms": {
+        "POA&M": "Plan of Action and Milestones. Formal document created when practices are scored NOT MET during assessment. Identifies the gap, explains how it will be fixed, and sets milestones for remediation.",
+        "Conditional_certification": "Allows an OSC to operate while remediating NOT MET practices rather than failing outright and losing contract eligibility. A safety valve, not a loophole.",
+        "Operational_plan_of_action": "The OSC's internal document for managing temporary deficiencies outside of a formal assessment context. NOT the same as an assessment POA&M."
+      },
+      "qualifying_criteria": [
+        {
+          "criterion": "Minimum score threshold",
+          "description": "OSC must score above a minimum threshold even with NOT MET practices. If too far below it, conditional certification is not available — remediation required first."
+        },
+        {
+          "criterion": "Remediable items only",
+          "description": "Not every NOT MET practice qualifies. The item must be remediable — a fix exists and is achievable within a defined timeframe. Structural gaps with no viable path to remediation do not qualify."
+        },
+        {
+          "criterion": "Milestones showing progress",
+          "description": "POA&M must include specific milestones demonstrating real movement toward remediation. Vague commitments do not qualify."
+        }
+      ],
+      "CCP_role": "Awareness of the POA&M process. Support evaluation of POA&M items. Cannot make final determinations on whether items qualify."
+    }
+  ],
+  "key_distinctions": {
+    "POA&M_vs_operational_plan_of_action": {
+      "POA&M": "Associated with a formal CMMC assessment. Created when practices score NOT MET. Reviewed by assessment team in Phase 4.",
+      "Operational_plan_of_action": "OSC's internal document for managing temporary deficiencies outside formal assessment. Not the same as assessment POA&M."
+    },
+    "hashing_purpose": "Hashing proves evidence integrity — creates a tamper-evident seal, not an access control mechanism. If evidence is questioned later, re-hash and compare to prove it was not altered."
+  },
+  "flashcards": [
+    {
+      "id": "d5_001",
+      "question": "What are the four phases of the CMMC Assessment Process?",
+      "answer": "Phase 1: Plan and Prepare. Phase 2: Conduct Assessment. Phase 3: Report Results. Phase 4: POA&M Evaluation."
+    },
+    {
+      "id": "d5_002",
+      "question": "What is the CCP's role across all four CAP phases in plain terms?",
+      "answer": "The CCP assists. Always. Across all four phases the CCP supports the assessment team but never leads and never makes independent scoring determinations."
+    },
+    {
+      "id": "d5_003",
+      "question": "What is the difference between CCP, CCA, and Lead Assessor roles on an assessment team?",
+      "answer": "CCP assists. CCA assesses and makes scoring determinations. Lead Assessor leads the team, makes final scoring decisions, and submits the final report."
+    },
+    {
+      "id": "d5_004",
+      "question": "What is the purpose of the Readiness Review in Phase 1?",
+      "answer": "To verify the OSC is actually prepared before the formal assessment begins. If the OSC isn't ready, the assessment does not proceed."
+    },
+    {
+      "id": "d5_005",
+      "question": "What must be included in a CMMC Assessment Plan?",
+      "answer": "Assessment scope, practices being assessed, methodology, logistics, team roles, and how evidence will be collected and handled."
+    },
+    {
+      "id": "d5_006",
+      "question": "How are practices on a POA&M scored during Phase 2?",
+      "answer": "NOT MET. POA&M evaluation happens in Phase 4, not during the conduct phase. Do not conflate the two."
+    },
+    {
+      "id": "d5_007",
+      "question": "What is the assessment report submission chain?",
+      "answer": "Lead Assessor drafts findings → preliminary results delivered to OSC → Lead Assessor submits to C3PAO and OSC → C3PAO reviews → results submitted to SPRS."
+    },
+    {
+      "id": "d5_008",
+      "question": "Why is assessment evidence archived and what role does hashing play?",
+      "answer": "Archived to support any future questions about the assessment. Hashing creates cryptographic fingerprints at time of collection — proves evidence integrity if anyone later questions whether it was altered."
+    },
+    {
+      "id": "d5_009",
+      "question": "What three criteria determine whether a NOT MET practice qualifies for a POA&M?",
+      "answer": "1. OSC meets minimum score threshold. 2. The item is remediable — a fix exists and is achievable. 3. POA&M includes specific milestones showing real progress."
+    },
+    {
+      "id": "d5_010",
+      "question": "What is the difference between a POA&M and an operational plan of action?",
+      "answer": "POA&M is associated with a formal CMMC assessment — created when practices score NOT MET, reviewed by the team in Phase 4. Operational plan of action is the OSC's internal document for managing temporary deficiencies outside of a formal assessment."
+    },
+    {
+      "id": "d5_011",
+      "question": "What is conditional certification and why does it exist?",
+      "answer": "Allows an OSC to operate while remediating NOT MET practices rather than failing outright and losing contract eligibility. It is a safety valve, not a loophole — the OSC must still remediate within defined timeframes."
+    },
+    {
+      "id": "d5_012",
+      "question": "At what two points does the OSC receive visibility into assessment findings?",
+      "answer": "1. Preliminary results before the final report is submitted. 2. The final assessment report after submission."
+    },
+    {
+      "id": "d5_013",
+      "question": "What makes a POA&M item non-qualifying?",
+      "answer": "If the item is not remediable — a structural gap with no viable path to remediation. Vague milestones without real progress also disqualify an item."
+    },
+    {
+      "id": "d5_014",
+      "question": "Who submits the final assessment report and to whom?",
+      "answer": "The Lead Assessor submits to both the C3PAO and the OSC. The C3PAO reviews before results are submitted to SPRS."
+    },
+    {
+      "id": "d5_015",
+      "question": "What happens during Phase 2 evidence collection and what is the CCP's specific role?",
+      "answer": "Evidence gathered using Examine, Interview, and Test methods for each practice. CCP assists in collecting and examining evidence — pulling documentation, sitting in on interviews, observing demonstrations. Cannot make independent scoring calls."
+    }
+  ]
+}

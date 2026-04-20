@@ -1,0 +1,112 @@
+{
+  "domain": 2,
+  "title": "CMMC-AB Code of Professional Conduct (Ethics)",
+  "exam_weight": "5%",
+  "core_principle": "CMMC professionals operate under a strict Code of Professional Conduct. The exam tests whether you know the guiding principles and can apply them to scenarios involving conflicts of interest, confidentiality, objectivity, and professional behavior.",
+  "source_document": "CMMC-AB Code of Professional Conduct (CoPC)",
+  "guiding_principles": [
+    {
+      "principle": "Professionalism",
+      "description": "Conduct yourself with integrity and competence at all times. Represent the CMMC program and your credential with appropriate professional behavior."
+    },
+    {
+      "principle": "Objectivity",
+      "description": "Assessments must be conducted without bias. Personal relationships, financial interests, or other factors must not influence assessment findings. If objectivity cannot be maintained, the assessor must recuse themselves."
+    },
+    {
+      "principle": "Confidentiality",
+      "description": "Information obtained during assessments is sensitive. Assessment findings, OSC system details, and evidence must be protected and not disclosed to unauthorized parties. Non-disclosure agreements (NDAs) formalize this obligation."
+    },
+    {
+      "principle": "Proper Use of Methods",
+      "description": "Assessment methods (Examine, Interview, Test) must be applied correctly and appropriately. Methods cannot be misused or manipulated to produce a desired outcome."
+    },
+    {
+      "principle": "Information Integrity",
+      "description": "Assessment findings and evidence must be accurate and complete. Falsifying, omitting, or manipulating findings is a serious violation."
+    },
+    {
+      "principle": "Conflicts of Interest",
+      "description": "A conflict of interest exists when a personal, financial, or professional relationship could compromise objectivity. Conflicts must be disclosed and recusal may be required. An assessor cannot assess an organization they have a financial relationship with or have recently worked for."
+    },
+    {
+      "principle": "Respect for Intellectual Property",
+      "description": "CMMC materials, training content, and assessment tools are protected intellectual property. Unauthorized reproduction or distribution is prohibited."
+    },
+    {
+      "principle": "Lawful and Ethical Practices",
+      "description": "All CMMC activities must comply with applicable laws and regulations. Illegal or unethical behavior disqualifies a professional from holding CMMC credentials."
+    },
+    {
+      "principle": "Contracts and Non-Disclosure Agreements",
+      "description": "Formal agreements govern the relationship between assessors and OSCs. NDAs protect confidential information obtained during assessments. These obligations persist after the assessment is complete."
+    }
+  ],
+  "ISO_IEC_connection": {
+    "description": "The CMMC-AB CoPC aligns with ISO/IEC standards for assessment body conduct and professionalism. The exam may reference ISO/IEC requirements as the broader framework within which the CoPC operates.",
+    "key_point": "ISO/IEC standards provide the international framework. The CoPC is the CMMC-specific implementation of those standards."
+  },
+  "DoD_requirements": {
+    "description": "CMMC professionals must also comply with DoD-specific ethical and conduct requirements. This includes proper handling of sensitive defense information and compliance with applicable DoD directives."
+  },
+  "conflict_of_interest_scenarios": [
+    {
+      "scenario": "An assessor previously worked as a consultant for an OSC they are now assigned to assess.",
+      "correct_action": "Disclose the conflict and recuse from the assessment."
+    },
+    {
+      "scenario": "An assessor has a financial stake in a company that competes with the OSC being assessed.",
+      "correct_action": "Disclose the conflict and recuse from the assessment."
+    },
+    {
+      "scenario": "An assessor finds a NOT MET finding but the OSC's leadership pressures them to change it to MET.",
+      "correct_action": "Maintain the NOT MET finding. Objectivity and information integrity require accurate findings regardless of pressure."
+    },
+    {
+      "scenario": "An assessor shares OSC system architecture details with a third party after the assessment.",
+      "correct_action": "This violates confidentiality. NDA obligations persist after the assessment is complete."
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "d2_001",
+      "question": "What must an assessor do if they have a conflict of interest with an OSC they are assigned to assess?",
+      "answer": "Disclose the conflict and recuse themselves from the assessment. Objectivity cannot be compromised."
+    },
+    {
+      "id": "d2_002",
+      "question": "What does confidentiality require of a CMMC assessor after an assessment is complete?",
+      "answer": "NDA obligations persist after the assessment. Assessment findings, system details, and evidence obtained during the assessment cannot be disclosed to unauthorized parties even after the engagement ends."
+    },
+    {
+      "id": "d2_003",
+      "question": "An OSC's leadership pressures an assessor to change a NOT MET finding to MET. What should the assessor do?",
+      "answer": "Maintain the NOT MET finding. Objectivity and information integrity require accurate findings regardless of pressure from the OSC."
+    },
+    {
+      "id": "d2_004",
+      "question": "What is the relationship between ISO/IEC standards and the CMMC-AB CoPC?",
+      "answer": "ISO/IEC standards provide the international framework for assessment body conduct. The CoPC is the CMMC-specific implementation of those standards."
+    },
+    {
+      "id": "d2_005",
+      "question": "What are the nine guiding principles of the CMMC-AB Code of Professional Conduct?",
+      "answer": "Professionalism, Objectivity, Confidentiality, Proper Use of Methods, Information Integrity, Conflicts of Interest, Respect for Intellectual Property, Lawful and Ethical Practices, Contracts and Non-Disclosure Agreements."
+    },
+    {
+      "id": "d2_006",
+      "question": "What constitutes a conflict of interest for a CMMC assessor?",
+      "answer": "Any personal, financial, or professional relationship that could compromise objectivity — including previously working for the OSC as a consultant or having a financial stake in a competing organization."
+    },
+    {
+      "id": "d2_007",
+      "question": "What does information integrity require during an assessment?",
+      "answer": "Assessment findings and evidence must be accurate and complete. Falsifying, omitting, or manipulating findings is a serious violation of the CoPC."
+    },
+    {
+      "id": "d2_008",
+      "question": "What is the purpose of a Non-Disclosure Agreement in the CMMC assessment context?",
+      "answer": "Formalizes the confidentiality obligation between the assessor and the OSC. Protects sensitive system information obtained during the assessment. Obligations persist after the assessment is complete."
+    }
+  ]
+}

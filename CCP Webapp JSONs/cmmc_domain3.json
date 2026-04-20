@@ -1,0 +1,364 @@
+{
+  "domain": 3,
+  "title": "CMMC Governance and Source Documents",
+  "exam_weight": "15%",
+  "regulatory_chain": [
+    {
+      "id": "eo13556",
+      "label": "EO 13556",
+      "full_name": "Executive Order 13556 (2010)",
+      "position": 1,
+      "connects_to": "32cfr2002",
+      "description": "Signed by President Obama in 2010. Solved the problem of inconsistent labeling and handling of sensitive unclassified information across federal agencies. Created the CUI program to standardize how that information is categorized, marked, and protected government-wide. Designated NARA (National Archives and Records Administration) as the Executive Agent responsible for overseeing the CUI program. Directed that an implementing regulation be written — which became 32 CFR Part 2002.",
+      "key_facts": [
+        "Created the CUI program",
+        "Designated NARA as Executive Agent",
+        "Directed creation of 32 CFR Part 2002",
+        "Solved inconsistent agency labeling/handling of sensitive unclassified info"
+      ]
+    },
+    {
+      "id": "32cfr2002",
+      "label": "32 CFR Part 2002",
+      "full_name": "Title 32 Code of Federal Regulations Part 2002",
+      "position": 2,
+      "connects_to": "dodi520048",
+      "description": "The implementing regulation that EO 13556 ordered to be written. Operationalizes the CUI program government-wide — defining what CUI is, how it must be handled, marked, safeguarded, and shared across the federal government and its contractors. Applies to both federal and non-federal entities handling CUI. Establishes the distinction between CUI Basic and CUI Specified.",
+      "key_facts": [
+        "Implements EO 13556",
+        "Applies government-wide, including contractors",
+        "Defines CUI Basic vs CUI Specified",
+        "NARA administers the CUI Registry under this regulation"
+      ]
+    },
+    {
+      "id": "dodi520048",
+      "label": "DoDI 5200.48",
+      "full_name": "Department of Defense Instruction 5200.48",
+      "position": 3,
+      "connects_to": "dfars7012",
+      "description": "DoD's internal instruction that implements 32 CFR Part 2002 specifically within the Department of Defense. Where 32 CFR Part 2002 is government-wide, DoDI 5200.48 is DoD saying 'here's how we do it.' Defines contractor and authorized holder responsibilities for handling CUI within the DoD context.",
+      "key_facts": [
+        "DoD-specific implementation of 32 CFR Part 2002",
+        "Defines DoD contractor CUI handling responsibilities",
+        "Subordinate to 32 CFR Part 2002"
+      ]
+    },
+    {
+      "id": "dfars7012",
+      "label": "DFARS 252.204-7012",
+      "full_name": "Defense Federal Acquisition Regulation Supplement Clause 252.204-7012",
+      "position": 4,
+      "connects_to": "dfars7019",
+      "description": "The foundational DFARS cybersecurity clause. Requires contractors to implement NIST SP 800-171 to protect CUI, report cyber incidents to DoD within 72 hours, and maintain a medium assurance certificate. This clause created the original contractual obligation to implement 800-171. Predates CMMC. Problem it exposed: DoD had no way to verify contractors were actually complying.",
+      "key_facts": [
+        "Requires implementation of NIST SP 800-171",
+        "72-hour cyber incident reporting requirement",
+        "Created original obligation to protect CUI on contractor systems",
+        "No verification mechanism — that came later"
+      ]
+    },
+    {
+      "id": "dfars7019",
+      "label": "DFARS 252.204-7019",
+      "full_name": "Defense Federal Acquisition Regulation Supplement Clause 252.204-7019",
+      "position": 5,
+      "connects_to": "dfars7020",
+      "description": "Requires contractors to complete a self-assessment of their NIST SP 800-171 implementation, score themselves, and post that score to SPRS (Supplier Performance Risk System) before they can receive a contract award. Addressed the problem that DoD couldn't see contractor compliance status. Now DoD can check your score before awarding a contract.",
+      "key_facts": [
+        "Requires NIST 800-171 self-assessment",
+        "Score must be posted to SPRS before contract award",
+        "SPRS = Supplier Performance Risk System",
+        "Partial solution to the verification problem"
+      ]
+    },
+    {
+      "id": "dfars7020",
+      "label": "DFARS 252.204-7020",
+      "full_name": "Defense Federal Acquisition Regulation Supplement Clause 252.204-7020",
+      "position": 6,
+      "connects_to": "dfars7021",
+      "description": "Gives DoD the right to conduct or commission a medium or high confidence assessment to verify that a contractor's SPRS score is accurate. Works alongside 7019 — 7019 requires you to post a score, 7020 says DoD can verify it. Together they address the self-reporting trust problem.",
+      "key_facts": [
+        "DoD can verify your SPRS score",
+        "Enables medium or high confidence assessments",
+        "Works alongside 7019 to address the verification gap",
+        "Contractor cannot refuse a government verification assessment"
+      ]
+    },
+    {
+      "id": "dfars7021",
+      "label": "DFARS 252.204-7021",
+      "full_name": "Defense Federal Acquisition Regulation Supplement Clause 252.204-7021",
+      "position": 7,
+      "connects_to": "32cfr170",
+      "description": "The CMMC clause. Requires contractors to hold the appropriate CMMC certification level as a condition of contract award. Ended the era of self-reporting for most Level 2 and all Level 3 contractors. Level 1 remains self-assessment. Most Level 2 requires C3PAO third-party assessment. Level 3 requires DIBCAC assessment.",
+      "key_facts": [
+        "Makes CMMC certification a contract requirement",
+        "Level 1: self-assessment",
+        "Level 2: C3PAO third-party assessment (most programs)",
+        "Level 3: DIBCAC assessment",
+        "No certification = no contract award"
+      ]
+    },
+    {
+      "id": "32cfr170",
+      "label": "32 CFR Part 170",
+      "full_name": "Title 32 Code of Federal Regulations Part 170 — CMMC Final Rule",
+      "position": 8,
+      "connects_to": "nist800171",
+      "description": "The federal regulation that formally establishes the CMMC program and makes it legally enforceable. The authoritative legal source for the CMMC program itself. Defines the three CMMC levels, who needs CMMC and when, the roles of C3PAOs, CMMC-AB, and DoD, the rulemaking timeline (9-24 month implementation window), and POA&M allowances for conditional certification.",
+      "key_facts": [
+        "Legally defines the entire CMMC program",
+        "Authoritative source for CMMC program structure",
+        "Establishes 9-24 month implementation timeline",
+        "Allows POA&M for conditional certification",
+        "DFARS 7021 says 'be certified' — 32 CFR Part 170 defines what certified means"
+      ]
+    },
+    {
+      "id": "nist800171",
+      "label": "NIST SP 800-171 Rev 2",
+      "full_name": "NIST Special Publication 800-171 Revision 2",
+      "position": 9,
+      "connects_to": null,
+      "description": "The technical foundation everything else is built on. Defines 110 security requirements across 14 domains for protecting CUI on non-federal systems. Tailored down from NIST SP 800-53 moderate baseline by removing controls that were federal-only responsibilities, not related to CUI confidentiality, or expected to be satisfied without being specified. Rev 2 is the version used for CMMC assessments — not Rev 3.",
+      "key_facts": [
+        "110 security requirements across 14 domains",
+        "Protects CUI on non-federal (contractor) systems",
+        "Tailored from NIST 800-53 moderate baseline",
+        "Rev 2 is used for CMMC — not Rev 3",
+        "Level 2 CMMC = implementing all 110 controls"
+      ]
+    }
+  ],
+  "key_distinctions": {
+    "FCI_vs_CUI": {
+      "FCI": {
+        "full_name": "Federal Contract Information",
+        "defined_in": "FAR 52.204-21",
+        "description": "Information provided by or generated for the government under a contract to develop or deliver a product or service.",
+        "sensitivity": "Lower",
+        "protected_by": "CMMC Level 1 (17 practices)",
+        "who_has_it": "Almost all DoD contractors"
+      },
+      "CUI": {
+        "full_name": "Controlled Unclassified Information",
+        "defined_in": "32 CFR Part 2002 (2002.4(h))",
+        "description": "Information the government has determined requires safeguarding per law, regulation, or policy — but is not classified.",
+        "sensitivity": "Higher",
+        "protected_by": "CMMC Level 2 (110 NIST 800-171 controls)",
+        "who_has_it": "Contractors handling sensitive defense information",
+        "subtypes": {
+          "CUI_Basic": "Follows standard handling requirements from 32 CFR Part 2002",
+          "CUI_Specified": "Has additional or different requirements defined by the specific authorizing law or regulation for that category"
+        }
+      }
+    },
+    "NIST800171_vs_NIST80053": {
+      "description": "800-171 was tailored from 800-53 moderate baseline",
+      "tailoring_criteria": [
+        "Removed controls that were primarily federal government responsibilities",
+        "Removed controls focused on federal information systems rather than nonfederal systems",
+        "Removed controls not directly related to protecting CUI confidentiality",
+        "Removed controls expected to be satisfied without being explicitly specified"
+      ]
+    },
+    "Assessment_Guide_vs_CAP": {
+      "Assessment_Guide": "The WHAT — defines each practice, assessment objectives, and evaluation methods (Examine/Interview/Test). Used to evaluate whether specific controls are MET or NOT MET.",
+      "CAP": "The HOW — defines the four phases of running an actual assessment from start to finish. Procedural backbone of assessments."
+    }
+  },
+  "source_documents": [
+    {
+      "name": "CMMC Model Overview",
+      "purpose": "High-level explanation of CMMC program structure — levels, domains, practices, and how they relate."
+    },
+    {
+      "name": "CMMC Level 1 Assessment Guide",
+      "purpose": "Defines how to assess all 17 Level 1 practices. Includes practice definitions, assessment objectives, and methods (Examine/Interview/Test)."
+    },
+    {
+      "name": "CMMC Level 2 Assessment Guide",
+      "purpose": "Same structure as Level 1 guide but covers all 110 NIST 800-171 practices. Primary reference during Level 2 assessments."
+    },
+    {
+      "name": "CMMC Level 1 Scoping Guidance",
+      "purpose": "Defines what assets, people, and technology are in/out of scope for a Level 1 assessment."
+    },
+    {
+      "name": "CMMC Level 2 Scoping Guidance",
+      "purpose": "Same as Level 1 but for Level 2. More complex due to CUI asset identification requirements."
+    },
+    {
+      "name": "CMMC Assessment Process (CAP)",
+      "purpose": "Defines the four assessment phases: Plan and Prepare, Conduct, Report Results, POA&M Evaluation."
+    },
+    {
+      "name": "CMMC Glossary",
+      "purpose": "Official definitions for all CMMC-specific terms. Critical for exam questions that hinge on precise definitions."
+    },
+    {
+      "name": "CMMC Artifact Hashing Tool User Guide",
+      "purpose": "Explains how to create cryptographic fingerprints of assessment evidence to ensure integrity and chain of custody."
+    }
+  ],
+  "CUI_authority_chain": {
+    "government_authority_for_CUI": [
+      {"document": "EO 13556", "role": "Created the CUI program, designated NARA as EA"},
+      {"document": "32 CFR Part 2002", "role": "Government-wide implementing directive"},
+      {"document": "DoDI 5200.48", "role": "DoD-specific implementation"}
+    ],
+    "registries": [
+      {
+        "name": "ISOO CUI Registry",
+        "administered_by": "NARA",
+        "example_categories": ["Export Controlled (SP-EXPT)"],
+        "marking_reference": "NARA CUI Marking Handbook"
+      },
+      {
+        "name": "DoD CUI Registry",
+        "administered_by": "DoD",
+        "example_categories": ["Naval Nuclear Propulsion Information (NNPI)"],
+        "marking_reference": "DoD CUI Marking Aid"
+      }
+    ]
+  },
+  "consequences_of_noncompliance": [
+    {
+      "type": "Failure to receive contract award",
+      "description": "Without required CMMC certification level, contractor cannot be awarded the contract."
+    },
+    {
+      "type": "Contractual liability",
+      "description": "If already under contract and fall out of compliance, contractor is in breach and DoD can terminate."
+    },
+    {
+      "type": "False Claims Act",
+      "description": "Misrepresenting cybersecurity compliance to obtain a federal contract exposes contractor to DoJ civil action. The Civil Cyber-Fraud Initiative was created specifically to pursue contractors who submit false SPRS scores or misrepresent CMMC status. Penalties include up to triple damages.",
+      "enforcing_body": "Department of Justice — Civil Cyber-Fraud Initiative"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "d3_001",
+      "domain": 3,
+      "question": "What problem did EO 13556 solve?",
+      "answer": "Inconsistent labeling and handling of sensitive unclassified information across federal agencies. Every agency had its own categories and markings, creating confusion about how to protect and handle it."
+    },
+    {
+      "id": "d3_002",
+      "domain": 3,
+      "question": "Who is the Executive Agent for CUI in the Executive Branch?",
+      "answer": "NARA — the National Archives and Records Administration, designated by EO 13556."
+    },
+    {
+      "id": "d3_003",
+      "domain": 3,
+      "question": "What is the relationship between EO 13556 and 32 CFR Part 2002?",
+      "answer": "EO 13556 directed that an implementing regulation be written to operationalize the CUI program. 32 CFR Part 2002 is that regulation — it fills in the details about how the program works in practice."
+    },
+    {
+      "id": "d3_004",
+      "domain": 3,
+      "question": "What does DFARS 252.204-7012 require?",
+      "answer": "Contractors must implement NIST SP 800-171, report cyber incidents to DoD within 72 hours, and maintain a medium assurance certificate."
+    },
+    {
+      "id": "d3_005",
+      "domain": 3,
+      "question": "What is SPRS and which DFARS clause requires contractors to post a score there?",
+      "answer": "SPRS is the Supplier Performance Risk System. DFARS 252.204-7019 requires contractors to post their NIST 800-171 self-assessment score before contract award."
+    },
+    {
+      "id": "d3_006",
+      "domain": 3,
+      "question": "What is the difference between DFARS 7019 and 7020?",
+      "answer": "7019 requires the contractor to self-assess and post their score to SPRS. 7020 gives DoD the right to verify that score is accurate."
+    },
+    {
+      "id": "d3_007",
+      "domain": 3,
+      "question": "What does DFARS 252.204-7021 require?",
+      "answer": "Contractors must hold the appropriate CMMC certification level as a condition of contract award. Level 1 = self-assessment, most Level 2 = C3PAO, Level 3 = DIBCAC."
+    },
+    {
+      "id": "d3_008",
+      "domain": 3,
+      "question": "What is 32 CFR Part 170?",
+      "answer": "The federal regulation that formally establishes and legally defines the CMMC program — its levels, structure, timeline, and requirements. The authoritative legal source for the CMMC program."
+    },
+    {
+      "id": "d3_009",
+      "domain": 3,
+      "question": "How was NIST SP 800-171 derived from NIST SP 800-53?",
+      "answer": "It was tailored down by removing controls that were: federal government responsibilities only, focused on federal systems, not related to CUI confidentiality, or expected to be satisfied without being specified. Result: 110 contractor-applicable requirements."
+    },
+    {
+      "id": "d3_010",
+      "domain": 3,
+      "question": "Which version of NIST 800-171 is used for CMMC assessments?",
+      "answer": "Rev 2. Not Rev 3."
+    },
+    {
+      "id": "d3_011",
+      "domain": 3,
+      "question": "What is FCI and where is it defined?",
+      "answer": "Federal Contract Information — information provided by or generated for the government under a contract. Defined in FAR 52.204-21. Protected by CMMC Level 1."
+    },
+    {
+      "id": "d3_012",
+      "domain": 3,
+      "question": "What is the difference between CUI Basic and CUI Specified?",
+      "answer": "CUI Basic follows standard handling requirements from 32 CFR Part 2002. CUI Specified has additional or different requirements defined by the specific authorizing law or regulation governing that category."
+    },
+    {
+      "id": "d3_013",
+      "domain": 3,
+      "question": "What is the difference between the CMMC Assessment Guide and the CAP document?",
+      "answer": "The Assessment Guide is the WHAT — it defines each practice and how to evaluate it. The CAP is the HOW — it defines the four phases of running an actual assessment from start to finish."
+    },
+    {
+      "id": "d3_014",
+      "domain": 3,
+      "question": "What is the Civil Cyber-Fraud Initiative?",
+      "answer": "A DoJ initiative created to pursue federal contractors who misrepresent their cybersecurity compliance — such as submitting false SPRS scores — to obtain government contracts. Penalties can include up to triple damages under the False Claims Act."
+    },
+    {
+      "id": "d3_015",
+      "domain": 3,
+      "question": "What are the three consequences of CMMC non-compliance?",
+      "answer": "1. Failure to receive contract award. 2. Contractual liability / contract termination. 3. False Claims Act liability via the DoJ Civil Cyber-Fraud Initiative."
+    },
+    {
+      "id": "d3_016",
+      "domain": 3,
+      "question": "Why was DFARS 7021 necessary even after 7019 and 7020 existed?",
+      "answer": "7019 and 7020 still relied on contractor self-assessment as the baseline. 7021 replaced self-reporting for higher-risk programs with formal third-party certification, removing the trust problem entirely for those contracts."
+    },
+    {
+      "id": "d3_017",
+      "domain": 3,
+      "question": "Who administers the ISOO CUI Registry?",
+      "answer": "NARA — the National Archives and Records Administration."
+    },
+    {
+      "id": "d3_018",
+      "domain": 3,
+      "question": "What are the 8 CMMC source documents?",
+      "answer": "1. CMMC Model Overview 2. Level 1 Assessment Guide 3. Level 2 Assessment Guide 4. Level 1 Scoping Guidance 5. Level 2 Scoping Guidance 6. CMMC Assessment Process (CAP) 7. CMMC Glossary 8. CMMC Artifact Hashing Tool User Guide"
+    },
+    {
+      "id": "d3_019",
+      "domain": 3,
+      "question": "Why would you hash assessment evidence?",
+      "answer": "Hashing creates a cryptographic fingerprint of evidence at the time of collection. It ensures integrity — if anyone questions whether evidence was altered after the assessment, you can re-hash and compare. It protects chain of custody for both the assessor and the OSC."
+    },
+    {
+      "id": "d3_020",
+      "domain": 3,
+      "question": "What is the hierarchical relationship between EO 13556, 32 CFR Part 2002, and DoDI 5200.48?",
+      "answer": "EO 13556 created the CUI program and directed an implementing regulation. 32 CFR Part 2002 is that government-wide implementing regulation. DoDI 5200.48 is DoD's internal implementation of 32 CFR Part 2002. Each is subordinate to and implements the one above it."
+    }
+  ]
+}
