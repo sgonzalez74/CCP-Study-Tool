@@ -125,6 +125,49 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
 .empty-state{text-align:center;padding:60px 20px;color:var(--text3)}
 .empty-state p{margin-top:8px;font-size:.9rem}
 
+/* Exam Simulator */
+.exam-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:20px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;position:sticky;top:60px;z-index:50}
+.exam-timer{font-size:1.1rem;font-weight:700;font-variant-numeric:tabular-nums}
+.exam-timer.warn{color:var(--orange)}.exam-timer.critical{color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.exam-progress-text{font-size:.82rem;color:var(--text2)}
+.exam-q-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px}
+.exam-q-card .q-num{font-size:.75rem;color:var(--text3);margin-bottom:4px}
+.exam-q-card .q-domain{font-size:.7rem;padding:3px 8px;border-radius:12px;background:var(--surface3);display:inline-block;margin-bottom:10px}
+.exam-q-card .q-text{font-size:1rem;line-height:1.7;margin-bottom:16px}
+.exam-option{display:block;width:100%;text-align:left;padding:12px 16px;margin-bottom:8px;background:var(--surface2);border:2px solid var(--border);border-radius:10px;color:var(--text);font-size:.9rem;line-height:1.5;transition:all .15s}
+.exam-option:hover{border-color:var(--accent);background:var(--surface3)}
+.exam-option.selected{border-color:var(--accent);background:rgba(108,138,255,.1)}
+.exam-option.correct{border-color:var(--green);background:rgba(52,211,153,.1)}
+.exam-option.wrong{border-color:var(--red);background:rgba(248,113,113,.1)}
+.exam-option .opt-letter{font-weight:700;margin-right:8px;color:var(--accent)}
+.exam-nav{display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:10px}
+.exam-grid{display:flex;flex-wrap:wrap;gap:4px;margin:16px 0}
+.exam-grid-btn{width:32px;height:32px;border-radius:6px;font-size:.72rem;font-weight:600;background:var(--surface2);color:var(--text2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .15s}
+.exam-grid-btn:hover{border-color:var(--accent)}
+.exam-grid-btn.answered{background:var(--accent);color:#fff;border-color:var(--accent)}
+.exam-grid-btn.current{box-shadow:0 0 0 2px var(--orange)}
+.exam-grid-btn.flagged{background:var(--orange);color:#000;border-color:var(--orange)}
+.exam-results-header{text-align:center;margin-bottom:24px}
+.exam-results-header .big-score{font-size:3rem;font-weight:800}
+.exam-domain-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:20px 0}
+.exam-domain-breakdown .edb{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.exam-domain-breakdown .edb .edb-score{font-size:1.3rem;font-weight:700}
+.exam-domain-breakdown .edb .edb-label{font-size:.72rem;color:var(--text2);margin-top:2px}
+.exam-review-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px}
+.exam-review-item.incorrect{border-left:3px solid var(--red)}
+.exam-review-item.correct-review{border-left:3px solid var(--green)}
+.exam-explanation{background:var(--surface2);border-radius:8px;padding:12px;margin-top:10px;font-size:.85rem;color:var(--text2);line-height:1.6}
+.exam-start-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:40px;text-align:center;max-width:600px;margin:40px auto}
+.exam-start-card h3{font-size:1.3rem;margin-bottom:12px}
+.exam-start-card p{color:var(--text2);font-size:.9rem;margin-bottom:8px;line-height:1.6}
+.exam-start-card .exam-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;text-align:left}
+.exam-start-card .exam-meta div{background:var(--surface2);padding:12px;border-radius:8px}
+.exam-start-card .exam-meta div span{display:block;font-size:.75rem;color:var(--text3)}
+.exam-start-card .exam-meta div strong{color:var(--text)}
+.flag-btn{background:none;color:var(--text3);font-size:.85rem;padding:6px 12px;border:1px solid var(--border);border-radius:6px}
+.flag-btn:hover,.flag-btn.flagged{color:var(--orange);border-color:var(--orange)}
+
 /* Responsive */
 @media(max-width:640px){
   .container{padding:16px}
@@ -132,6 +175,8 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
   .flashcard{padding:30px 20px;min-height:200px}
   .scoring-btns{flex-direction:column}
   .scoring-btns .btn{min-width:100%}
+  .exam-header{position:static}
+  .exam-grid-btn{width:28px;height:28px;font-size:.65rem}
 }
 </style>
 </head>
@@ -178,6 +223,13 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
         <h3>Domain Progress Tracker</h3>
         <p>Dashboard of study progress, flashcard completion, and assessment scores over time.</p>
         <span class="weight-badge">Overview</span>
+      </div>
+      <div class="mode-card" onclick="showView('exam')">
+        <div class="mode-num">Mode 5</div>
+        <div class="mode-icon">&#128221;</div>
+        <h3>Exam Simulator</h3>
+        <p>170 multiple-choice questions, 3.5-hour timer, weighted by exam domain percentages. Trap and application-style questions.</p>
+        <span class="weight-badge">All Domains &middot; 170Q</span>
       </div>
     </div>
   </div>
@@ -247,6 +299,38 @@ button{cursor:pointer;font-family:inherit;border:none;outline:none}
       <h3>Assessment Simulator History</h3>
       <div id="simHistory"></div>
     </div>
+    <div class="history-section">
+      <h3>Exam Simulator History</h3>
+      <div id="examHistory"></div>
+    </div>
+  </div>
+
+  <!-- MODE 5: EXAM SIMULATOR -->
+  <div class="view" id="exam">
+    <div id="examStart"></div>
+    <div id="examActive" style="display:none">
+      <div class="exam-header">
+        <div>
+          <span class="exam-timer" id="examTimer">3:30:00</span>
+          <span class="exam-progress-text" id="examProgressText">Question 1 of 170</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="flag-btn" id="examFlagBtn" onclick="toggleExamFlag()">&#9873; Flag</button>
+          <button class="btn btn-ghost btn-sm" onclick="toggleExamGrid()">Grid</button>
+          <button class="btn btn-danger btn-sm" onclick="confirmSubmitExam()">Submit Exam</button>
+        </div>
+      </div>
+      <div id="examGridPanel" style="display:none;margin-bottom:16px">
+        <div class="exam-grid" id="examGrid"></div>
+        <p style="font-size:.72rem;color:var(--text3);margin-top:4px">&#9632; Answered &nbsp; &#9873; Flagged &nbsp; &#9633; Unanswered</p>
+      </div>
+      <div id="examQuestion"></div>
+      <div class="exam-nav">
+        <button class="btn btn-ghost btn-sm" id="examPrevBtn" onclick="examNav(-1)">&#8592; Previous</button>
+        <button class="btn btn-primary btn-sm" id="examNextBtn" onclick="examNav(1)">Next &#8594;</button>
+      </div>
+    </div>
+    <div id="examResults" style="display:none"></div>
   </div>
 </div>
 
@@ -260,9 +344,9 @@ DOMAINS[1] = {"domain":1,"title":"CMMC Ecosystem","exam_weight":"5%","flashcards
 
 DOMAINS[2] = {"domain":2,"title":"CMMC-AB Code of Professional Conduct","exam_weight":"5%","flashcards":[{"id":"d2_001","question":"What must an assessor do if they have a conflict of interest with an OSC they are assigned to assess?","answer":"Disclose the conflict and recuse themselves from the assessment. Objectivity cannot be compromised."},{"id":"d2_002","question":"What does confidentiality require of a CMMC assessor after an assessment is complete?","answer":"NDA obligations persist after the assessment. Assessment findings, system details, and evidence obtained during the assessment cannot be disclosed to unauthorized parties even after the engagement ends."},{"id":"d2_003","question":"An OSC\u2019s leadership pressures an assessor to change a NOT MET finding to MET. What should the assessor do?","answer":"Maintain the NOT MET finding. Objectivity and information integrity require accurate findings regardless of pressure from the OSC."},{"id":"d2_004","question":"What is the relationship between ISO/IEC standards and the CMMC-AB CoPC?","answer":"ISO/IEC standards provide the international framework for assessment body conduct. The CoPC is the CMMC-specific implementation of those standards."},{"id":"d2_005","question":"What are the nine guiding principles of the CMMC-AB Code of Professional Conduct?","answer":"Professionalism, Objectivity, Confidentiality, Proper Use of Methods, Information Integrity, Conflicts of Interest, Respect for Intellectual Property, Lawful and Ethical Practices, Contracts and Non-Disclosure Agreements."},{"id":"d2_006","question":"What constitutes a conflict of interest for a CMMC assessor?","answer":"Any personal, financial, or professional relationship that could compromise objectivity \u2014 including previously working for the OSC as a consultant or having a financial stake in a competing organization."},{"id":"d2_007","question":"What does information integrity require during an assessment?","answer":"Assessment findings and evidence must be accurate and complete. Falsifying, omitting, or manipulating findings is a serious violation of the CoPC."},{"id":"d2_008","question":"What is the purpose of a Non-Disclosure Agreement in the CMMC assessment context?","answer":"Formalizes the confidentiality obligation between the assessor and the OSC. Protects sensitive system information obtained during the assessment. Obligations persist after the assessment is complete."}]};
 
-DOMAINS[3] = {"domain":3,"title":"CMMC Governance and Source Documents","exam_weight":"15%","regulatory_chain":[{"id":"eo13556","label":"EO 13556","full_name":"Executive Order 13556 (2010)","position":1,"connects_to":"32cfr2002","description":"Signed by President Obama in 2010. Solved the problem of inconsistent labeling and handling of sensitive unclassified information across federal agencies. Created the CUI program to standardize how that information is categorized, marked, and protected government-wide. Designated NARA as the Executive Agent responsible for overseeing the CUI program.","key_facts":["Created the CUI program","Designated NARA as Executive Agent","Directed creation of 32 CFR Part 2002","Solved inconsistent agency labeling/handling of sensitive unclassified info"]},{"id":"32cfr2002","label":"32 CFR Part 2002","full_name":"Title 32 Code of Federal Regulations Part 2002","position":2,"connects_to":"dodi520048","description":"The implementing regulation that EO 13556 ordered to be written. Operationalizes the CUI program government-wide \u2014 defining what CUI is, how it must be handled, marked, safeguarded, and shared across the federal government and its contractors.","key_facts":["Implements EO 13556","Applies government-wide, including contractors","Defines CUI Basic vs CUI Specified","NARA administers the CUI Registry under this regulation"]},{"id":"dodi520048","label":"DoDI 5200.48","full_name":"Department of Defense Instruction 5200.48","position":3,"connects_to":"dfars7012","description":"DoD\u2019s internal instruction that implements 32 CFR Part 2002 specifically within the Department of Defense. Defines contractor and authorized holder responsibilities for handling CUI within the DoD context.","key_facts":["DoD-specific implementation of 32 CFR Part 2002","Defines DoD contractor CUI handling responsibilities","Subordinate to 32 CFR Part 2002"]},{"id":"dfars7012","label":"DFARS 252.204-7012","full_name":"Defense Federal Acquisition Regulation Supplement Clause 252.204-7012","position":4,"connects_to":"dfars7019","description":"The foundational DFARS cybersecurity clause. Requires contractors to implement NIST SP 800-171 to protect CUI, report cyber incidents to DoD within 72 hours, and maintain a medium assurance certificate. Created the original contractual obligation to implement 800-171.","key_facts":["Requires implementation of NIST SP 800-171","72-hour cyber incident reporting requirement","Created original obligation to protect CUI on contractor systems","No verification mechanism \u2014 that came later"]},{"id":"dfars7019","label":"DFARS 252.204-7019","full_name":"Defense Federal Acquisition Regulation Supplement Clause 252.204-7019","position":5,"connects_to":"dfars7020","description":"Requires contractors to complete a self-assessment of their NIST SP 800-171 implementation, score themselves, and post that score to SPRS before they can receive a contract award.","key_facts":["Requires NIST 800-171 self-assessment","Score must be posted to SPRS before contract award","SPRS = Supplier Performance Risk System","Partial solution to the verification problem"]},{"id":"dfars7020","label":"DFARS 252.204-7020","full_name":"Defense Federal Acquisition Regulation Supplement Clause 252.204-7020","position":6,"connects_to":"dfars7021","description":"Gives DoD the right to conduct or commission a medium or high confidence assessment to verify that a contractor\u2019s SPRS score is accurate. Works alongside 7019.","key_facts":["DoD can verify your SPRS score","Enables medium or high confidence assessments","Works alongside 7019 to address the verification gap","Contractor cannot refuse a government verification assessment"]},{"id":"dfars7021","label":"DFARS 252.204-7021","full_name":"Defense Federal Acquisition Regulation Supplement Clause 252.204-7021","position":7,"connects_to":"32cfr170","description":"The CMMC clause. Requires contractors to hold the appropriate CMMC certification level as a condition of contract award. Level 1 = self-assessment, most Level 2 = C3PAO, Level 3 = DIBCAC.","key_facts":["Makes CMMC certification a contract requirement","Level 1: self-assessment","Level 2: C3PAO third-party assessment (most programs)","Level 3: DIBCAC assessment","No certification = no contract award"]},{"id":"32cfr170","label":"32 CFR Part 170","full_name":"Title 32 CFR Part 170 \u2014 CMMC Final Rule","position":8,"connects_to":"nist800171","description":"The federal regulation that formally establishes the CMMC program and makes it legally enforceable. The authoritative legal source for the CMMC program itself. Defines the three levels, roles, timeline, and POA&M allowances.","key_facts":["Legally defines the entire CMMC program","Authoritative source for CMMC program structure","Establishes 9-24 month implementation timeline","Allows POA&M for conditional certification","DFARS 7021 says \u2018be certified\u2019 \u2014 32 CFR Part 170 defines what certified means"]},{"id":"nist800171","label":"NIST SP 800-171 Rev 2","full_name":"NIST Special Publication 800-171 Revision 2","position":9,"connects_to":null,"description":"The technical foundation everything else is built on. Defines 110 security requirements across 14 domains for protecting CUI on non-federal systems. Tailored from NIST SP 800-53 moderate baseline. Rev 2 is used for CMMC \u2014 not Rev 3.","key_facts":["110 security requirements across 14 domains","Protects CUI on non-federal (contractor) systems","Tailored from NIST 800-53 moderate baseline","Rev 2 is used for CMMC \u2014 not Rev 3","Level 2 CMMC = implementing all 110 controls"]}],"flashcards":[{"id":"d3_001","question":"What problem did EO 13556 solve?","answer":"Inconsistent labeling and handling of sensitive unclassified information across federal agencies."},{"id":"d3_002","question":"Who is the Executive Agent for CUI in the Executive Branch?","answer":"NARA \u2014 the National Archives and Records Administration, designated by EO 13556."},{"id":"d3_003","question":"What is the relationship between EO 13556 and 32 CFR Part 2002?","answer":"EO 13556 directed that an implementing regulation be written. 32 CFR Part 2002 is that regulation."},{"id":"d3_004","question":"What does DFARS 252.204-7012 require?","answer":"Contractors must implement NIST SP 800-171, report cyber incidents to DoD within 72 hours, and maintain a medium assurance certificate."},{"id":"d3_005","question":"What is SPRS and which DFARS clause requires posting a score there?","answer":"SPRS is the Supplier Performance Risk System. DFARS 252.204-7019 requires contractors to post their NIST 800-171 self-assessment score before contract award."},{"id":"d3_006","question":"What is the difference between DFARS 7019 and 7020?","answer":"7019 requires the contractor to self-assess and post their score to SPRS. 7020 gives DoD the right to verify that score is accurate."},{"id":"d3_007","question":"What does DFARS 252.204-7021 require?","answer":"Contractors must hold the appropriate CMMC certification level as a condition of contract award."},{"id":"d3_008","question":"What is 32 CFR Part 170?","answer":"The federal regulation that formally establishes and legally defines the CMMC program."},{"id":"d3_009","question":"How was NIST SP 800-171 derived from NIST SP 800-53?","answer":"Tailored down by removing controls that were: federal government responsibilities only, focused on federal systems, not related to CUI confidentiality, or expected to be satisfied without being specified."},{"id":"d3_010","question":"Which version of NIST 800-171 is used for CMMC assessments?","answer":"Rev 2. Not Rev 3."},{"id":"d3_011","question":"What is FCI and where is it defined?","answer":"Federal Contract Information \u2014 defined in FAR 52.204-21. Protected by CMMC Level 1."},{"id":"d3_012","question":"What is the difference between CUI Basic and CUI Specified?","answer":"CUI Basic follows standard handling requirements from 32 CFR Part 2002. CUI Specified has additional or different requirements defined by the specific authorizing law or regulation."},{"id":"d3_013","question":"What is the difference between the Assessment Guide and the CAP?","answer":"The Assessment Guide is the WHAT \u2014 defines each practice and how to evaluate it. The CAP is the HOW \u2014 defines the four phases of running an assessment."},{"id":"d3_014","question":"What is the Civil Cyber-Fraud Initiative?","answer":"A DoJ initiative to pursue contractors who misrepresent cybersecurity compliance to obtain government contracts. Penalties include up to triple damages under the False Claims Act."},{"id":"d3_015","question":"What are the three consequences of CMMC non-compliance?","answer":"1. Failure to receive contract award. 2. Contractual liability / contract termination. 3. False Claims Act liability via the DoJ Civil Cyber-Fraud Initiative."},{"id":"d3_016","question":"Why was DFARS 7021 necessary even after 7019 and 7020 existed?","answer":"7019 and 7020 still relied on contractor self-assessment as the baseline. 7021 replaced self-reporting with formal third-party certification for higher-risk programs."},{"id":"d3_017","question":"Who administers the ISOO CUI Registry?","answer":"NARA \u2014 the National Archives and Records Administration."},{"id":"d3_018","question":"What are the 8 CMMC source documents?","answer":"1. CMMC Model Overview 2. Level 1 Assessment Guide 3. Level 2 Assessment Guide 4. Level 1 Scoping Guidance 5. Level 2 Scoping Guidance 6. CMMC Assessment Process (CAP) 7. CMMC Glossary 8. CMMC Artifact Hashing Tool User Guide"},{"id":"d3_019","question":"Why would you hash assessment evidence?","answer":"Hashing creates a cryptographic fingerprint at the time of collection. It ensures integrity \u2014 proves evidence was not altered after the assessment."},{"id":"d3_020","question":"What is the hierarchical relationship between EO 13556, 32 CFR Part 2002, and DoDI 5200.48?","answer":"EO 13556 created the CUI program. 32 CFR Part 2002 is the government-wide implementing regulation. DoDI 5200.48 is DoD\u2019s internal implementation. Each is subordinate to the one above."}]};
+DOMAINS[3] = {"domain":3,"title":"CMMC Governance and Source Documents","exam_weight":"15%","regulatory_chain":[{"id":"eo13556","label":"EO 13556","full_name":"Executive Order 13556 (2010)","position":1,"connects_to":"32cfr2002","description":"Signed by President Obama in 2010. Solved the problem of inconsistent labeling and handling of sensitive unclassified information across federal agencies. Created the CUI program to standardize how that information is categorized, marked, and protected government-wide. Designated NARA (National Archives and Records Administration) as the Executive Agent responsible for overseeing the CUI program. Directed that an implementing regulation be written — which became 32 CFR Part 2002.","key_facts":["Created the CUI program","Designated NARA as Executive Agent","Directed creation of 32 CFR Part 2002","Solved inconsistent agency labeling/handling of sensitive unclassified info"]},{"id":"32cfr2002","label":"32 CFR Part 2002","full_name":"Title 32 Code of Federal Regulations Part 2002","position":2,"connects_to":"dodi520048","description":"The implementing regulation that EO 13556 ordered to be written. Operationalizes the CUI program government-wide — defining what CUI is, how it must be handled, marked, safeguarded, and shared across the federal government and its contractors. Applies to both federal and non-federal entities handling CUI. Establishes the distinction between CUI Basic and CUI Specified.","key_facts":["Implements EO 13556","Applies government-wide, including contractors","Defines CUI Basic vs CUI Specified","NARA administers the CUI Registry under this regulation"]},{"id":"dodi520048","label":"DoDI 5200.48","full_name":"Department of Defense Instruction 5200.48","position":3,"connects_to":"dfars7012","description":"DoD's internal instruction that implements 32 CFR Part 2002 specifically within the Department of Defense. Where 32 CFR Part 2002 is government-wide, DoDI 5200.48 is DoD saying 'here's how we do it.' Defines contractor and authorized holder responsibilities for handling CUI within the DoD context.","key_facts":["DoD-specific implementation of 32 CFR Part 2002","Defines DoD contractor CUI handling responsibilities","Subordinate to 32 CFR Part 2002"]},{"id":"dfars7012","label":"DFARS 252.204-7012","full_name":"Defense Federal Acquisition Regulation Supplement Clause 252.204-7012","position":4,"connects_to":"dfars7019","description":"The foundational DFARS cybersecurity clause. Requires contractors to implement NIST SP 800-171 to protect CUI, report cyber incidents to DoD within 72 hours, and maintain a medium assurance certificate. This clause created the original contractual obligation to implement 800-171. Predates CMMC. Problem it exposed: DoD had no way to verify contractors were actually complying.","key_facts":["Requires implementation of NIST SP 800-171","72-hour cyber incident reporting requirement","Created original obligation to protect CUI on contractor systems","No verification mechanism — that came later"]},{"id":"dfars7019","label":"DFARS 252.204-7019","full_name":"Defense Federal Acquisition Regulation Supplement Clause 252.204-7019","position":5,"connects_to":"dfars7020","description":"Requires contractors to complete a self-assessment of their NIST SP 800-171 implementation, score themselves, and post that score to SPRS (Supplier Performance Risk System) before they can receive a contract award. Addressed the problem that DoD couldn't see contractor compliance status. Now DoD can check your score before awarding a contract.","key_facts":["Requires NIST 800-171 self-assessment","Score must be posted to SPRS before contract award","SPRS = Supplier Performance Risk System","Partial solution to the verification problem"]},{"id":"dfars7020","label":"DFARS 252.204-7020","full_name":"Defense Federal Acquisition Regulation Supplement Clause 252.204-7020","position":6,"connects_to":"dfars7021","description":"Gives DoD the right to conduct or commission a medium or high confidence assessment to verify that a contractor's SPRS score is accurate. Works alongside 7019 — 7019 requires you to post a score, 7020 says DoD can verify it. Together they address the self-reporting trust problem.","key_facts":["DoD can verify your SPRS score","Enables medium or high confidence assessments","Works alongside 7019 to address the verification gap","Contractor cannot refuse a government verification assessment"]},{"id":"dfars7021","label":"DFARS 252.204-7021","full_name":"Defense Federal Acquisition Regulation Supplement Clause 252.204-7021","position":7,"connects_to":"32cfr170","description":"The CMMC clause. Requires contractors to hold the appropriate CMMC certification level as a condition of contract award. Ended the era of self-reporting for most Level 2 and all Level 3 contractors. Level 1 remains self-assessment. Most Level 2 requires C3PAO third-party assessment. Level 3 requires DIBCAC assessment.","key_facts":["Makes CMMC certification a contract requirement","Level 1: self-assessment","Level 2: C3PAO third-party assessment (most programs)","Level 3: DIBCAC assessment","No certification = no contract award"]},{"id":"32cfr170","label":"32 CFR Part 170","full_name":"Title 32 Code of Federal Regulations Part 170 — CMMC Final Rule","position":8,"connects_to":"nist800171","description":"The federal regulation that formally establishes the CMMC program and makes it legally enforceable. The authoritative legal source for the CMMC program itself. Defines the three CMMC levels, who needs CMMC and when, the roles of C3PAOs, CMMC-AB, and DoD, the rulemaking timeline (9-24 month implementation window), and POA&M allowances for conditional certification.","key_facts":["Legally defines the entire CMMC program","Authoritative source for CMMC program structure","Establishes 9-24 month implementation timeline","Allows POA&M for conditional certification","DFARS 7021 says 'be certified' — 32 CFR Part 170 defines what certified means"]},{"id":"nist800171","label":"NIST SP 800-171 Rev 2","full_name":"NIST Special Publication 800-171 Revision 2","position":9,"connects_to":null,"description":"The technical foundation everything else is built on. Defines 110 security requirements across 14 domains for protecting CUI on non-federal systems. Tailored down from NIST SP 800-53 moderate baseline by removing controls that were federal-only responsibilities, not related to CUI confidentiality, or expected to be satisfied without being specified. Rev 2 is the version used for CMMC assessments — not Rev 3.","key_facts":["110 security requirements across 14 domains","Protects CUI on non-federal (contractor) systems","Tailored from NIST 800-53 moderate baseline","Rev 2 is used for CMMC — not Rev 3","Level 2 CMMC = implementing all 110 controls"]}],"cmmc_framework_tenets":{"overview":"CMMC 2.0 replaced 1.0 to address specific failures in the original program. The three tenets explain what was broken and how 2.0 fixed it.","tenets":[{"name":"Streamlined Model","problem_solved":"CMMC 1.0 had five levels and included CMMC-unique practices not based on any existing standard, creating confusion and compliance burden with no real security benefit.","solution":"Reduced to three levels. Removed all CMMC-unique practices. Aligned everything to existing widely accepted standards — NIST 800-171 for Level 2, NIST 800-172 for Level 3. Focused only on the most critical requirements.","core_idea":"Simpler, standards-based, focused on what actually matters.","key_aspects":["Focused on the most critical requirements","Aligned with widely accepted standards (NIST 800-171, NIST 800-172)","Three levels instead of five","No CMMC-unique practices"]},{"name":"Reliable Assessments","problem_solved":"CMMC 1.0 relied on self-attestation with no real verification. Contractors could claim compliance without anyone checking.","solution":"Introduced formal third-party assessments through C3PAOs. Created C3PAO accreditation structure for assessor accountability. Reduced assessment costs compared to 1.0. Built in higher accountability through certification structure.","core_idea":"Verified compliance, not trusted compliance.","key_aspects":["Reduced assessment costs","Higher accountability through C3PAO structure","Formal third-party assessments for higher-risk programs","Addresses self-reporting trust problem"]},{"name":"Flexible Implementation","problem_solved":"CMMC 1.0 was rigid and created barriers that made compliance feel impossible, especially for smaller contractors.","solution":"Allows self-assessments at Level 1 and some Level 2 programs. Introduced POA&M allowances so contractors aren't disqualified for minor gaps. Emphasized collaboration between DoD and industry. Added flexibility and speed to the certification process.","core_idea":"Compliance should be achievable, not just theoretically required.","key_aspects":["Spirit of collaboration between DoD and industry","Added flexibility and speed","POA&M allowances for conditional certification","Self-assessment options at Level 1 and some Level 2"]}]},"additional_regulatory_references":{"DFARS_252_227_7013":{"name":"DFARS 252.227-7013 — Technical Data","purpose":"Governs rights in technical data and computer software developed under DoD contracts. Defines what rights the government has to contractor-developed technical data including engineering drawings, specifications, and software.","cmmc_relevance":"Technical data is often CUI. This clause governs the handling and rights associated with that technical data within the broader contractor regulatory landscape.","key_fact":"Separate from the 252.204-7012 series — governs data rights, not cybersecurity requirements directly."},"FedRAMP":{"name":"Federal Risk and Authorization Management Program","purpose":"Government-wide program that standardizes security assessment and authorization for cloud services used by federal agencies and contractors.","cmmc_relevance":"When a contractor uses a cloud service provider to process, store, or transmit FCI or CUI, that cloud service may need to be FedRAMP authorized. A FedRAMP authorized cloud service has already been assessed against federal security standards.","scoping_impact":"FedRAMP authorization reduces assessment burden — the cloud provider's controls are already validated. However it does not remove the cloud service from scope entirely. The OSC must still verify they are using the service correctly and that their specific implementation meets requirements.","key_distinction":"FedRAMP says the tool is secure. The assessment still checks whether the contractor is using the tool securely."}},"key_distinctions":{"FCI_vs_CUI":{"FCI":{"full_name":"Federal Contract Information","defined_in":"FAR 52.204-21","description":"Information provided by or generated for the government under a contract to develop or deliver a product or service.","sensitivity":"Lower","protected_by":"CMMC Level 1 (15 practices)","who_has_it":"Almost all DoD contractors"},"CUI":{"full_name":"Controlled Unclassified Information","defined_in":"32 CFR Part 2002 (2002.4(h))","description":"Information the government has determined requires safeguarding per law, regulation, or policy — but is not classified.","sensitivity":"Higher","protected_by":"CMMC Level 2 (110 NIST 800-171 controls)","who_has_it":"Contractors handling sensitive defense information","subtypes":{"CUI_Basic":"Follows standard handling requirements from 32 CFR Part 2002","CUI_Specified":"Has additional or different requirements defined by the specific authorizing law or regulation for that category"}}},"NIST800171_vs_NIST80053":{"description":"800-171 was tailored from 800-53 moderate baseline","tailoring_criteria":["Removed controls that were primarily federal government responsibilities","Removed controls focused on federal information systems rather than nonfederal systems","Removed controls not directly related to protecting CUI confidentiality","Removed controls expected to be satisfied without being explicitly specified"]},"Assessment_Guide_vs_CAP":{"Assessment_Guide":"The WHAT — defines each practice, assessment objectives, and evaluation methods (Examine/Interview/Test). Used to evaluate whether specific controls are MET or NOT MET.","CAP":"The HOW — defines the four phases of running an actual assessment from start to finish. Procedural backbone of assessments."}},"source_documents":[{"name":"CMMC Model Overview","purpose":"High-level explanation of CMMC program structure — levels, domains, practices, and how they relate."},{"name":"CMMC Level 1 Assessment Guide","purpose":"Defines how to assess all 15 Level 1 practices. Includes practice definitions, assessment objectives, and methods (Examine/Interview/Test)."},{"name":"CMMC Level 2 Assessment Guide","purpose":"Same structure as Level 1 guide but covers all 110 NIST 800-171 practices. Primary reference during Level 2 assessments."},{"name":"CMMC Level 1 Scoping Guidance","purpose":"Defines what assets, people, and technology are in/out of scope for a Level 1 assessment."},{"name":"CMMC Level 2 Scoping Guidance","purpose":"Same as Level 1 but for Level 2. More complex due to CUI asset identification requirements."},{"name":"CMMC Assessment Process (CAP)","purpose":"Defines the four assessment phases: Plan and Prepare, Conduct, Report Results, POA&M Evaluation."},{"name":"CMMC Glossary","purpose":"Official definitions for all CMMC-specific terms. Critical for exam questions that hinge on precise definitions."},{"name":"CMMC Artifact Hashing Tool User Guide","purpose":"Explains how to create cryptographic fingerprints of assessment evidence to ensure integrity and chain of custody."}],"CUI_authority_chain":{"government_authority_for_CUI":[{"document":"EO 13556","role":"Created the CUI program, designated NARA as EA"},{"document":"32 CFR Part 2002","role":"Government-wide implementing directive"},{"document":"DoDI 5200.48","role":"DoD-specific implementation"}],"registries":[{"name":"ISOO CUI Registry","administered_by":"NARA","example_categories":["Export Controlled (SP-EXPT)"],"marking_reference":"NARA CUI Marking Handbook"},{"name":"DoD CUI Registry","administered_by":"DoD","example_categories":["Naval Nuclear Propulsion Information (NNPI)"],"marking_reference":"DoD CUI Marking Aid"}]},"consequences_of_noncompliance":[{"type":"Failure to receive contract award","description":"Without required CMMC certification level, contractor cannot be awarded the contract."},{"type":"Contractual liability","description":"If already under contract and fall out of compliance, contractor is in breach and DoD can terminate."},{"type":"False Claims Act","description":"Misrepresenting cybersecurity compliance to obtain a federal contract exposes contractor to DoJ civil action. The Civil Cyber-Fraud Initiative was created specifically to pursue contractors who submit false SPRS scores or misrepresent CMMC status. Penalties include up to triple damages.","enforcing_body":"Department of Justice — Civil Cyber-Fraud Initiative"}],"flashcards":[{"id":"d3_001","domain":3,"question":"What problem did EO 13556 solve?","answer":"Inconsistent labeling and handling of sensitive unclassified information across federal agencies. Every agency had its own categories and markings, creating confusion about how to protect and handle it."},{"id":"d3_002","domain":3,"question":"Who is the Executive Agent for CUI in the Executive Branch?","answer":"NARA — the National Archives and Records Administration, designated by EO 13556."},{"id":"d3_003","domain":3,"question":"What is the relationship between EO 13556 and 32 CFR Part 2002?","answer":"EO 13556 directed that an implementing regulation be written to operationalize the CUI program. 32 CFR Part 2002 is that regulation — it fills in the details about how the program works in practice."},{"id":"d3_004","domain":3,"question":"What does DFARS 252.204-7012 require?","answer":"Contractors must implement NIST SP 800-171, report cyber incidents to DoD within 72 hours, and maintain a medium assurance certificate."},{"id":"d3_005","domain":3,"question":"What is SPRS and which DFARS clause requires contractors to post a score there?","answer":"SPRS is the Supplier Performance Risk System. DFARS 252.204-7019 requires contractors to post their NIST 800-171 self-assessment score before contract award."},{"id":"d3_006","domain":3,"question":"What is the difference between DFARS 7019 and 7020?","answer":"7019 requires the contractor to self-assess and post their score to SPRS. 7020 gives DoD the right to verify that score is accurate."},{"id":"d3_007","domain":3,"question":"What does DFARS 252.204-7021 require?","answer":"Contractors must hold the appropriate CMMC certification level as a condition of contract award. Level 1 = self-assessment, most Level 2 = C3PAO, Level 3 = DIBCAC."},{"id":"d3_008","domain":3,"question":"What is 32 CFR Part 170?","answer":"The federal regulation that formally establishes and legally defines the CMMC program — its levels, structure, timeline, and requirements. The authoritative legal source for the CMMC program."},{"id":"d3_009","domain":3,"question":"How was NIST SP 800-171 derived from NIST SP 800-53?","answer":"It was tailored down by removing controls that were: federal government responsibilities only, focused on federal systems, not related to CUI confidentiality, or expected to be satisfied without being specified. Result: 110 contractor-applicable requirements."},{"id":"d3_010","domain":3,"question":"Which version of NIST 800-171 is used for CMMC assessments?","answer":"Rev 2. Not Rev 3."},{"id":"d3_011","domain":3,"question":"What is FCI and where is it defined?","answer":"Federal Contract Information — information provided by or generated for the government under a contract. Defined in FAR 52.204-21. Protected by CMMC Level 1."},{"id":"d3_012","domain":3,"question":"What is the difference between CUI Basic and CUI Specified?","answer":"CUI Basic follows standard handling requirements from 32 CFR Part 2002. CUI Specified has additional or different requirements defined by the specific authorizing law or regulation governing that category."},{"id":"d3_013","domain":3,"question":"What is the difference between the CMMC Assessment Guide and the CAP document?","answer":"The Assessment Guide is the WHAT — it defines each practice and how to evaluate it. The CAP is the HOW — it defines the four phases of running an actual assessment from start to finish."},{"id":"d3_014","domain":3,"question":"What is the Civil Cyber-Fraud Initiative?","answer":"A DoJ initiative created to pursue federal contractors who misrepresent their cybersecurity compliance — such as submitting false SPRS scores — to obtain government contracts. Penalties can include up to triple damages under the False Claims Act."},{"id":"d3_015","domain":3,"question":"What are the three consequences of CMMC non-compliance?","answer":"1. Failure to receive contract award. 2. Contractual liability / contract termination. 3. False Claims Act liability via the DoJ Civil Cyber-Fraud Initiative."},{"id":"d3_016","domain":3,"question":"What are the three CMMC 2.0 Framework Tenets?","answer":"1. Streamlined Model — simpler, standards-based, focused on critical requirements. 2. Reliable Assessments — verified compliance through C3PAOs, higher accountability. 3. Flexible Implementation — collaborative, achievable compliance with POA&M allowances."},{"id":"d3_017","domain":3,"question":"What problem did the Streamlined Model tenet solve from CMMC 1.0?","answer":"CMMC 1.0 had five levels and CMMC-unique practices not based on existing standards, creating unnecessary complexity and compliance burden. 2.0 reduced to three levels and aligned everything to NIST 800-171 and NIST 800-172."},{"id":"d3_018","domain":3,"question":"What problem did the Reliable Assessments tenet solve from CMMC 1.0?","answer":"CMMC 1.0 relied on self-attestation with no verification mechanism. Contractors could claim compliance without anyone checking. 2.0 introduced C3PAO third-party assessments and formal accreditation structures."},{"id":"d3_019","domain":3,"question":"What problem did the Flexible Implementation tenet solve from CMMC 1.0?","answer":"CMMC 1.0 was rigid and created barriers making compliance feel impossible especially for smaller contractors. 2.0 introduced self-assessment options, POA&M allowances, and a collaborative approach."},{"id":"d3_020","domain":3,"question":"What does DFARS 252.227-7013 govern and why is it relevant to CMMC?","answer":"Governs rights in technical data and computer software developed under DoD contracts. Relevant because technical data is often CUI — it's part of the broader regulatory landscape contractors must understand."},{"id":"d3_021","domain":3,"question":"What is FedRAMP and how does it affect CMMC scoping?","answer":"FedRAMP is the government-wide program standardizing security assessment for cloud services. A FedRAMP authorized cloud service has already been assessed against federal standards, reducing assessment burden. However it doesn't remove the service from scope — the OSC must still verify correct usage. FedRAMP says the tool is secure; the assessment checks whether the contractor uses it securely."},{"id":"d3_022","domain":3,"question":"What is the CMMC rulemaking timeline?","answer":"9 to 24 month implementation window after the final rule dropped, giving contractors time to prepare before CMMC assessments become mandatory in contracts."},{"id":"d3_023","domain":3,"question":"Who administers the ISOO CUI Registry?","answer":"NARA — the National Archives and Records Administration."},{"id":"d3_024","domain":3,"question":"What are the 8 CMMC source documents?","answer":"1. CMMC Model Overview 2. Level 1 Assessment Guide 3. Level 2 Assessment Guide 4. Level 1 Scoping Guidance 5. Level 2 Scoping Guidance 6. CMMC Assessment Process (CAP) 7. CMMC Glossary 8. CMMC Artifact Hashing Tool User Guide"}]};
 
-DOMAINS[4] = {"domain":4,"title":"CMMC Model Construct \u2014 Level 1 Practices","exam_weight":"35%","level1_practices":[{"id":"AC.L1-b.1.i","domain":"Access Control (AC)","name":"Authorized Access Control","requirement":"Limit information system access to authorized users, processes acting on behalf of authorized users, or devices (including other information systems).","plain_terms":"Only authorized users, processes, and devices can access the system.","key_principle":"Control WHO gets in","assessment_objectives":["authorized users are identified","processes acting on behalf of authorized users are identified","devices authorized to connect are identified","system access is limited to authorized users","system access is limited to authorized processes","system access is limited to authorized devices"],"evidence_examples":["User account lists","Access control policies","Records of terminated employee account removal","List of authorized devices"]},{"id":"AC.L1-b.1.ii","domain":"Access Control (AC)","name":"Transaction and Function Control","requirement":"Limit information system access to the types of transactions and functions that authorized users are permitted to execute.","plain_terms":"Once you\u2019re in, what you can DO is also limited. Least privilege.","key_principle":"Control WHAT authorized users can do","assessment_objectives":["types of transactions and functions authorized users are permitted to execute are defined","system access is limited to defined types of transactions and functions"],"evidence_examples":["Role-based access configurations","User permission settings","Access control lists","Admin privilege documentation"]},{"id":"AC.L1-b.1.iii","domain":"Access Control (AC)","name":"External Connections","requirement":"Verify and control/limit connections to and use of external information systems.","plain_terms":"Know what external connections exist, verify they\u2019re authorized, and control/limit them.","key_principle":"Control external CONNECTIONS","assessment_objectives":["connections to external systems are identified","use of external systems is identified","connections to external systems are verified","use of external systems is verified","connections to external systems are controlled/limited","use of external systems is controlled/limited"],"evidence_examples":["Network diagrams showing external connections","Firewall rules","Documented agreements with external system owners","VPN configurations"]},{"id":"AC.L1-b.1.iv","domain":"Access Control (AC)","name":"Control Public Information","requirement":"Control information posted or processed on publicly accessible information systems.","plain_terms":"Controls to ensure FCI doesn\u2019t end up on public-facing systems.","key_principle":"Prevent FCI on PUBLIC systems","assessment_objectives":["individuals authorized to post on publicly accessible systems are identified","procedures to ensure FCI is not posted on publicly accessible systems are identified","a review process is in place prior to posting content","content is reviewed to ensure it does not include FCI","mechanisms are in place to remove and address improper posting of FCI"],"evidence_examples":["List of users authorized to post publicly","Content review procedures","Documented approval chain for public release"]},{"id":"IA.L1-b.1.v","domain":"Identification and Authentication (IA)","name":"Identification","requirement":"Identify information system users, processes acting on behalf of users, or devices.","plain_terms":"Every user, process, and device needs a unique identifier. No shared accounts.","key_principle":"Claiming an identity","assessment_objectives":["system users are identified","processes acting on behalf of users are identified","devices accessing the system are identified"],"evidence_examples":["List of system accounts with unique user IDs","Device inventory with unique identifiers","Service account documentation"]},{"id":"IA.L1-b.1.vi","domain":"Identification and Authentication (IA)","name":"Authentication","requirement":"Authenticate the identities of those users, processes, or devices as a prerequisite to allowing access.","plain_terms":"Prove who you are before getting access. Default credentials must be changed.","key_principle":"Proving an identity","assessment_objectives":["identity of each user is authenticated as a prerequisite to system access","identity of each process acting on behalf of a user is authenticated","identity of each device is authenticated as a prerequisite to system access"],"evidence_examples":["Authentication mechanisms in place","Password policies","No default credentials in use","Device certificates or tokens"]},{"id":"MP.L1-b.1.vii","domain":"Media Protection (MP)","name":"Media Disposal","requirement":"Sanitize or destroy information system media containing FCI before disposal or release for reuse.","plain_terms":"FCI media must be sanitized or destroyed before disposal or reuse.","key_principle":"FCI unrecoverable before media leaves control","assessment_objectives":["system media containing FCI is sanitized or destroyed before disposal","system media containing FCI is sanitized before it is released for reuse"],"evidence_examples":["Media sanitization records","Destruction logs","Media sanitization policy","Certificates of destruction"]},{"id":"PE.L1-b.1.viii","domain":"Physical Protection (PE)","name":"Limit Physical Access","requirement":"Limit physical access to organizational information systems, equipment, and operating environments to authorized individuals.","plain_terms":"Only authorized people can physically access systems and spaces.","key_principle":"Control WHO can physically access systems","assessment_objectives":["authorized individuals allowed physical access are identified","physical access to organizational systems is limited to authorized individuals","physical access to equipment is limited to authorized individuals","physical access to operating environments is limited to authorized individuals"],"evidence_examples":["Authorized access lists","Badge/key card systems","Locked rooms for FCI systems"]},{"id":"PE.L1-b.1.ix","domain":"Physical Protection (PE)","name":"Manage Visitors and Physical Access","requirement":"Escort visitors and monitor visitor activity; maintain audit logs of physical access; and control and manage physical access devices.","plain_terms":"Escort visitors, log physical access, manage keys/badges.","key_principle":"Track and manage HOW physical access occurs","assessment_objectives":["visitors are escorted","visitor activity is monitored","audit logs of physical access are maintained","physical access devices are identified","physical access devices are controlled","physical access devices are managed"],"evidence_examples":["Visitor sign-in/sign-out logs","Badge reader records","Key inventory records","Visitor badge policy"]},{"id":"SC.L1-b.1.x","domain":"System and Communications Protection (SC)","name":"Boundary Protection","requirement":"Monitor, control, and protect organizational communications at the external boundaries and key internal boundaries of the information systems.","plain_terms":"Three actions (monitor, control, protect) at two locations (external and key internal boundaries).","key_principle":"Protect network perimeter and key internal boundaries","assessment_objectives":["external system boundary is defined","key internal system boundaries are defined","communications are monitored at the external boundary","communications are monitored at key internal boundaries","communications are controlled at the external boundary","communications are controlled at key internal boundaries","communications are protected at the external boundary","communications are protected at key internal boundaries"],"evidence_examples":["Network diagrams showing defined boundaries","Firewall configurations","Connection logs","Deny-by-default rule sets"]},{"id":"SC.L1-b.1.xi","domain":"System and Communications Protection (SC)","name":"Public-Access System Separation","requirement":"Implement subnetworks for publicly accessible system components that are physically or logically separated from internal networks.","plain_terms":"Public-facing systems must be on a separate network (DMZ) from internal FCI systems.","key_principle":"Isolate public systems from FCI systems","assessment_objectives":["publicly accessible system components are identified","subnetworks for publicly accessible components are physically or logically separated from internal networks"],"evidence_examples":["Network diagrams showing DMZ","VLAN configurations","Firewall rules blocking DMZ-to-internal traffic"]},{"id":"SI.L1-b.1.xii","domain":"System and Information Integrity (SI)","name":"Flaw Remediation","requirement":"Identify, report, and correct information system flaws in a timely manner.","plain_terms":"Patch management. Find flaws, report them, fix them \u2014 on a defined schedule.","key_principle":"Find, report, fix flaws on schedule","assessment_objectives":["time within which to identify system flaws is specified","system flaws are identified within the specified time frame","time within which to report system flaws is specified","system flaws are reported within the specified time frame","time within which to correct system flaws is specified","system flaws are corrected within the specified time frame"],"evidence_examples":["Patch management policy with defined timeframes","List of installed patches and update history","Vulnerability scan results"]},{"id":"SI.L1-b.1.xiii","domain":"System and Information Integrity (SI)","name":"Malicious Code Protection","requirement":"Provide protection from malicious code at appropriate locations within organizational information systems.","plain_terms":"Deploy anti-malware protection at designated locations.","key_principle":"Deploy malware protection at the right places","assessment_objectives":["designated locations for malicious code protection are identified","protection from malicious code at designated locations is provided"],"evidence_examples":["Anti-malware software deployed on identified systems","List of protected system components","Anti-malware configuration documentation"]},{"id":"SI.L1-b.1.xiv","domain":"System and Information Integrity (SI)","name":"Update Malicious Code Protection","requirement":"Update malicious code protection mechanisms when new releases are available.","plain_terms":"Keep your antivirus definitions current. Configure automatic updates.","key_principle":"Keep malware protection up to date","assessment_objectives":["malicious code protection mechanisms are updated when new releases are available"],"evidence_examples":["Auto-update configuration for anti-malware","Records of malicious code protection updates"]},{"id":"SI.L1-b.1.xv","domain":"System and Information Integrity (SI)","name":"System and File Scanning","requirement":"Perform periodic scans of the information system and real-time scans of files from external sources as files are downloaded, opened, or executed.","plain_terms":"Periodic full system scans + real-time scans of files from external sources.","key_principle":"Actively scan for malware on schedule and in real time","assessment_objectives":["frequency for malicious code scans is defined","malicious code scans are performed with the defined frequency","real-time malicious code scans of files from external sources are performed as files are downloaded, opened, or executed"],"evidence_examples":["Anti-malware scan schedule configuration","Scan logs showing periodic scans","Real-time scan configuration"]}],"flashcards":[{"id":"d4_001","question":"How many Level 1 practices are there and what is their source document?","answer":"15 practices, derived from FAR Clause 52.204-21."},{"id":"d4_002","question":"What does Level 1 protect \u2014 FCI or CUI?","answer":"FCI \u2014 Federal Contract Information. CUI is protected at Level 2."},{"id":"d4_003","question":"What are the three assessment methods and what does each tell you?","answer":"Examine = what documentation says is happening. Interview = what people believe is happening. Test = what is actually happening."},{"id":"d4_004","question":"What happens if one assessment objective within a practice is NOT MET?","answer":"The entire practice is scored NOT MET. No partial credit."},{"id":"d4_005","question":"Can a draft policy be used as evidence for a MET finding?","answer":"No. Evidence must be in final form. Drafts, working papers, and unapproved policies do not count."},{"id":"d4_006","question":"How does NOT APPLICABLE score in a CMMC assessment?","answer":"Equivalent to MET for scoring purposes. Must be documented with an explanation."},{"id":"d4_007","question":"What is the difference between AC.L1-b.1.i and AC.L1-b.1.ii?","answer":"b.1.i controls WHO gets access. b.1.ii controls WHAT authorized users can do once inside."},{"id":"d4_008","question":"What is the difference between Identification and Authentication?","answer":"Identification is claiming an identity (username). Authentication is proving it (password/credential)."},{"id":"d4_009","question":"Why are default credentials a significant security risk?","answer":"Default credentials are often publicly documented by manufacturers \u2014 attackers can look them up."},{"id":"d4_010","question":"What types of media does MP.L1-b.1.vii apply to?","answer":"All media digital and non-digital: paper, USB drives, CDs, DVDs, hard drives, mobile phones."},{"id":"d4_011","question":"What is the difference between sanitizing and destroying media?","answer":"Sanitizing removes FCI while preserving the media for reuse. Destroying physically destroys the media."},{"id":"d4_012","question":"What is the visitor escort rule under PE.L1-b.1.ix?","answer":"All visitors must be escorted at all times \u2014 no exceptions, even for people you know personally."},{"id":"d4_013","question":"What three things does PE.L1-b.1.ix require?","answer":"1. Escort visitors and monitor activity. 2. Maintain audit logs of physical access. 3. Control and manage physical access devices."},{"id":"d4_014","question":"What is the difference between SC.L1-b.1.x and SC.L1-b.1.xi?","answer":"b.1.x protects all network boundaries. b.1.xi specifically requires public-facing systems in a separate subnetwork (DMZ)."},{"id":"d4_015","question":"What is a DMZ and when is SC.L1-b.1.xi N/A?","answer":"A DMZ is a subnetwork separated from internal networks. b.1.xi is N/A if no publicly accessible systems exist within scope."},{"id":"d4_016","question":"What three actions does SI.L1-b.1.xii require?","answer":"Identify, report, and correct system flaws. Each must happen within organization-defined timeframes."},{"id":"d4_017","question":"What are the four types of malicious code listed in the Level 1 Assessment Guide?","answer":"Virus, Spyware, Trojan Horse, Ransomware."},{"id":"d4_018","question":"What is the difference between SI.L1-b.1.xiii, b.1.xiv, and b.1.xv?","answer":"b.1.xiii = deploy protection. b.1.xiv = keep it updated. b.1.xv = actively use it to scan."},{"id":"d4_019","question":"What two types of scanning does SI.L1-b.1.xv require?","answer":"Periodic scans of the whole system on a defined schedule, AND real-time scans of files from external sources."},{"id":"d4_020","question":"Which Level 1 domain has the most practices?","answer":"AC (Access Control) and SI (System and Information Integrity) both have 4 practices."},{"id":"d4_021","question":"What does AC.L1-b.1.iii require regarding external connections?","answer":"Verify and control/limit connections to and use of external systems. Includes cloud services and personal devices."},{"id":"d4_022","question":"What does AC.L1-b.1.iv require?","answer":"Controls on information posted on publicly accessible systems \u2014 designated individuals, review process, mechanisms to remove FCI if discovered."},{"id":"d4_023","question":"What is a Temporary Deficiency and how does it score?","answer":"A condition where remediation is feasible with a fix available or in process. Documented in operational plan of action with milestones. Scores as MET."},{"id":"d4_024","question":"What is an Enduring Exception and how does it score?","answer":"A special circumstance where full compliance is not feasible (medical devices, OT, IoT). Documented in system security plan. Scores as MET."}]};
+DOMAINS[4] = {"domain":4,"title":"CMMC Model Construct and Implementation — Level 1 Practices","exam_weight":"35%","level1_overview":{"practice_count":15,"source":"FAR Clause 52.204-21","protects":"FCI — Federal Contract Information","assessment_type":"Annual self-assessment","domains_covered":["AC","IA","MP","PE","SC","SI"]},"all_14_domains":{"overview":"CMMC has 14 domains inherited from NIST 800-171. Six have Level 1 practices. Eight are Level 2 only. All 14 are testable on the CCP exam.","level1_domains":["AC","IA","MP","PE","SC","SI"],"level2_only_domains":["AU","AT","CM","IR","MA","PS","RA","CA"],"domain_descriptions":[{"abbreviation":"AC","full_name":"Access Control","theme":"Control who gets in and what they can do","level":"Level 1 + Level 2","plain_terms":"Manages who can access systems and what they can do once inside."},{"abbreviation":"AU","full_name":"Audit and Accountability","theme":"Logs and audit trails","level":"Level 2 only","plain_terms":"Create and retain system logs so you can detect, investigate, and report unauthorized activity. If something happens, you need a record of it."},{"abbreviation":"AT","full_name":"Awareness and Training","theme":"People and security training","level":"Level 2 only","plain_terms":"Ensure personnel understand security risks and their responsibilities. People are the biggest vulnerability — this domain addresses that."},{"abbreviation":"CM","full_name":"Configuration Management","theme":"Secure system configurations","level":"Level 2 only","plain_terms":"Establish and maintain secure configurations for systems. Controls what software can be installed, tracks system changes, and maintains baselines."},{"abbreviation":"IA","full_name":"Identification and Authentication","theme":"Verify identity before granting access","level":"Level 1 + Level 2","plain_terms":"Identify and authenticate users, processes, and devices before allowing system access."},{"abbreviation":"IR","full_name":"Incident Response","theme":"Plan for and respond to security incidents","level":"Level 2 only","plain_terms":"Establish capability to detect, contain, and recover from security incidents. Having a plan before something goes wrong."},{"abbreviation":"MA","full_name":"Maintenance","theme":"Controlled system maintenance","level":"Level 2 only","plain_terms":"Control how system maintenance is performed, including remote maintenance. Maintenance personnel have deep system access — this domain governs that."},{"abbreviation":"MP","full_name":"Media Protection","theme":"Protect FCI when disposing of or reusing media","level":"Level 1 + Level 2","plain_terms":"Sanitize or destroy media containing sensitive information before disposal or reuse."},{"abbreviation":"PS","full_name":"Personnel Security","theme":"Screen personnel before and during access","level":"Level 2 only","plain_terms":"Screen individuals before system access and ensure access is terminated when they leave. Background checks and offboarding."},{"abbreviation":"PE","full_name":"Physical Protection","theme":"Control physical access to systems and spaces","level":"Level 1 + Level 2","plain_terms":"Limit and track physical access to systems, equipment, and facilities."},{"abbreviation":"RA","full_name":"Risk Assessment","theme":"Identify and assess risks","level":"Level 2 only","plain_terms":"Periodically assess risk to organizational operations from system vulnerabilities. Know what your threats are."},{"abbreviation":"CA","full_name":"Security Assessment","theme":"Verify security controls are working","level":"Level 2 only","plain_terms":"Periodically assess security controls to ensure they're working as intended. Develop plans of action for deficiencies. This is where ongoing POA&Ms originate."},{"abbreviation":"SC","full_name":"System and Communications Protection","theme":"Protect network boundaries","level":"Level 1 + Level 2","plain_terms":"Monitor, control, and protect communications at system boundaries. Isolate public-facing systems."},{"abbreviation":"SI","full_name":"System and Information Integrity","theme":"Keep systems healthy and protected from malware","level":"Level 1 + Level 2","plain_terms":"Patch systems, protect against malware, and actively scan for threats."}],"memory_groupings":{"prevention":{"domains":["AT","CM","PS","RA"],"theme":"Before something goes wrong","descriptions":{"AT":"Train people on security risks","CM":"Maintain secure system configurations","PS":"Screen personnel before access","RA":"Identify and assess risks"}},"detection_and_response":{"domains":["AU","IR","MA"],"theme":"While something is happening","descriptions":{"AU":"Log and track all activity","IR":"Respond to incidents with a plan","MA":"Control and monitor maintenance access"}},"assessment_and_improvement":{"domains":["CA"],"theme":"After the fact","descriptions":{"CA":"Verify controls are working and fix what isn't"}}}},"CA_L2_3_12_2":{"practice_id":"CA.L2-3.12.2","name":"Plan of Action","requirement":"Develop, document, and periodically update plans of action designed to correct deficiencies and reduce or eliminate vulnerabilities in organizational systems.","plain_terms":"Maintain a living document that tracks security gaps, how they'll be fixed, and progress toward fixing them. This is the organization's ongoing internal compliance mechanism.","distinction_from_assessment_POAM":"CA.L2-3.12.2 is the OSC's ongoing internal document for tracking deficiencies discovered during normal operations. An assessment POA&M is created during a formal CMMC assessment when practices score NOT MET. They are related but not the same thing.","key_fact":"This practice is explicitly referenced in the CCP blueprint under Domain 5 Task 4 as the basis for POA&M objectives and requirements during assessments."},"evidence_framework":{"overview":"The blueprint explicitly tests evidence adequacy and sufficiency as two separate concepts. Both must be true for a practice to score MET.","adequate_evidence":{"definition":"Evidence is appropriate for the type of assessment objective being evaluated. It is the RIGHT KIND of evidence.","plain_terms":"Does this evidence actually prove what you're trying to prove? A screenshot of a firewall rule is adequate for a boundary protection control. An interview statement alone about the same control is not adequate.","test_question":"Is this the right TYPE of evidence for this objective?"},"sufficient_evidence":{"definition":"There is enough evidence to make a confident determination.","plain_terms":"Is there ENOUGH of it? One log entry showing a system was patched once is not sufficient to demonstrate an active patch management process. A pattern of patch records over time is sufficient.","test_question":"Is there ENOUGH of this evidence?"},"combined_rule":"Both adequate AND sufficient must be true for MET. You can have sufficient evidence that is the wrong type, or the right type but not enough of it. Either way the finding is NOT MET.","practical_framework":{"adequate":"Right TYPE of evidence","sufficient":"Enough of it"}},"assessment_methods":{"examine":{"definition":"Reviewing, inspecting, observing, studying, or analyzing assessment objects including documents, mechanisms, or activities.","plain_terms":"Looking at stuff — policies, configs, logs, diagrams, records.","what_it_tells_you":"What documentation SAYS is happening"},"interview":{"definition":"Holding discussions with individuals or groups to facilitate understanding, achieve clarification, or obtain evidence.","plain_terms":"Talking to people — admins, security staff, users, management.","what_it_tells_you":"What people BELIEVE is happening","communication_skills":{"use_open_ended_questions":"Open-ended questions get better evidence than yes/no. 'Walk me through how you manage user accounts' yields more than 'Do you manage user accounts?'","avoid_leading_questions":"Don't suggest the answer in the question — that compromises evidence integrity.","interview_multiple_levels":"Interview both leadership (policy intent) and operational staff (operational reality). Contradictions between them are themselves a finding.","document_carefully":"Interview statements are evidence and must be captured accurately.","stay_neutral":"The CCP gathers evidence during interviews — does not coach the OSC or signal whether answers are right or wrong."}},"test":{"definition":"Exercising assessment objects under specified conditions to compare actual with expected behavior.","plain_terms":"Making something do the thing and watching what happens — demonstrations, live checks.","what_it_tells_you":"What is ACTUALLY happening"},"key_relationship":"Interview = belief, Examine = documentation, Test = reality. All three together give a complete picture."},"assessment_findings":{"MET":{"definition":"All applicable objectives for the practice are satisfied based on evidence.","evidence_requirement":"Must be in final form. Drafts, working papers, and unapproved policies do NOT count.","special_cases":["Enduring Exceptions documented in the system security plan score as MET","Temporary deficiencies properly documented in an operational plan of action with milestones score as MET"]},"NOT_MET":{"definition":"One or more objectives of the practice are not satisfied.","critical_rule":"ONE NOT MET objective = the entire practice is NOT MET. No partial credit."},"NOT_APPLICABLE":{"definition":"The requirement does not apply at the time of assessment. Must be documented with explanation.","scoring":"Treated as equivalent to MET for scoring purposes."}},"level1_practices":[{"id":"AC.L1-b.1.i","domain":"Access Control (AC)","name":"Authorized Access Control","requirement":"Limit information system access to authorized users, processes acting on behalf of authorized users, or devices (including other information systems).","plain_terms":"Only authorized users, processes, and devices can access the system. No unauthorized people, no rogue devices.","key_principle":"Control WHO gets in","assessment_objectives":["authorized users are identified","processes acting on behalf of authorized users are identified","devices authorized to connect are identified","system access is limited to authorized users","system access is limited to authorized processes","system access is limited to authorized devices"],"evidence_examples":["User account lists","Access control policies","Records of terminated employee account removal","List of authorized devices"],"key_references":{"FAR":"52.204-21 b.1.i","NIST":"SP 800-171 Rev. 2 3.1.1"}},{"id":"AC.L1-b.1.ii","domain":"Access Control (AC)","name":"Transaction and Function Control","requirement":"Limit information system access to the types of transactions and functions that authorized users are permitted to execute.","plain_terms":"Once you're in, what you can DO is also limited. Least privilege — users only get access to what their role requires.","key_principle":"Control WHAT authorized users can do once in","assessment_objectives":["types of transactions and functions authorized users are permitted to execute are defined","system access is limited to defined types of transactions and functions"],"evidence_examples":["Role-based access configurations","User permission settings","Access control lists","Admin privilege documentation"],"key_references":{"FAR":"52.204-21 b.1.ii","NIST":"SP 800-171 Rev. 2 3.1.2"}},{"id":"AC.L1-b.1.iii","domain":"Access Control (AC)","name":"External Connections","requirement":"Verify and control/limit connections to and use of external information systems.","plain_terms":"Know what external connections exist, verify they're authorized, and control/limit them. Includes cloud services, vendor networks, personal devices.","key_principle":"Control external CONNECTIONS to your system","assessment_objectives":["connections to external systems are identified","use of external systems is identified","connections to external systems are verified","use of external systems is verified","connections to external systems are controlled/limited","use of external systems is controlled/limited"],"evidence_examples":["Network diagrams showing external connections","Firewall rules","Documented agreements with external system owners","Policies governing external access","VPN configurations"],"key_references":{"FAR":"52.204-21 b.1.iii","NIST":"SP 800-171 Rev. 2 3.1.20"}},{"id":"AC.L1-b.1.iv","domain":"Access Control (AC)","name":"Control Public Information","requirement":"Control information posted or processed on publicly accessible information systems.","plain_terms":"If you run anything public-facing, you need controls to ensure FCI doesn't end up there. Designated individuals, review process before posting, mechanisms to remove FCI if discovered.","key_principle":"Control PUBLIC-facing systems to prevent FCI exposure","assessment_objectives":["individuals authorized to post on publicly accessible systems are identified","procedures to ensure FCI is not posted on publicly accessible systems are identified","a review process is in place prior to posting content","content is reviewed to ensure it does not include FCI","mechanisms are in place to remove and address improper posting of FCI"],"evidence_examples":["List of users authorized to post publicly","Content review procedures","Documented approval chain for public release","Records of content reviews"],"key_references":{"FAR":"52.204-21 b.1.iv","NIST":"SP 800-171 Rev. 2 3.1.22"}},{"id":"IA.L1-b.1.v","domain":"Identification and Authentication (IA)","name":"Identification","requirement":"Identify information system users, processes acting on behalf of users, or devices.","plain_terms":"Every user, process, and device needs a unique identifier. No shared accounts, no generic logins. Activity must be traceable to a specific identity.","key_principle":"Claiming an identity — I am Sean (username)","assessment_objectives":["system users are identified","processes acting on behalf of users are identified","devices accessing the system are identified"],"evidence_examples":["List of system accounts with unique user IDs","Device inventory with unique identifiers","Service account documentation","No shared/generic accounts in use"],"key_references":{"FAR":"52.204-21 b.1.v","NIST":"SP 800-171 Rev. 2 3.5.1"},"note":"IA.L1-b.1.v provides vetted identity that supports the access control mechanism in AC.L1-b.1.i"},{"id":"IA.L1-b.1.vi","domain":"Identification and Authentication (IA)","name":"Authentication","requirement":"Authenticate the identities of those users, processes, or devices as a prerequisite to allowing access.","plain_terms":"Prove who you are before getting access. Passwords are the baseline. Default credentials must be changed immediately — they are publicly known and a significant security risk.","key_principle":"Proving an identity — here is my password/credential","assessment_objectives":["identity of each user is authenticated as a prerequisite to system access","identity of each process acting on behalf of a user is authenticated","identity of each device is authenticated as a prerequisite to system access"],"evidence_examples":["Authentication mechanisms in place","Password policies","No default credentials in use","Device certificates or tokens"],"key_references":{"FAR":"52.204-21 b.1.vi","NIST":"SP 800-171 Rev. 2 3.5.2"},"exam_trap":"Default credentials are a known risk — devices ship with publicly documented default usernames and passwords that must be changed before deployment."},{"id":"MP.L1-b.1.vii","domain":"Media Protection (MP)","name":"Media Disposal","requirement":"Sanitize or destroy information system media containing FCI before disposal or release for reuse.","plain_terms":"FCI media must be sanitized (cleaned for reuse) or destroyed (made permanently unreadable) before disposal or reuse. Media includes paper, USB drives, CDs, DVDs, hard drives, mobile phones.","key_principle":"FCI must be unrecoverable before media leaves your control","assessment_objectives":["system media containing FCI is sanitized or destroyed before disposal","system media containing FCI is sanitized before it is released for reuse"],"evidence_examples":["Media sanitization records","Destruction logs","Media sanitization policy","Certificates of destruction"],"key_references":{"FAR":"52.204-21 b.1.vii","NIST":"SP 800-171 Rev. 2 3.8.3","supplementary":"NIST SP 800-88 Guidelines for Media Sanitization"},"distinction":"Sanitize = remove FCI, preserve media for reuse. Destroy = physically destroy, media unusable. Choose sanitize for reuse, destroy for disposal."},{"id":"PE.L1-b.1.viii","domain":"Physical Protection (PE)","name":"Limit Physical Access","requirement":"Limit physical access to organizational information systems, equipment, and operating environments to authorized individuals.","plain_terms":"Only authorized people can physically access systems, equipment, and the spaces where they live. Locks, badges, key cards. Output devices like printers must be placed where they don't expose data.","key_principle":"Control WHO can physically access systems and spaces","assessment_objectives":["authorized individuals allowed physical access are identified","physical access to organizational systems is limited to authorized individuals","physical access to equipment is limited to authorized individuals","physical access to operating environments is limited to authorized individuals"],"evidence_examples":["Authorized access lists","Badge/key card systems","Locked rooms for FCI systems","Physical access credentials issued to appropriate personnel"],"key_references":{"FAR":"52.204-21 b.1.viii","NIST":"SP 800-171 Rev. 2 3.10.1"},"practical_note":"CMMC doesn't mandate specific solutions. A locked room and a key list satisfies this for a small company."},{"id":"PE.L1-b.1.ix","domain":"Physical Protection (PE)","name":"Manage Visitors and Physical Access","requirement":"Escort visitors and monitor visitor activity; maintain audit logs of physical access; and control and manage physical access devices.","plain_terms":"Three things: (1) visitors must be escorted at all times — no exceptions even for people you know; (2) physical access must be logged — paper or electronic; (3) physical access devices (keys, badges, cards) must be inventoried and managed.","key_principle":"Track and manage HOW physical access occurs","assessment_objectives":["visitors are escorted","visitor activity is monitored","audit logs of physical access are maintained","physical access devices are identified","physical access devices are controlled","physical access devices are managed"],"evidence_examples":["Visitor sign-in/sign-out logs","Badge reader records","Key inventory records","Visitor badge policy","Records of access revocation when personnel depart"],"key_references":{"FAR":"52.204-21 b.1.ix","NIST":["SP 800-171 Rev. 2 3.10.3","SP 800-171 Rev. 2 3.10.4","SP 800-171 Rev. 2 3.10.5"]},"exam_trap":"Individuals with permanent physical access credentials are NOT considered visitors. The escort requirement applies to everyone without permanent credentials — even people you know personally."},{"id":"SC.L1-b.1.x","domain":"System and Communications Protection (SC)","name":"Boundary Protection","requirement":"Monitor, control, and protect organizational communications at the external boundaries and key internal boundaries of the information systems.","plain_terms":"Three actions (monitor, control, protect) at two locations (external boundary and key internal boundaries). Firewalls and web proxies are the primary tools. Deny by default, allow by exception.","key_principle":"Protect the network perimeter and key internal dividing lines","assessment_objectives":["external system boundary is defined","key internal system boundaries are defined","communications are monitored at the external boundary","communications are monitored at key internal boundaries","communications are controlled at the external boundary","communications are controlled at key internal boundaries","communications are protected at the external boundary","communications are protected at key internal boundaries"],"evidence_examples":["Network diagrams showing defined boundaries","Firewall configurations","Connection logs","Deny-by-default rule sets","Web proxy configurations"],"key_references":{"FAR":"52.204-21 b.1.x","NIST":"SP 800-171 Rev. 2 3.13.1"}},{"id":"SC.L1-b.1.xi","domain":"System and Communications Protection (SC)","name":"Public-Access System Separation","requirement":"Implement subnetworks for publicly accessible system components that are physically or logically separated from internal networks.","plain_terms":"Public-facing systems must be on a separate network from internal systems where FCI lives. This is a DMZ. Traffic from the DMZ to internal networks is blocked by default.","key_principle":"Public-facing systems must be isolated from FCI systems","assessment_objectives":["publicly accessible system components are identified","subnetworks for publicly accessible components are physically or logically separated from internal networks"],"evidence_examples":["Network diagrams showing DMZ","VLAN configurations","Firewall rules blocking DMZ-to-internal traffic by default","Cloud environment separation documentation"],"key_references":{"FAR":"52.204-21 b.1.xi","NIST":"SP 800-171 Rev. 2 3.13.5"},"key_term":"DMZ — Demilitarized Zone. A subnetwork physically or logically separated from internal networks. Can be N/A if no publicly accessible systems exist within scope."},{"id":"SI.L1-b.1.xii","domain":"System and Information Integrity (SI)","name":"Flaw Remediation","requirement":"Identify, report, and correct information system flaws in a timely manner.","plain_terms":"Patch management. Three actions (identify, report, correct) must all happen within organization-defined timeframes. Timeframes must be documented.","key_principle":"Find flaws, report them, fix them — on a defined schedule","assessment_objectives":["time within which to identify system flaws is specified","system flaws are identified within the specified time frame","time within which to report system flaws is specified","system flaws are reported within the specified time frame","time within which to correct system flaws is specified","system flaws are corrected within the specified time frame"],"evidence_examples":["Patch management policy with defined timeframes","List of installed patches and update history","Vulnerability scan results","Change control records for security updates"],"key_references":{"FAR":"52.204-21 b.1.xii","NIST":"SP 800-171 Rev. 2 3.14.1"}},{"id":"SI.L1-b.1.xiii","domain":"System and Information Integrity (SI)","name":"Malicious Code Protection","requirement":"Provide protection from malicious code at appropriate locations within organizational information systems.","plain_terms":"Deploy anti-malware protection at designated locations — entry/exit points, workstations, email servers, mobile devices.","key_principle":"Deploy malware protection at the right places","assessment_objectives":["designated locations for malicious code protection are identified","protection from malicious code at designated locations is provided"],"malicious_code_types":["Virus — damages, steals, or changes data","Spyware — secretly gathers information","Trojan Horse — malware disguised as legitimate software","Ransomware — blocks access or threatens to publish data unless ransom paid"],"evidence_examples":["Anti-malware software deployed on identified systems","List of protected system components","Anti-malware configuration documentation"],"key_references":{"FAR":"52.204-21 b.1.xiii","NIST":"SP 800-171 Rev. 2 3.14.2"}},{"id":"SI.L1-b.1.xiv","domain":"System and Information Integrity (SI)","name":"Update Malicious Code Protection","requirement":"Update malicious code protection mechanisms when new releases are available.","plain_terms":"Keep your antivirus and anti-malware definitions current. Malware evolves constantly — outdated protection is essentially no protection.","key_principle":"Keep malware protection up to date","assessment_objectives":["malicious code protection mechanisms are updated when new releases are available"],"evidence_examples":["Auto-update configuration for anti-malware","Records of malicious code protection updates","Defined frequency for updates"],"key_references":{"FAR":"52.204-21 b.1.xiv","NIST":"SP 800-171 Rev. 2 3.14.4"}},{"id":"SI.L1-b.1.xv","domain":"System and Information Integrity (SI)","name":"System and File Scanning","requirement":"Perform periodic scans of the information system and real-time scans of files from external sources as files are downloaded, opened, or executed.","plain_terms":"Two types: periodic system scans on a defined schedule, and real-time scans of files from external sources. USB drives count as external sources.","key_principle":"Actively scan for malware on a schedule and in real time","assessment_objectives":["frequency for malicious code scans is defined","malicious code scans are performed with the defined frequency","real-time malicious code scans of files from external sources are performed"],"evidence_examples":["Anti-malware scan schedule configuration","Scan logs showing periodic scans","Real-time scan configuration","Evidence USB/removable media included in external sources"],"key_references":{"FAR":"52.204-21 b.1.xv","NIST":"SP 800-171 Rev. 2 3.14.5"}}],"flashcards":[{"id":"d4_001","question":"How many Level 1 practices are there and what is their source document?","answer":"15 practices, derived from FAR Clause 52.204-21."},{"id":"d4_002","question":"What does Level 1 protect — FCI or CUI?","answer":"FCI — Federal Contract Information. CUI is protected at Level 2."},{"id":"d4_003","question":"What are the three assessment methods and what does each tell you?","answer":"Examine = what documentation says is happening. Interview = what people believe is happening. Test = what is actually happening."},{"id":"d4_004","question":"What happens if one assessment objective within a practice is NOT MET?","answer":"The entire practice is scored NOT MET. There is no partial credit at the practice level."},{"id":"d4_005","question":"Can a draft policy be used as evidence for a MET finding?","answer":"No. Evidence must be in final form. Drafts, working papers, and unapproved policies do not count."},{"id":"d4_006","question":"What is the difference between adequate and sufficient evidence?","answer":"Adequate = the right TYPE of evidence for the objective. Sufficient = ENOUGH of it. Both must be true for MET. Having enough of the wrong type, or the right type but not enough, both result in NOT MET."},{"id":"d4_007","question":"What is the difference between AC.L1-b.1.i and AC.L1-b.1.ii?","answer":"b.1.i controls WHO gets access to the system. b.1.ii controls WHAT authorized users can do once inside — least privilege principle."},{"id":"d4_008","question":"What is the difference between Identification and Authentication?","answer":"Identification is claiming an identity (username). Authentication is proving it (password/credential)."},{"id":"d4_009","question":"Why are default credentials a significant security risk?","answer":"Default credentials are often publicly documented — attackers look them up rather than brute forcing. Must be changed before deployment."},{"id":"d4_010","question":"What is the difference between sanitizing and destroying media?","answer":"Sanitizing removes FCI while preserving media for reuse. Destroying physically destroys it making it permanently unreadable. Choose sanitize for reuse, destroy for disposal."},{"id":"d4_011","question":"What three things does PE.L1-b.1.ix require?","answer":"1. Escort visitors and monitor activity. 2. Maintain audit logs of physical access. 3. Control and manage physical access devices."},{"id":"d4_012","question":"What is a DMZ and when is SC.L1-b.1.xi NOT APPLICABLE?","answer":"A DMZ is a subnetwork physically or logically separated from internal networks. N/A if no publicly accessible systems exist within scope."},{"id":"d4_013","question":"What are the 14 CMMC domains?","answer":"AC, AU, AT, CM, IA, IR, MA, MP, PS, PE, RA, CA, SC, SI."},{"id":"d4_014","question":"Which 6 domains have Level 1 practices?","answer":"AC (Access Control), IA (Identification and Authentication), MP (Media Protection), PE (Physical Protection), SC (System and Communications Protection), SI (System and Information Integrity)."},{"id":"d4_015","question":"What does AU stand for and what is its purpose?","answer":"Audit and Accountability. Creates and retains system logs so you can detect, investigate, and report unauthorized activity."},{"id":"d4_016","question":"What does CM stand for and what is its purpose?","answer":"Configuration Management. Establishes and maintains secure configurations — controls what software is installed, tracks changes, maintains baselines."},{"id":"d4_017","question":"What does IR stand for and what is its purpose?","answer":"Incident Response. Establishes capability to detect, contain, and recover from security incidents. Having a plan before something goes wrong."},{"id":"d4_018","question":"What does CA stand for and what is its purpose?","answer":"Security Assessment. Periodically verifies security controls are working as intended and develops plans of action for deficiencies. This is where ongoing POA&Ms originate."},{"id":"d4_019","question":"What is CA.L2-3.12.2 and how is it different from an assessment POA&M?","answer":"CA.L2-3.12.2 requires organizations to maintain an ongoing internal plan of action tracking security gaps discovered during normal operations. An assessment POA&M is created during a formal CMMC assessment when practices score NOT MET. Related but not the same."},{"id":"d4_020","question":"What are the five communication principles for conducting assessment interviews?","answer":"1. Use open-ended questions. 2. Avoid leading questions. 3. Interview multiple levels (leadership + operational staff). 4. Document carefully — statements are evidence. 5. Stay neutral — gather evidence, don't coach."},{"id":"d4_021","question":"What does PS stand for and what is its purpose?","answer":"Personnel Security. Screens individuals before system access and ensures access is terminated when they leave. Background checks and offboarding."},{"id":"d4_022","question":"What does RA stand for and what is its purpose?","answer":"Risk Assessment. Periodically assesses risk to organizational operations from system vulnerabilities. Know what your threats are."},{"id":"d4_023","question":"What does MA stand for and what is its purpose?","answer":"Maintenance. Controls how system maintenance is performed including remote maintenance. Maintenance personnel have deep system access — this domain governs that."},{"id":"d4_024","question":"What does AT stand for and what is its purpose?","answer":"Awareness and Training. Ensures personnel understand security risks and their responsibilities. People are the biggest vulnerability."}]};
 
 DOMAINS[5] = {"domain":5,"title":"CMMC Assessment Process (CAP)","exam_weight":"25%","flashcards":[{"id":"d5_001","question":"What are the four phases of the CMMC Assessment Process?","answer":"Phase 1: Plan and Prepare. Phase 2: Conduct Assessment. Phase 3: Report Results. Phase 4: POA&M Evaluation."},{"id":"d5_002","question":"What is the CCP\u2019s role across all four CAP phases?","answer":"The CCP assists. Always. Across all four phases the CCP supports the team but never leads and never makes independent scoring determinations."},{"id":"d5_003","question":"What is the difference between CCP, CCA, and Lead Assessor roles?","answer":"CCP assists. CCA assesses and makes scoring determinations. Lead Assessor leads, makes final scoring decisions, and submits the final report."},{"id":"d5_004","question":"What is the purpose of the Readiness Review in Phase 1?","answer":"To verify the OSC is actually prepared before the formal assessment begins. If not ready, the assessment does not proceed."},{"id":"d5_005","question":"What must be included in a CMMC Assessment Plan?","answer":"Assessment scope, practices being assessed, methodology, logistics, team roles, and evidence collection and handling approach."},{"id":"d5_006","question":"How are practices on a POA&M scored during Phase 2?","answer":"NOT MET. POA&M evaluation happens in Phase 4, not during the conduct phase."},{"id":"d5_007","question":"What is the assessment report submission chain?","answer":"Lead Assessor drafts findings \u2192 preliminary results to OSC \u2192 Lead Assessor submits to C3PAO and OSC \u2192 C3PAO reviews \u2192 results to SPRS."},{"id":"d5_008","question":"Why is assessment evidence archived and what role does hashing play?","answer":"Archived to support future questions. Hashing creates cryptographic fingerprints proving evidence was not altered."},{"id":"d5_009","question":"What three criteria determine whether a NOT MET practice qualifies for a POA&M?","answer":"1. OSC meets minimum score threshold. 2. The item is remediable. 3. POA&M includes specific milestones showing real progress."},{"id":"d5_010","question":"What is the difference between a POA&M and an operational plan of action?","answer":"POA&M is formal assessment-related. Operational plan of action is the OSC\u2019s internal document for managing temporary deficiencies outside formal assessment."},{"id":"d5_011","question":"What is conditional certification?","answer":"Allows an OSC to operate while remediating NOT MET practices rather than failing outright. A safety valve, not a loophole."},{"id":"d5_012","question":"At what two points does the OSC receive visibility into findings?","answer":"1. Preliminary results before the final report. 2. The final assessment report after submission."},{"id":"d5_013","question":"What makes a POA&M item non-qualifying?","answer":"If it\u2019s not remediable \u2014 a structural gap with no viable path to remediation. Vague milestones also disqualify."},{"id":"d5_014","question":"Who submits the final assessment report and to whom?","answer":"The Lead Assessor submits to both the C3PAO and the OSC. C3PAO reviews before results go to SPRS."},{"id":"d5_015","question":"What happens during Phase 2 evidence collection?","answer":"Evidence gathered using Examine, Interview, and Test methods. CCP assists \u2014 pulling docs, sitting in on interviews, observing demos. Cannot make independent scoring calls."}]};
 
@@ -291,6 +375,7 @@ function showView(id){
   if(id==='simulator') initSimulator();
   if(id==='flashcards') initFlashcards();
   if(id==='progress') renderProgress();
+  if(id==='exam') initExam();
   window.scrollTo(0,0);
 }
 function showDashboard(){showView('dashboard');renderQuickStats()}
@@ -305,11 +390,15 @@ function renderQuickStats(){
   const knownCards = Object.values(fc).filter(v=>v>=3).length;
   const simCount = sims.length;
   const bestScore = sims.length ? Math.max(...sims.map(s=>s.score)) : 0;
+  const exams = loadState('exam_history',[]);
+  const bestExam = exams.length ? Math.max(...exams.map(e=>e.score)) : 0;
   document.getElementById('quickStats').innerHTML = `
     <div class="stat-card"><div class="stat-val">${totalCards}</div><div class="stat-label">Total Flashcards</div></div>
     <div class="stat-card"><div class="stat-val">${knownCards}</div><div class="stat-label">Cards Mastered</div></div>
     <div class="stat-card"><div class="stat-val">${simCount}</div><div class="stat-label">Assessments Done</div></div>
     <div class="stat-card"><div class="stat-val">${bestScore}%</div><div class="stat-label">Best Sim Score</div></div>
+    <div class="stat-card"><div class="stat-val">${exams.length}</div><div class="stat-label">Exams Taken</div></div>
+    <div class="stat-card"><div class="stat-val">${bestExam}%</div><div class="stat-label">Best Exam Score</div></div>
   `;
 }
 
@@ -679,17 +768,596 @@ function renderProgress(){
   const histEl = document.getElementById('simHistory');
   if(!history.length){
     histEl.innerHTML='<div class="empty-state"><p>No assessment simulations completed yet.</p></div>';
+  } else {
+    histEl.innerHTML = history.slice().reverse().map(h=>{
+      const d = new Date(h.date);
+      const dateStr = d.toLocaleDateString()+' '+d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+      const color = h.score>=80?'var(--green)':h.score>=60?'var(--orange)':'var(--red)';
+      return `<div class="history-item">
+        <div><strong>${h.scenario}</strong><br><span class="date">${dateStr}</span></div>
+        <div class="score" style="color:${color}">${h.score}% (${h.met}/${h.total})</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Exam history
+  const examHist = loadState('exam_history',[]);
+  const examHistEl = document.getElementById('examHistory');
+  if(!examHist.length){
+    examHistEl.innerHTML='<div class="empty-state"><p>No practice exams completed yet.</p></div>';
+  } else {
+    examHistEl.innerHTML = examHist.slice().reverse().map(h=>{
+      const d = new Date(h.date);
+      const dateStr = d.toLocaleDateString()+' '+d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+      const color = h.score>=70?'var(--green)':h.score>=50?'var(--orange)':'var(--red)';
+      const timeUsed = h.timeUsed||'--';
+      return `<div class="history-item">
+        <div><strong>Practice Exam</strong> (${h.correct}/${h.total})<br><span class="date">${dateStr} &middot; ${timeUsed}</span></div>
+        <div class="score" style="color:${color}">${h.score}%</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+// ============================================================
+// MODE 5: EXAM SIMULATOR
+// ============================================================
+const EXAM_TIME = 210 * 60; // 3.5 hours in seconds
+let examState = null;
+let examTimerInterval = null;
+
+// -- Question Generation Engine --
+function generateExamBank() {
+  const allCards = getAllFlashcards();
+  const bank = [];
+  const DOMAIN_NAMES = {1:'CMMC Ecosystem',2:'Ethics & CoPC',3:'Governance & Docs',4:'Model & Level 1',5:'Assessment Process',6:'Scoping'};
+
+  // Domain-specific distractor pools for high-quality wrong answers
+  const DISTRACTOR_POOLS = {
+    1: [
+      "DCMA DIBCAC accredits C3PAOs",
+      "RPOs conduct official CMMC assessments",
+      "CCPs can make independent scoring determinations",
+      "RPs can participate in certified assessments",
+      "LTPs develop and publish training content",
+      "CCAs are entry-level credentials",
+      "The Lead Assessor advises but cannot submit reports",
+      "OUSD accredits individual assessors",
+      "C3PAOs help OSCs prepare for assessments",
+      "Provisional Assessors are the current standard credential",
+      "OSCs conduct their own Level 2 assessments",
+      "CAICO accredits C3PAOs"
+    ],
+    2: [
+      "NDA obligations expire when the assessment ends",
+      "Assessors may adjust findings based on OSC leadership requests",
+      "Conflicts of interest only apply to financial relationships",
+      "Anonymized findings may be shared freely",
+      "The CoPC has 7 guiding principles",
+      "Objectivity can be waived if the OSC consents",
+      "Information integrity allows estimated findings",
+      "The CoPC is based on NIST 800-171 standards",
+      "Confidentiality obligations end after one year",
+      "Assessors may coach OSCs during interviews to help them pass"
+    ],
+    3: [
+      "32 CFR Part 2002 created the CUI program",
+      "DoDI 5200.48 is the government-wide CUI regulation",
+      "DFARS 7012 requires posting a score to SPRS",
+      "DFARS 7019 gives DoD the right to verify scores",
+      "NIST 800-171 Rev 3 is used for CMMC",
+      "FCI is defined in 32 CFR Part 2002",
+      "The CAP defines each practice and assessment objectives",
+      "32 CFR Part 170 was signed by the President as an executive order",
+      "CUI Basic has stricter requirements than CUI Specified",
+      "EO 13556 requires contractors to implement NIST 800-171",
+      "CMMC 1.0 had three levels aligned to existing standards",
+      "FedRAMP authorization removes cloud services from scope entirely",
+      "DFARS 252.227-7013 governs cybersecurity requirements",
+      "The Civil Cyber-Fraud Initiative is run by DoD"
+    ],
+    4: [
+      "Level 1 protects CUI with 110 controls",
+      "Evidence may be in draft form for MET findings",
+      "NOT APPLICABLE scores as NOT MET",
+      "Partial credit is available at the practice level",
+      "Examine tells you what is actually happening",
+      "Test reveals what people believe is happening",
+      "Interview shows what documentation says is happening",
+      "There are 17 Level 1 practices from NIST 800-171",
+      "AC has 2 Level 1 practices",
+      "Sanitizing means physically destroying media",
+      "Visitors with permanent credentials must still be escorted",
+      "Default credentials are acceptable if the network is firewalled",
+      "Adequate evidence means having enough of it",
+      "Sufficient evidence means the right type of evidence",
+      "A DMZ connects internal networks to external systems",
+      "Level 1 requires C3PAO third-party assessment",
+      "CMMC has 10 security domains",
+      "AU is a Level 1 domain with practices at both levels",
+      "CA stands for Configuration Assessment"
+    ],
+    5: [
+      "Phase 1 is Conduct Assessment",
+      "Phase 2 is Plan and Prepare",
+      "POA&M items are scored MET during Phase 2",
+      "The CCP leads the assessment team",
+      "The CCA submits the final assessment report",
+      "POA&M evaluation happens in Phase 2",
+      "The Readiness Review occurs in Phase 3",
+      "Conditional certification means permanent certification with gaps",
+      "The OSC never sees preliminary results",
+      "Assessment evidence does not need to be archived",
+      "Any NOT MET practice qualifies for a POA&M",
+      "The operational plan of action is the same as an assessment POA&M",
+      "The CCP makes scoring determinations under the Lead Assessor",
+      "C3PAO submits the final report directly to SPRS"
+    ],
+    6: [
+      "The three-verb test requires all three verbs to apply",
+      "Supporting Units are out of scope",
+      "Specialized assets can be excluded from scope",
+      "ESPs are out of scope because they are third parties",
+      "Only Technology is a scoping activity category",
+      "The Host Unit supports the Organization",
+      "GFE is always excluded from CMMC scope",
+      "If an ESP handles FCI, the OSC is not responsible for ESP controls",
+      "Assets excluded from scope need no documentation",
+      "OT must always fully comply with all CMMC controls",
+      "The three scoping levels are Organization, Department, and Individual"
+    ]
+  };
+
+  // Helper: pick N random items from array
+  function pickRandom(arr, n) {
+    const shuffled = [...arr].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, n);
+  }
+
+  // Helper: extract first sentence or truncate answer
+  function shorten(text, maxLen) {
+    if (!text) return text;
+    let s = text.split(/\.\s/)[0];
+    if (s.length > maxLen) s = s.substring(0, maxLen-3) + '...';
+    if (!s.endsWith('.')) s += '.';
+    return s;
+  }
+
+  // Strategy 1: Standard MCQ from flashcard
+  function makeStandardMCQ(card) {
+    const correct = shorten(card.answer, 160);
+    const pool = DISTRACTOR_POOLS[card.domain] || DISTRACTOR_POOLS[4];
+    // Filter distractors that are too similar to correct answer
+    const available = pool.filter(d => {
+      const dLow = d.toLowerCase();
+      const cLow = correct.toLowerCase();
+      return !cLow.includes(dLow.substring(0,20)) && !dLow.includes(cLow.substring(0,20));
+    });
+    const distractors = pickRandom(available, 3);
+    if (distractors.length < 3) return null;
+    const options = [...distractors];
+    const insertAt = Math.floor(Math.random() * 4);
+    options.splice(insertAt, 0, correct);
+    return {
+      d: card.domain,
+      dn: DOMAIN_NAMES[card.domain],
+      q: card.question,
+      o: options,
+      a: insertAt,
+      x: card.answer
+    };
+  }
+
+  // Strategy 2: Trap "NOT" question
+  function makeTrapMCQ(card, allCards) {
+    // Find 3 TRUE statements from same domain, create one FALSE
+    const sameDomain = allCards.filter(c => c.domain === card.domain && c.id !== card.id);
+    if (sameDomain.length < 2) return null;
+    const pool = DISTRACTOR_POOLS[card.domain] || [];
+    if (pool.length < 1) return null;
+    const falseStatement = pickRandom(pool, 1)[0];
+    const trueStatements = pickRandom(sameDomain, 2).map(c => shorten(c.answer, 120));
+    const correctShort = shorten(card.answer, 120);
+    // The FALSE one is the correct answer to select
+    const options = [...trueStatements, correctShort];
+    const insertAt = Math.floor(Math.random() * 4);
+    options.splice(insertAt, 0, falseStatement);
+    return {
+      d: card.domain,
+      dn: DOMAIN_NAMES[card.domain],
+      q: `Which of the following statements about ${DOMAIN_NAMES[card.domain]} is INCORRECT?`,
+      o: options.slice(0, 4),
+      a: insertAt,
+      x: `"${falseStatement}" is incorrect. ${card.answer}`
+    };
+  }
+
+  // Strategy 3: Scenario/Application question
+  function makeScenarioMCQ(card) {
+    const scenarios = {
+      1: [
+        {stem: "A defense contractor needs someone to help them prepare their security controls before their CMMC assessment. Which organization should they engage?", correct: "An RPO employing Registered Practitioners.", wrong: ["A C3PAO assessment team.", "DCMA DIBCAC.", "The CMMC-AB directly."]},
+        {stem: "During a CMMC Level 2 assessment, a team member wants to make an independent scoring determination. They hold a CCP credential. Can they?", correct: "No. CCPs assist only and cannot make independent scoring determinations.", wrong: ["Yes, CCPs can score any practice independently.", "Yes, but only for Level 1 practices.", "Yes, if the Lead Assessor delegates authority."]},
+        {stem: "An organization needs a Level 3 CMMC assessment. Who conducts it?", correct: "DCMA DIBCAC conducts Level 3 assessments.", wrong: ["Any accredited C3PAO.", "The CMMC-AB assessment division.", "The organization performs a self-assessment."]},
+        {stem: "A professional wants to become a Certified CMMC Assessor (CCA). What must they do first?", correct: "Obtain CCP certification — it is a prerequisite for CCA.", wrong: ["Complete an LTP course only.", "Pass the CCA exam directly.", "Work as an RP for at least one year."]}
+      ],
+      2: [
+        {stem: "An assessor realizes their spouse works for the OSC being assessed. What is the correct course of action?", correct: "Disclose the conflict of interest and recuse from the assessment.", wrong: ["Proceed if the spouse is in a different department.", "Ask the OSC if they are comfortable with the situation.", "Continue but avoid assessing the spouse's department."]},
+        {stem: "After completing an assessment, an assessor is asked by a colleague about the OSC's network architecture. What should they do?", correct: "Decline to share — NDA confidentiality obligations persist after the assessment.", wrong: ["Share if the colleague also holds a CCP credential.", "Share anonymized details only.", "Share if more than 6 months have passed."]},
+        {stem: "During an interview, an OSC employee gives an answer that will result in a NOT MET finding. The OSC's CISO asks the assessor to rephrase the question to get a better answer. The assessor should:", correct: "Continue with objective questioning — rephrasing to elicit a desired answer compromises evidence integrity.", wrong: ["Rephrase as requested since the CISO understands the intent better.", "Skip the interview and rely on documentation only.", "Allow the CISO to answer on behalf of the employee."]}
+      ],
+      3: [
+        {stem: "A contractor posts a self-assessment score of 95 to SPRS but has not actually implemented most controls. Which law creates liability for this?", correct: "The False Claims Act, enforced through the DoJ Civil Cyber-Fraud Initiative, with up to triple damages.", wrong: ["DFARS 7012 only — penalties limited to contract termination.", "No specific legal liability exists for self-assessment scores.", "The Federal Acquisition Regulation imposes a fixed fine."]},
+        {stem: "A contractor uses a FedRAMP-authorized cloud service to store CUI. During the CMMC assessment, the assessor should:", correct: "Verify the contractor is using the FedRAMP service correctly — FedRAMP validates the tool, not the contractor's usage.", wrong: ["Skip assessing the cloud service entirely since it is FedRAMP authorized.", "Require the contractor to switch to an on-premises solution.", "Accept the FedRAMP authorization as evidence that all cloud-related controls are MET."]},
+        {stem: "CMMC 1.0 had five levels and CMMC-unique practices. Which CMMC 2.0 tenet addressed this specific problem?", correct: "Streamlined Model — reduced to three levels and aligned to existing NIST standards, removing all CMMC-unique practices.", wrong: ["Reliable Assessments — which addressed self-attestation problems.", "Flexible Implementation — which addressed rigidity for small contractors.", "Verified Compliance — which ensured third-party accountability."]},
+        {stem: "What is the correct hierarchical order of CUI authority documents from broadest to most specific?", correct: "EO 13556 → 32 CFR Part 2002 → DoDI 5200.48.", wrong: ["32 CFR Part 2002 → EO 13556 → DoDI 5200.48.", "DoDI 5200.48 → 32 CFR Part 2002 → EO 13556.", "DFARS 7012 → 32 CFR Part 2002 → EO 13556."]}
+      ],
+      4: [
+        {stem: "An OSC presents a draft access control policy during assessment. The policy is comprehensive and addresses all objectives. The assessor should score this practice as:", correct: "NOT MET — evidence must be in final approved form. Drafts do not count regardless of content quality.", wrong: ["MET — the content satisfies all objectives.", "MET with a note that the policy should be finalized.", "N/A — draft policies are not assessable."]},
+        {stem: "During an assessment, a contractor shows one patch installation record from last month. Is this sufficient evidence for SI.L1-b.1.xii (Flaw Remediation)?", correct: "No — one record is not sufficient. The evidence is adequate (right type) but not sufficient (not enough to demonstrate an ongoing process).", wrong: ["Yes — it proves patching occurs.", "Yes — any evidence of patching satisfies the requirement.", "No — patch records are not adequate evidence for this practice."]},
+        {stem: "A small company has no publicly accessible systems within their CMMC scope. How should SC.L1-b.1.xi (Public-Access System Separation) be scored?", correct: "NOT APPLICABLE — scored equivalent to MET, must be documented with explanation.", wrong: ["NOT MET — the practice still requires network separation.", "MET — if no public systems exist, the requirement is automatically satisfied.", "The practice must be deferred to a POA&M."]},
+        {stem: "An interviewer asks an OSC admin: 'You do manage user accounts properly, right?' What is wrong with this question?", correct: "It is a leading question that suggests the desired answer, compromising evidence integrity. Open-ended questions should be used instead.", wrong: ["Nothing — direct questions are more efficient.", "It should be directed to management, not admins.", "The question is too technical for an interview."]},
+        {stem: "A contractor has anti-malware installed on all workstations but automatic definition updates have been disabled for 3 months. Which practices are NOT MET?", correct: "SI.L1-b.1.xiv (Update Malicious Code Protection) — protection mechanisms must be updated when new releases are available.", wrong: ["SI.L1-b.1.xiii only — deployment is the issue.", "SI.L1-b.1.xv only — scanning is the issue.", "All three SI malware practices are automatically NOT MET."]},
+        {stem: "Which of the following is a Level 2-only domain with NO Level 1 practices?", correct: "Incident Response (IR) — it is one of the 8 domains that only appear at Level 2.", wrong: ["Access Control (AC) — it has practices at both levels.", "System and Information Integrity (SI) — it has Level 1 practices.", "Physical Protection (PE) — it has Level 1 practices."]},
+        {stem: "CA.L2-3.12.2 requires organizations to maintain plans of action for deficiencies. How does this differ from an assessment POA&M?", correct: "CA.L2-3.12.2 is the OSC's ongoing internal document for tracking operational deficiencies. An assessment POA&M is created during a formal assessment when practices score NOT MET.", wrong: ["They are the same document used in different contexts.", "CA.L2-3.12.2 only applies to Level 1 organizations.", "Assessment POA&Ms replace CA.L2-3.12.2 during certification."]}
+      ],
+      5: [
+        {stem: "During Phase 2, the assessment team encounters a practice that the OSC has placed on a POA&M. How should it be scored?", correct: "NOT MET — POA&M items are scored NOT MET during Phase 2. POA&M evaluation occurs in Phase 4.", wrong: ["MET — the POA&M shows intent to remediate.", "Conditionally MET pending Phase 4 review.", "Deferred — scoring is suspended until Phase 4."]},
+        {stem: "The assessment is complete and the Lead Assessor has drafted final findings. What happens next in the submission chain?", correct: "Preliminary results are delivered to the OSC, then the Lead Assessor submits to C3PAO and OSC, C3PAO reviews, then results go to SPRS.", wrong: ["Results go directly to SPRS, then the OSC is notified.", "The CCA submits to SPRS while the Lead Assessor notifies the OSC.", "The C3PAO drafts the final report and submits to DoD."]},
+        {stem: "An OSC fails 12 of 110 practices in a Level 2 assessment but wants conditional certification. Which factor would DISQUALIFY a NOT MET practice from POA&M eligibility?", correct: "The deficiency is a structural gap with no viable path to remediation — only remediable items with specific milestones qualify.", wrong: ["The practice is in the Access Control domain.", "The OSC has more than 5 NOT MET practices total.", "The practice was also NOT MET in a previous assessment."]},
+        {stem: "A CCP is collecting evidence during Phase 2. An OSC employee starts explaining how they plan to fix a gap. The CCP should:", correct: "Document what is said but stay neutral — the CCP gathers evidence and does not coach or signal whether answers are right or wrong.", wrong: ["Help the employee understand what the assessor is looking for.", "Suggest specific remediation steps to be helpful.", "Stop the interview immediately and report a conflict."]},
+        {stem: "What is the purpose of the Readiness Review in Phase 1?", correct: "To verify the OSC is prepared before the formal assessment begins — if not ready, the assessment does not proceed, protecting both parties.", wrong: ["To give the OSC a practice score before the real assessment.", "To allow the assessment team to pre-score easy practices.", "To satisfy a regulatory requirement with no practical impact."]}
+      ],
+      6: [
+        {stem: "A contractor's IT department manages servers for the team that handles FCI but IT never directly touches FCI data. Is the IT department in scope?", correct: "Yes — IT is a Supporting Unit. They support the Host Unit's ability to handle FCI and are in scope even though they don't handle FCI directly.", wrong: ["No — only the Host Unit that directly handles FCI is in scope.", "Only if IT has user accounts on FCI systems.", "Only if the IT department is in the same building."]},
+        {stem: "An OSC uses a managed security service provider (MSSP) that monitors their FCI systems. Is the MSSP in scope?", correct: "Yes — the MSSP is an External Service Provider handling FCI on the OSC's behalf. Security requirements follow the data.", wrong: ["No — third-party providers are always out of scope.", "Only if the MSSP stores FCI, not just monitors it.", "Only if the MSSP is also CMMC certified."]},
+        {stem: "A device on the contractor's network only transmits FCI but never stores or processes it. Is it in scope?", correct: "Yes — the three-verb test requires only ONE of processes, stores, or transmits. Transmitting alone puts it in scope.", wrong: ["No — all three verbs must apply for the asset to be in scope.", "No — transmission alone is insufficient without storage.", "Only if the transmission is unencrypted."]},
+        {stem: "Manufacturing equipment (OT) on the shop floor cannot run standard anti-malware software. Should the assessor score all related practices NOT MET?", correct: "Not necessarily — OT may qualify as a specialized asset and an Enduring Exception, documented in the system security plan and scored as MET.", wrong: ["Yes — all practices must be fully met with no exceptions.", "The OT should be removed from scope entirely.", "The assessor should skip OT and only assess IT systems."]}
+      ]
+    };
+
+    // Collect all scenario questions
+    for (const [dom, qList] of Object.entries(scenarios)) {
+      qList.forEach(sq => {
+        const options = [...sq.wrong];
+        const insertAt = Math.floor(Math.random() * 4);
+        options.splice(insertAt, 0, sq.correct);
+        bank.push({
+          d: parseInt(dom),
+          dn: DOMAIN_NAMES[parseInt(dom)],
+          q: sq.stem,
+          o: options,
+          a: insertAt,
+          x: sq.correct,
+          t: 'scenario'
+        });
+      });
+    }
+
+  // Generate standard MCQ from all flashcards
+  allCards.forEach(card => {
+    const mcq = makeStandardMCQ(card);
+    if (mcq) { mcq.t = 'knowledge'; bank.push(mcq); }
+  });
+
+  // Generate trap "NOT" questions from subset of cards
+  const trapCandidates = allCards.filter(c => c.domain >= 3); // More traps for heavier domains
+  pickRandom(trapCandidates, Math.min(30, trapCandidates.length)).forEach(card => {
+    const trap = makeTrapMCQ(card, allCards);
+    if (trap) { trap.t = 'trap'; bank.push(trap); }
+  });
+
+  return bank;
+}
+
+// Select weighted 170 questions from bank
+function selectExamQuestions(bank, count) {
+  const targetCounts = {1: 9, 2: 9, 3: 25, 4: 60, 5: 42, 6: 25};
+  const byDomain = {};
+  bank.forEach(q => {
+    if (!byDomain[q.d]) byDomain[q.d] = [];
+    byDomain[q.d].push(q);
+  });
+
+  const selected = [];
+  for (let d = 1; d <= 6; d++) {
+    const pool = byDomain[d] || [];
+    // Shuffle pool
+    for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
+    // Deduplicate by question text
+    const seen = new Set();
+    const unique = pool.filter(q => {
+      const key = q.q.substring(0, 60);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+    const target = targetCounts[d] || 10;
+    selected.push(...unique.slice(0, target));
+  }
+
+  // Shuffle final selection
+  for (let i = selected.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [selected[i],selected[j]]=[selected[j],selected[i]]; }
+  return selected.slice(0, count);
+}
+
+// -- Exam UI Engine --
+function initExam() {
+  const active = loadState('exam_active', null);
+  if (active && !active.submitted) {
+    examState = active;
+    showExamActive();
+    startExamTimer();
+    renderExamQuestion();
+  } else {
+    showExamStart();
+  }
+}
+
+function showExamStart() {
+  document.getElementById('examStart').style.display = 'block';
+  document.getElementById('examActive').style.display = 'none';
+  document.getElementById('examResults').style.display = 'none';
+  const lastExam = loadState('exam_history', []);
+  const lastScore = lastExam.length ? lastExam[lastExam.length-1].score + '%' : 'N/A';
+  document.getElementById('examStart').innerHTML = `
+    <div class="exam-start-card">
+      <h3>CCP Practice Exam</h3>
+      <p>Simulates the real exam format with 170 multiple-choice questions across all six domains, weighted by exam percentage.</p>
+      <div class="exam-meta">
+        <div><span>Questions</span><strong>170</strong></div>
+        <div><span>Time Limit</span><strong>3 hours 30 min</strong></div>
+        <div><span>Passing</span><strong>~70% (estimated)</strong></div>
+        <div><span>Last Score</span><strong>${lastScore}</strong></div>
+      </div>
+      <p style="font-size:.8rem;margin-bottom:20px">Domain weighting: D4 (35%), D5 (25%), D3 (15%), D6 (15%), D1 (5%), D2 (5%)</p>
+      <p style="font-size:.78rem;color:var(--text3);margin-bottom:20px">Includes knowledge recall, trap questions (INCORRECT/EXCEPT), and scenario-based application questions.</p>
+      <button class="btn btn-primary" onclick="startExam()" style="font-size:1rem;padding:14px 40px">Start Exam</button>
+    </div>
+  `;
+}
+
+function startExam() {
+  const bank = generateExamBank();
+  const questions = selectExamQuestions(bank, 170);
+  examState = {
+    questions: questions,
+    answers: {},
+    flags: {},
+    currentIdx: 0,
+    timeRemaining: EXAM_TIME,
+    startedAt: Date.now(),
+    submitted: false
+  };
+  saveState('exam_active', examState);
+  showExamActive();
+  startExamTimer();
+  renderExamQuestion();
+}
+
+function showExamActive() {
+  document.getElementById('examStart').style.display = 'none';
+  document.getElementById('examActive').style.display = 'block';
+  document.getElementById('examResults').style.display = 'none';
+}
+
+function startExamTimer() {
+  if (examTimerInterval) clearInterval(examTimerInterval);
+  examTimerInterval = setInterval(() => {
+    if (!examState || examState.submitted) { clearInterval(examTimerInterval); return; }
+    examState.timeRemaining--;
+    updateTimerDisplay();
+    if (examState.timeRemaining <= 0) {
+      clearInterval(examTimerInterval);
+      submitExam();
+    }
+    // Auto-save every 30 seconds
+    if (examState.timeRemaining % 30 === 0) saveState('exam_active', examState);
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const t = examState.timeRemaining;
+  const h = Math.floor(t / 3600);
+  const m = Math.floor((t % 3600) / 60);
+  const s = t % 60;
+  const el = document.getElementById('examTimer');
+  el.textContent = `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  el.className = 'exam-timer' + (t < 600 ? ' critical' : t < 1800 ? ' warn' : '');
+}
+
+function renderExamQuestion() {
+  if (!examState) return;
+  const q = examState.questions[examState.currentIdx];
+  const i = examState.currentIdx;
+  const total = examState.questions.length;
+  const answered = Object.keys(examState.answers).length;
+
+  document.getElementById('examProgressText').textContent = `Question ${i+1} of ${total} (${answered} answered)`;
+  document.getElementById('examPrevBtn').disabled = i === 0;
+  document.getElementById('examPrevBtn').style.opacity = i === 0 ? '.3' : '1';
+  document.getElementById('examNextBtn').textContent = i === total - 1 ? 'Review & Submit' : 'Next \u2192';
+
+  const isFlagged = examState.flags[i];
+  document.getElementById('examFlagBtn').className = 'flag-btn' + (isFlagged ? ' flagged' : '');
+
+  const selectedAnswer = examState.answers[i];
+  const letters = ['A','B','C','D'];
+
+  document.getElementById('examQuestion').innerHTML = `
+    <div class="exam-q-card">
+      <div class="q-num">Question ${i+1} of ${total}</div>
+      <span class="q-domain" style="color:${DOMAIN_COLORS[q.d]}">Domain ${q.d}: ${q.dn}</span>
+      <div class="q-text">${q.q}</div>
+      ${q.o.map((opt, oi) => `
+        <button class="exam-option ${selectedAnswer === oi ? 'selected' : ''}"
+          onclick="selectExamAnswer(${oi})">
+          <span class="opt-letter">${letters[oi]}.</span>${opt}
+        </button>
+      `).join('')}
+    </div>
+  `;
+
+  updateExamGrid();
+}
+
+function selectExamAnswer(idx) {
+  examState.answers[examState.currentIdx] = idx;
+  saveState('exam_active', examState);
+  renderExamQuestion();
+}
+
+function examNav(dir) {
+  const total = examState.questions.length;
+  const newIdx = examState.currentIdx + dir;
+  if (newIdx < 0 || newIdx >= total) {
+    if (dir > 0 && examState.currentIdx === total - 1) confirmSubmitExam();
     return;
   }
-  histEl.innerHTML = history.slice().reverse().map(h=>{
-    const d = new Date(h.date);
-    const dateStr = d.toLocaleDateString()+' '+d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-    const color = h.score>=80?'var(--green)':h.score>=60?'var(--orange)':'var(--red)';
-    return `<div class="history-item">
-      <div><strong>${h.scenario}</strong><br><span class="date">${dateStr}</span></div>
-      <div class="score" style="color:${color}">${h.score}% (${h.met}/${h.total})</div>
+  examState.currentIdx = newIdx;
+  renderExamQuestion();
+}
+
+function examGoTo(idx) {
+  examState.currentIdx = idx;
+  renderExamQuestion();
+}
+
+function toggleExamFlag() {
+  const i = examState.currentIdx;
+  examState.flags[i] = !examState.flags[i];
+  saveState('exam_active', examState);
+  renderExamQuestion();
+}
+
+function toggleExamGrid() {
+  const panel = document.getElementById('examGridPanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function updateExamGrid() {
+  const total = examState.questions.length;
+  let html = '';
+  for (let i = 0; i < total; i++) {
+    const answered = examState.answers[i] !== undefined;
+    const flagged = examState.flags[i];
+    const current = i === examState.currentIdx;
+    let cls = 'exam-grid-btn';
+    if (answered) cls += ' answered';
+    if (flagged) cls += ' flagged';
+    if (current) cls += ' current';
+    html += `<button class="${cls}" onclick="examGoTo(${i})">${i+1}</button>`;
+  }
+  document.getElementById('examGrid').innerHTML = html;
+}
+
+function confirmSubmitExam() {
+  const answered = Object.keys(examState.answers).length;
+  const total = examState.questions.length;
+  const flagged = Object.values(examState.flags).filter(Boolean).length;
+  const unanswered = total - answered;
+  let msg = `Submit exam?\n\nAnswered: ${answered}/${total}`;
+  if (unanswered > 0) msg += `\nUnanswered: ${unanswered}`;
+  if (flagged > 0) msg += `\nFlagged for review: ${flagged}`;
+  if (confirm(msg)) submitExam();
+}
+
+function submitExam() {
+  if (examTimerInterval) clearInterval(examTimerInterval);
+  examState.submitted = true;
+  saveState('exam_active', examState);
+
+  const qs = examState.questions;
+  const ans = examState.answers;
+  let correct = 0;
+  const domainScores = {};
+  for (let d = 1; d <= 6; d++) domainScores[d] = {correct: 0, total: 0};
+
+  qs.forEach((q, i) => {
+    domainScores[q.d].total++;
+    if (ans[i] === q.a) { correct++; domainScores[q.d].correct++; }
+  });
+
+  const score = Math.round(correct / qs.length * 100);
+  const timeUsed = EXAM_TIME - examState.timeRemaining;
+  const h = Math.floor(timeUsed / 3600);
+  const m = Math.floor((timeUsed % 3600) / 60);
+  const timeStr = `${h}h ${m}m`;
+
+  // Save to history
+  const history = loadState('exam_history', []);
+  history.push({date: new Date().toISOString(), score, correct, total: qs.length, timeUsed: timeStr, domainScores});
+  saveState('exam_history', history);
+
+  // Render results
+  const passing = score >= 70;
+  const scoreColor = passing ? 'var(--green)' : 'var(--red)';
+
+  let html = `<div class="exam-results-header">
+    <h2>${passing ? 'PASS' : 'NEEDS IMPROVEMENT'}</h2>
+    <div class="big-score" style="color:${scoreColor}">${score}%</div>
+    <p style="color:var(--text2)">${correct} of ${qs.length} correct &middot; Time: ${timeStr}</p>
+  </div>
+  <div class="exam-domain-breakdown">`;
+
+  for (let d = 1; d <= 6; d++) {
+    const ds = domainScores[d];
+    const pct = ds.total ? Math.round(ds.correct / ds.total * 100) : 0;
+    const c = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--orange)' : 'var(--red)';
+    html += `<div class="edb">
+      <div class="edb-score" style="color:${c}">${pct}%</div>
+      <div class="edb-label">D${d} (${ds.correct}/${ds.total})</div>
     </div>`;
-  }).join('');
+  }
+  html += `</div>
+  <div style="display:flex;gap:10px;margin:20px 0;justify-content:center;flex-wrap:wrap">
+    <button class="btn btn-ghost btn-sm" onclick="toggleExamReview()">Review All Questions</button>
+    <button class="btn btn-ghost btn-sm" onclick="toggleExamReviewWrong()">Review Wrong Only</button>
+    <button class="btn btn-primary btn-sm" onclick="showExamStart()">New Exam</button>
+  </div>
+  <div id="examReviewList" style="display:none"></div>`;
+
+  document.getElementById('examActive').style.display = 'none';
+  document.getElementById('examResults').innerHTML = html;
+  document.getElementById('examResults').style.display = 'block';
+}
+
+function toggleExamReview() { renderExamReview(false); }
+function toggleExamReviewWrong() { renderExamReview(true); }
+
+function renderExamReview(wrongOnly) {
+  const el = document.getElementById('examReviewList');
+  if (el.style.display === 'block' && el.dataset.mode === String(wrongOnly)) {
+    el.style.display = 'none';
+    return;
+  }
+  el.dataset.mode = String(wrongOnly);
+  const qs = examState.questions;
+  const ans = examState.answers;
+  const letters = ['A','B','C','D'];
+  let html = '';
+  qs.forEach((q, i) => {
+    const isCorrect = ans[i] === q.a;
+    if (wrongOnly && isCorrect) return;
+    const userAns = ans[i] !== undefined ? letters[ans[i]] : 'Skipped';
+    html += `<div class="exam-review-item ${isCorrect ? 'correct-review' : 'incorrect'}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <span style="font-size:.75rem;color:${DOMAIN_COLORS[q.d]}">Q${i+1} &middot; Domain ${q.d}</span>
+        <span style="font-size:.75rem;font-weight:700;color:${isCorrect?'var(--green)':'var(--red)'}">${isCorrect?'CORRECT':'WRONG'} (${userAns})</span>
+      </div>
+      <p style="font-size:.9rem;margin-bottom:10px">${q.q}</p>
+      ${q.o.map((opt, oi) => {
+        let style = 'font-size:.82rem;padding:4px 8px;margin:2px 0;border-radius:4px;';
+        if (oi === q.a) style += 'background:rgba(52,211,153,.12);color:var(--green);';
+        else if (oi === ans[i] && !isCorrect) style += 'background:rgba(248,113,113,.12);color:var(--red);text-decoration:line-through;';
+        else style += 'color:var(--text3);';
+        return `<div style="${style}">${letters[oi]}. ${opt}</div>`;
+      }).join('')}
+      <div class="exam-explanation">${q.x}</div>
+    </div>`;
+  });
+  el.innerHTML = html || '<p style="text-align:center;color:var(--green);padding:20px">All questions answered correctly!</p>';
+  el.style.display = 'block';
 }
 
 // ============================================================

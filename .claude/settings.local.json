@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \":*)",
+      "Bash(node -e 'const fs=require\\(\"\"fs\"\"\\);const html=fs.readFileSync\\(\"\"index.html\"\",\"\"utf8\"\"\\);const m=html.match\\(/<script>\\([\\\\s\\\\S]*?\\)<\\\\/script>/\\);const code=m[1];for\\(let i=0;i<2000;i++\\){const c=code.charCodeAt\\(i\\);if\\(c>127&&c!==8212&&c!==8217\\){console.log\\(\"\"Char\"\",i,\"\":\"\",c,\"\"=\"\",JSON.stringify\\(code[i]\\)\\)}}')"
+    ]
+  }
+}

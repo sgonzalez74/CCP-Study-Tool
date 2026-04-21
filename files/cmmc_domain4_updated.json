@@ -1,0 +1,711 @@
+{
+  "domain": 4,
+  "title": "CMMC Model Construct and Implementation — Level 1 Practices",
+  "exam_weight": "35%",
+  "level1_overview": {
+    "practice_count": 15,
+    "source": "FAR Clause 52.204-21",
+    "protects": "FCI — Federal Contract Information",
+    "assessment_type": "Annual self-assessment",
+    "domains_covered": ["AC", "IA", "MP", "PE", "SC", "SI"]
+  },
+  "all_14_domains": {
+    "overview": "CMMC has 14 domains inherited from NIST 800-171. Six have Level 1 practices. Eight are Level 2 only. All 14 are testable on the CCP exam.",
+    "level1_domains": ["AC", "IA", "MP", "PE", "SC", "SI"],
+    "level2_only_domains": ["AU", "AT", "CM", "IR", "MA", "PS", "RA", "CA"],
+    "domain_descriptions": [
+      {
+        "abbreviation": "AC",
+        "full_name": "Access Control",
+        "theme": "Control who gets in and what they can do",
+        "level": "Level 1 + Level 2",
+        "plain_terms": "Manages who can access systems and what they can do once inside."
+      },
+      {
+        "abbreviation": "AU",
+        "full_name": "Audit and Accountability",
+        "theme": "Logs and audit trails",
+        "level": "Level 2 only",
+        "plain_terms": "Create and retain system logs so you can detect, investigate, and report unauthorized activity. If something happens, you need a record of it."
+      },
+      {
+        "abbreviation": "AT",
+        "full_name": "Awareness and Training",
+        "theme": "People and security training",
+        "level": "Level 2 only",
+        "plain_terms": "Ensure personnel understand security risks and their responsibilities. People are the biggest vulnerability — this domain addresses that."
+      },
+      {
+        "abbreviation": "CM",
+        "full_name": "Configuration Management",
+        "theme": "Secure system configurations",
+        "level": "Level 2 only",
+        "plain_terms": "Establish and maintain secure configurations for systems. Controls what software can be installed, tracks system changes, and maintains baselines."
+      },
+      {
+        "abbreviation": "IA",
+        "full_name": "Identification and Authentication",
+        "theme": "Verify identity before granting access",
+        "level": "Level 1 + Level 2",
+        "plain_terms": "Identify and authenticate users, processes, and devices before allowing system access."
+      },
+      {
+        "abbreviation": "IR",
+        "full_name": "Incident Response",
+        "theme": "Plan for and respond to security incidents",
+        "level": "Level 2 only",
+        "plain_terms": "Establish capability to detect, contain, and recover from security incidents. Having a plan before something goes wrong."
+      },
+      {
+        "abbreviation": "MA",
+        "full_name": "Maintenance",
+        "theme": "Controlled system maintenance",
+        "level": "Level 2 only",
+        "plain_terms": "Control how system maintenance is performed, including remote maintenance. Maintenance personnel have deep system access — this domain governs that."
+      },
+      {
+        "abbreviation": "MP",
+        "full_name": "Media Protection",
+        "theme": "Protect FCI when disposing of or reusing media",
+        "level": "Level 1 + Level 2",
+        "plain_terms": "Sanitize or destroy media containing sensitive information before disposal or reuse."
+      },
+      {
+        "abbreviation": "PS",
+        "full_name": "Personnel Security",
+        "theme": "Screen personnel before and during access",
+        "level": "Level 2 only",
+        "plain_terms": "Screen individuals before system access and ensure access is terminated when they leave. Background checks and offboarding."
+      },
+      {
+        "abbreviation": "PE",
+        "full_name": "Physical Protection",
+        "theme": "Control physical access to systems and spaces",
+        "level": "Level 1 + Level 2",
+        "plain_terms": "Limit and track physical access to systems, equipment, and facilities."
+      },
+      {
+        "abbreviation": "RA",
+        "full_name": "Risk Assessment",
+        "theme": "Identify and assess risks",
+        "level": "Level 2 only",
+        "plain_terms": "Periodically assess risk to organizational operations from system vulnerabilities. Know what your threats are."
+      },
+      {
+        "abbreviation": "CA",
+        "full_name": "Security Assessment",
+        "theme": "Verify security controls are working",
+        "level": "Level 2 only",
+        "plain_terms": "Periodically assess security controls to ensure they're working as intended. Develop plans of action for deficiencies. This is where ongoing POA&Ms originate."
+      },
+      {
+        "abbreviation": "SC",
+        "full_name": "System and Communications Protection",
+        "theme": "Protect network boundaries",
+        "level": "Level 1 + Level 2",
+        "plain_terms": "Monitor, control, and protect communications at system boundaries. Isolate public-facing systems."
+      },
+      {
+        "abbreviation": "SI",
+        "full_name": "System and Information Integrity",
+        "theme": "Keep systems healthy and protected from malware",
+        "level": "Level 1 + Level 2",
+        "plain_terms": "Patch systems, protect against malware, and actively scan for threats."
+      }
+    ],
+    "memory_groupings": {
+      "prevention": {
+        "domains": ["AT", "CM", "PS", "RA"],
+        "theme": "Before something goes wrong",
+        "descriptions": {
+          "AT": "Train people on security risks",
+          "CM": "Maintain secure system configurations",
+          "PS": "Screen personnel before access",
+          "RA": "Identify and assess risks"
+        }
+      },
+      "detection_and_response": {
+        "domains": ["AU", "IR", "MA"],
+        "theme": "While something is happening",
+        "descriptions": {
+          "AU": "Log and track all activity",
+          "IR": "Respond to incidents with a plan",
+          "MA": "Control and monitor maintenance access"
+        }
+      },
+      "assessment_and_improvement": {
+        "domains": ["CA"],
+        "theme": "After the fact",
+        "descriptions": {
+          "CA": "Verify controls are working and fix what isn't"
+        }
+      }
+    }
+  },
+  "CA_L2_3_12_2": {
+    "practice_id": "CA.L2-3.12.2",
+    "name": "Plan of Action",
+    "requirement": "Develop, document, and periodically update plans of action designed to correct deficiencies and reduce or eliminate vulnerabilities in organizational systems.",
+    "plain_terms": "Maintain a living document that tracks security gaps, how they'll be fixed, and progress toward fixing them. This is the organization's ongoing internal compliance mechanism.",
+    "distinction_from_assessment_POAM": "CA.L2-3.12.2 is the OSC's ongoing internal document for tracking deficiencies discovered during normal operations. An assessment POA&M is created during a formal CMMC assessment when practices score NOT MET. They are related but not the same thing.",
+    "key_fact": "This practice is explicitly referenced in the CCP blueprint under Domain 5 Task 4 as the basis for POA&M objectives and requirements during assessments."
+  },
+  "evidence_framework": {
+    "overview": "The blueprint explicitly tests evidence adequacy and sufficiency as two separate concepts. Both must be true for a practice to score MET.",
+    "adequate_evidence": {
+      "definition": "Evidence is appropriate for the type of assessment objective being evaluated. It is the RIGHT KIND of evidence.",
+      "plain_terms": "Does this evidence actually prove what you're trying to prove? A screenshot of a firewall rule is adequate for a boundary protection control. An interview statement alone about the same control is not adequate.",
+      "test_question": "Is this the right TYPE of evidence for this objective?"
+    },
+    "sufficient_evidence": {
+      "definition": "There is enough evidence to make a confident determination.",
+      "plain_terms": "Is there ENOUGH of it? One log entry showing a system was patched once is not sufficient to demonstrate an active patch management process. A pattern of patch records over time is sufficient.",
+      "test_question": "Is there ENOUGH of this evidence?"
+    },
+    "combined_rule": "Both adequate AND sufficient must be true for MET. You can have sufficient evidence that is the wrong type, or the right type but not enough of it. Either way the finding is NOT MET.",
+    "practical_framework": {
+      "adequate": "Right TYPE of evidence",
+      "sufficient": "Enough of it"
+    }
+  },
+  "assessment_methods": {
+    "examine": {
+      "definition": "Reviewing, inspecting, observing, studying, or analyzing assessment objects including documents, mechanisms, or activities.",
+      "plain_terms": "Looking at stuff — policies, configs, logs, diagrams, records.",
+      "what_it_tells_you": "What documentation SAYS is happening"
+    },
+    "interview": {
+      "definition": "Holding discussions with individuals or groups to facilitate understanding, achieve clarification, or obtain evidence.",
+      "plain_terms": "Talking to people — admins, security staff, users, management.",
+      "what_it_tells_you": "What people BELIEVE is happening",
+      "communication_skills": {
+        "use_open_ended_questions": "Open-ended questions get better evidence than yes/no. 'Walk me through how you manage user accounts' yields more than 'Do you manage user accounts?'",
+        "avoid_leading_questions": "Don't suggest the answer in the question — that compromises evidence integrity.",
+        "interview_multiple_levels": "Interview both leadership (policy intent) and operational staff (operational reality). Contradictions between them are themselves a finding.",
+        "document_carefully": "Interview statements are evidence and must be captured accurately.",
+        "stay_neutral": "The CCP gathers evidence during interviews — does not coach the OSC or signal whether answers are right or wrong."
+      }
+    },
+    "test": {
+      "definition": "Exercising assessment objects under specified conditions to compare actual with expected behavior.",
+      "plain_terms": "Making something do the thing and watching what happens — demonstrations, live checks.",
+      "what_it_tells_you": "What is ACTUALLY happening"
+    },
+    "key_relationship": "Interview = belief, Examine = documentation, Test = reality. All three together give a complete picture."
+  },
+  "assessment_findings": {
+    "MET": {
+      "definition": "All applicable objectives for the practice are satisfied based on evidence.",
+      "evidence_requirement": "Must be in final form. Drafts, working papers, and unapproved policies do NOT count.",
+      "special_cases": [
+        "Enduring Exceptions documented in the system security plan score as MET",
+        "Temporary deficiencies properly documented in an operational plan of action with milestones score as MET"
+      ]
+    },
+    "NOT_MET": {
+      "definition": "One or more objectives of the practice are not satisfied.",
+      "critical_rule": "ONE NOT MET objective = the entire practice is NOT MET. No partial credit."
+    },
+    "NOT_APPLICABLE": {
+      "definition": "The requirement does not apply at the time of assessment. Must be documented with explanation.",
+      "scoring": "Treated as equivalent to MET for scoring purposes."
+    }
+  },
+  "level1_practices": [
+    {
+      "id": "AC.L1-b.1.i",
+      "domain": "Access Control (AC)",
+      "name": "Authorized Access Control",
+      "requirement": "Limit information system access to authorized users, processes acting on behalf of authorized users, or devices (including other information systems).",
+      "plain_terms": "Only authorized users, processes, and devices can access the system. No unauthorized people, no rogue devices.",
+      "key_principle": "Control WHO gets in",
+      "assessment_objectives": [
+        "authorized users are identified",
+        "processes acting on behalf of authorized users are identified",
+        "devices authorized to connect are identified",
+        "system access is limited to authorized users",
+        "system access is limited to authorized processes",
+        "system access is limited to authorized devices"
+      ],
+      "evidence_examples": [
+        "User account lists",
+        "Access control policies",
+        "Records of terminated employee account removal",
+        "List of authorized devices"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.i",
+        "NIST": "SP 800-171 Rev. 2 3.1.1"
+      }
+    },
+    {
+      "id": "AC.L1-b.1.ii",
+      "domain": "Access Control (AC)",
+      "name": "Transaction and Function Control",
+      "requirement": "Limit information system access to the types of transactions and functions that authorized users are permitted to execute.",
+      "plain_terms": "Once you're in, what you can DO is also limited. Least privilege — users only get access to what their role requires.",
+      "key_principle": "Control WHAT authorized users can do once in",
+      "assessment_objectives": [
+        "types of transactions and functions authorized users are permitted to execute are defined",
+        "system access is limited to defined types of transactions and functions"
+      ],
+      "evidence_examples": [
+        "Role-based access configurations",
+        "User permission settings",
+        "Access control lists",
+        "Admin privilege documentation"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.ii",
+        "NIST": "SP 800-171 Rev. 2 3.1.2"
+      }
+    },
+    {
+      "id": "AC.L1-b.1.iii",
+      "domain": "Access Control (AC)",
+      "name": "External Connections",
+      "requirement": "Verify and control/limit connections to and use of external information systems.",
+      "plain_terms": "Know what external connections exist, verify they're authorized, and control/limit them. Includes cloud services, vendor networks, personal devices.",
+      "key_principle": "Control external CONNECTIONS to your system",
+      "assessment_objectives": [
+        "connections to external systems are identified",
+        "use of external systems is identified",
+        "connections to external systems are verified",
+        "use of external systems is verified",
+        "connections to external systems are controlled/limited",
+        "use of external systems is controlled/limited"
+      ],
+      "evidence_examples": [
+        "Network diagrams showing external connections",
+        "Firewall rules",
+        "Documented agreements with external system owners",
+        "Policies governing external access",
+        "VPN configurations"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.iii",
+        "NIST": "SP 800-171 Rev. 2 3.1.20"
+      }
+    },
+    {
+      "id": "AC.L1-b.1.iv",
+      "domain": "Access Control (AC)",
+      "name": "Control Public Information",
+      "requirement": "Control information posted or processed on publicly accessible information systems.",
+      "plain_terms": "If you run anything public-facing, you need controls to ensure FCI doesn't end up there. Designated individuals, review process before posting, mechanisms to remove FCI if discovered.",
+      "key_principle": "Control PUBLIC-facing systems to prevent FCI exposure",
+      "assessment_objectives": [
+        "individuals authorized to post on publicly accessible systems are identified",
+        "procedures to ensure FCI is not posted on publicly accessible systems are identified",
+        "a review process is in place prior to posting content",
+        "content is reviewed to ensure it does not include FCI",
+        "mechanisms are in place to remove and address improper posting of FCI"
+      ],
+      "evidence_examples": [
+        "List of users authorized to post publicly",
+        "Content review procedures",
+        "Documented approval chain for public release",
+        "Records of content reviews"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.iv",
+        "NIST": "SP 800-171 Rev. 2 3.1.22"
+      }
+    },
+    {
+      "id": "IA.L1-b.1.v",
+      "domain": "Identification and Authentication (IA)",
+      "name": "Identification",
+      "requirement": "Identify information system users, processes acting on behalf of users, or devices.",
+      "plain_terms": "Every user, process, and device needs a unique identifier. No shared accounts, no generic logins. Activity must be traceable to a specific identity.",
+      "key_principle": "Claiming an identity — I am Sean (username)",
+      "assessment_objectives": [
+        "system users are identified",
+        "processes acting on behalf of users are identified",
+        "devices accessing the system are identified"
+      ],
+      "evidence_examples": [
+        "List of system accounts with unique user IDs",
+        "Device inventory with unique identifiers",
+        "Service account documentation",
+        "No shared/generic accounts in use"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.v",
+        "NIST": "SP 800-171 Rev. 2 3.5.1"
+      },
+      "note": "IA.L1-b.1.v provides vetted identity that supports the access control mechanism in AC.L1-b.1.i"
+    },
+    {
+      "id": "IA.L1-b.1.vi",
+      "domain": "Identification and Authentication (IA)",
+      "name": "Authentication",
+      "requirement": "Authenticate the identities of those users, processes, or devices as a prerequisite to allowing access.",
+      "plain_terms": "Prove who you are before getting access. Passwords are the baseline. Default credentials must be changed immediately — they are publicly known and a significant security risk.",
+      "key_principle": "Proving an identity — here is my password/credential",
+      "assessment_objectives": [
+        "identity of each user is authenticated as a prerequisite to system access",
+        "identity of each process acting on behalf of a user is authenticated",
+        "identity of each device is authenticated as a prerequisite to system access"
+      ],
+      "evidence_examples": [
+        "Authentication mechanisms in place",
+        "Password policies",
+        "No default credentials in use",
+        "Device certificates or tokens"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.vi",
+        "NIST": "SP 800-171 Rev. 2 3.5.2"
+      },
+      "exam_trap": "Default credentials are a known risk — devices ship with publicly documented default usernames and passwords that must be changed before deployment."
+    },
+    {
+      "id": "MP.L1-b.1.vii",
+      "domain": "Media Protection (MP)",
+      "name": "Media Disposal",
+      "requirement": "Sanitize or destroy information system media containing FCI before disposal or release for reuse.",
+      "plain_terms": "FCI media must be sanitized (cleaned for reuse) or destroyed (made permanently unreadable) before disposal or reuse. Media includes paper, USB drives, CDs, DVDs, hard drives, mobile phones.",
+      "key_principle": "FCI must be unrecoverable before media leaves your control",
+      "assessment_objectives": [
+        "system media containing FCI is sanitized or destroyed before disposal",
+        "system media containing FCI is sanitized before it is released for reuse"
+      ],
+      "evidence_examples": [
+        "Media sanitization records",
+        "Destruction logs",
+        "Media sanitization policy",
+        "Certificates of destruction"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.vii",
+        "NIST": "SP 800-171 Rev. 2 3.8.3",
+        "supplementary": "NIST SP 800-88 Guidelines for Media Sanitization"
+      },
+      "distinction": "Sanitize = remove FCI, preserve media for reuse. Destroy = physically destroy, media unusable. Choose sanitize for reuse, destroy for disposal."
+    },
+    {
+      "id": "PE.L1-b.1.viii",
+      "domain": "Physical Protection (PE)",
+      "name": "Limit Physical Access",
+      "requirement": "Limit physical access to organizational information systems, equipment, and operating environments to authorized individuals.",
+      "plain_terms": "Only authorized people can physically access systems, equipment, and the spaces where they live. Locks, badges, key cards. Output devices like printers must be placed where they don't expose data.",
+      "key_principle": "Control WHO can physically access systems and spaces",
+      "assessment_objectives": [
+        "authorized individuals allowed physical access are identified",
+        "physical access to organizational systems is limited to authorized individuals",
+        "physical access to equipment is limited to authorized individuals",
+        "physical access to operating environments is limited to authorized individuals"
+      ],
+      "evidence_examples": [
+        "Authorized access lists",
+        "Badge/key card systems",
+        "Locked rooms for FCI systems",
+        "Physical access credentials issued to appropriate personnel"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.viii",
+        "NIST": "SP 800-171 Rev. 2 3.10.1"
+      },
+      "practical_note": "CMMC doesn't mandate specific solutions. A locked room and a key list satisfies this for a small company."
+    },
+    {
+      "id": "PE.L1-b.1.ix",
+      "domain": "Physical Protection (PE)",
+      "name": "Manage Visitors and Physical Access",
+      "requirement": "Escort visitors and monitor visitor activity; maintain audit logs of physical access; and control and manage physical access devices.",
+      "plain_terms": "Three things: (1) visitors must be escorted at all times — no exceptions even for people you know; (2) physical access must be logged — paper or electronic; (3) physical access devices (keys, badges, cards) must be inventoried and managed.",
+      "key_principle": "Track and manage HOW physical access occurs",
+      "assessment_objectives": [
+        "visitors are escorted",
+        "visitor activity is monitored",
+        "audit logs of physical access are maintained",
+        "physical access devices are identified",
+        "physical access devices are controlled",
+        "physical access devices are managed"
+      ],
+      "evidence_examples": [
+        "Visitor sign-in/sign-out logs",
+        "Badge reader records",
+        "Key inventory records",
+        "Visitor badge policy",
+        "Records of access revocation when personnel depart"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.ix",
+        "NIST": ["SP 800-171 Rev. 2 3.10.3", "SP 800-171 Rev. 2 3.10.4", "SP 800-171 Rev. 2 3.10.5"]
+      },
+      "exam_trap": "Individuals with permanent physical access credentials are NOT considered visitors. The escort requirement applies to everyone without permanent credentials — even people you know personally."
+    },
+    {
+      "id": "SC.L1-b.1.x",
+      "domain": "System and Communications Protection (SC)",
+      "name": "Boundary Protection",
+      "requirement": "Monitor, control, and protect organizational communications at the external boundaries and key internal boundaries of the information systems.",
+      "plain_terms": "Three actions (monitor, control, protect) at two locations (external boundary and key internal boundaries). Firewalls and web proxies are the primary tools. Deny by default, allow by exception.",
+      "key_principle": "Protect the network perimeter and key internal dividing lines",
+      "assessment_objectives": [
+        "external system boundary is defined",
+        "key internal system boundaries are defined",
+        "communications are monitored at the external boundary",
+        "communications are monitored at key internal boundaries",
+        "communications are controlled at the external boundary",
+        "communications are controlled at key internal boundaries",
+        "communications are protected at the external boundary",
+        "communications are protected at key internal boundaries"
+      ],
+      "evidence_examples": [
+        "Network diagrams showing defined boundaries",
+        "Firewall configurations",
+        "Connection logs",
+        "Deny-by-default rule sets",
+        "Web proxy configurations"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.x",
+        "NIST": "SP 800-171 Rev. 2 3.13.1"
+      }
+    },
+    {
+      "id": "SC.L1-b.1.xi",
+      "domain": "System and Communications Protection (SC)",
+      "name": "Public-Access System Separation",
+      "requirement": "Implement subnetworks for publicly accessible system components that are physically or logically separated from internal networks.",
+      "plain_terms": "Public-facing systems must be on a separate network from internal systems where FCI lives. This is a DMZ. Traffic from the DMZ to internal networks is blocked by default.",
+      "key_principle": "Public-facing systems must be isolated from FCI systems",
+      "assessment_objectives": [
+        "publicly accessible system components are identified",
+        "subnetworks for publicly accessible components are physically or logically separated from internal networks"
+      ],
+      "evidence_examples": [
+        "Network diagrams showing DMZ",
+        "VLAN configurations",
+        "Firewall rules blocking DMZ-to-internal traffic by default",
+        "Cloud environment separation documentation"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.xi",
+        "NIST": "SP 800-171 Rev. 2 3.13.5"
+      },
+      "key_term": "DMZ — Demilitarized Zone. A subnetwork physically or logically separated from internal networks. Can be N/A if no publicly accessible systems exist within scope."
+    },
+    {
+      "id": "SI.L1-b.1.xii",
+      "domain": "System and Information Integrity (SI)",
+      "name": "Flaw Remediation",
+      "requirement": "Identify, report, and correct information system flaws in a timely manner.",
+      "plain_terms": "Patch management. Three actions (identify, report, correct) must all happen within organization-defined timeframes. Timeframes must be documented.",
+      "key_principle": "Find flaws, report them, fix them — on a defined schedule",
+      "assessment_objectives": [
+        "time within which to identify system flaws is specified",
+        "system flaws are identified within the specified time frame",
+        "time within which to report system flaws is specified",
+        "system flaws are reported within the specified time frame",
+        "time within which to correct system flaws is specified",
+        "system flaws are corrected within the specified time frame"
+      ],
+      "evidence_examples": [
+        "Patch management policy with defined timeframes",
+        "List of installed patches and update history",
+        "Vulnerability scan results",
+        "Change control records for security updates"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.xii",
+        "NIST": "SP 800-171 Rev. 2 3.14.1"
+      }
+    },
+    {
+      "id": "SI.L1-b.1.xiii",
+      "domain": "System and Information Integrity (SI)",
+      "name": "Malicious Code Protection",
+      "requirement": "Provide protection from malicious code at appropriate locations within organizational information systems.",
+      "plain_terms": "Deploy anti-malware protection at designated locations — entry/exit points, workstations, email servers, mobile devices.",
+      "key_principle": "Deploy malware protection at the right places",
+      "assessment_objectives": [
+        "designated locations for malicious code protection are identified",
+        "protection from malicious code at designated locations is provided"
+      ],
+      "malicious_code_types": [
+        "Virus — damages, steals, or changes data",
+        "Spyware — secretly gathers information",
+        "Trojan Horse — malware disguised as legitimate software",
+        "Ransomware — blocks access or threatens to publish data unless ransom paid"
+      ],
+      "evidence_examples": [
+        "Anti-malware software deployed on identified systems",
+        "List of protected system components",
+        "Anti-malware configuration documentation"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.xiii",
+        "NIST": "SP 800-171 Rev. 2 3.14.2"
+      }
+    },
+    {
+      "id": "SI.L1-b.1.xiv",
+      "domain": "System and Information Integrity (SI)",
+      "name": "Update Malicious Code Protection",
+      "requirement": "Update malicious code protection mechanisms when new releases are available.",
+      "plain_terms": "Keep your antivirus and anti-malware definitions current. Malware evolves constantly — outdated protection is essentially no protection.",
+      "key_principle": "Keep malware protection up to date",
+      "assessment_objectives": [
+        "malicious code protection mechanisms are updated when new releases are available"
+      ],
+      "evidence_examples": [
+        "Auto-update configuration for anti-malware",
+        "Records of malicious code protection updates",
+        "Defined frequency for updates"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.xiv",
+        "NIST": "SP 800-171 Rev. 2 3.14.4"
+      }
+    },
+    {
+      "id": "SI.L1-b.1.xv",
+      "domain": "System and Information Integrity (SI)",
+      "name": "System and File Scanning",
+      "requirement": "Perform periodic scans of the information system and real-time scans of files from external sources as files are downloaded, opened, or executed.",
+      "plain_terms": "Two types: periodic system scans on a defined schedule, and real-time scans of files from external sources. USB drives count as external sources.",
+      "key_principle": "Actively scan for malware on a schedule and in real time",
+      "assessment_objectives": [
+        "frequency for malicious code scans is defined",
+        "malicious code scans are performed with the defined frequency",
+        "real-time malicious code scans of files from external sources are performed"
+      ],
+      "evidence_examples": [
+        "Anti-malware scan schedule configuration",
+        "Scan logs showing periodic scans",
+        "Real-time scan configuration",
+        "Evidence USB/removable media included in external sources"
+      ],
+      "key_references": {
+        "FAR": "52.204-21 b.1.xv",
+        "NIST": "SP 800-171 Rev. 2 3.14.5"
+      }
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "d4_001",
+      "question": "How many Level 1 practices are there and what is their source document?",
+      "answer": "15 practices, derived from FAR Clause 52.204-21."
+    },
+    {
+      "id": "d4_002",
+      "question": "What does Level 1 protect — FCI or CUI?",
+      "answer": "FCI — Federal Contract Information. CUI is protected at Level 2."
+    },
+    {
+      "id": "d4_003",
+      "question": "What are the three assessment methods and what does each tell you?",
+      "answer": "Examine = what documentation says is happening. Interview = what people believe is happening. Test = what is actually happening."
+    },
+    {
+      "id": "d4_004",
+      "question": "What happens if one assessment objective within a practice is NOT MET?",
+      "answer": "The entire practice is scored NOT MET. There is no partial credit at the practice level."
+    },
+    {
+      "id": "d4_005",
+      "question": "Can a draft policy be used as evidence for a MET finding?",
+      "answer": "No. Evidence must be in final form. Drafts, working papers, and unapproved policies do not count."
+    },
+    {
+      "id": "d4_006",
+      "question": "What is the difference between adequate and sufficient evidence?",
+      "answer": "Adequate = the right TYPE of evidence for the objective. Sufficient = ENOUGH of it. Both must be true for MET. Having enough of the wrong type, or the right type but not enough, both result in NOT MET."
+    },
+    {
+      "id": "d4_007",
+      "question": "What is the difference between AC.L1-b.1.i and AC.L1-b.1.ii?",
+      "answer": "b.1.i controls WHO gets access to the system. b.1.ii controls WHAT authorized users can do once inside — least privilege principle."
+    },
+    {
+      "id": "d4_008",
+      "question": "What is the difference between Identification and Authentication?",
+      "answer": "Identification is claiming an identity (username). Authentication is proving it (password/credential)."
+    },
+    {
+      "id": "d4_009",
+      "question": "Why are default credentials a significant security risk?",
+      "answer": "Default credentials are often publicly documented — attackers look them up rather than brute forcing. Must be changed before deployment."
+    },
+    {
+      "id": "d4_010",
+      "question": "What is the difference between sanitizing and destroying media?",
+      "answer": "Sanitizing removes FCI while preserving media for reuse. Destroying physically destroys it making it permanently unreadable. Choose sanitize for reuse, destroy for disposal."
+    },
+    {
+      "id": "d4_011",
+      "question": "What three things does PE.L1-b.1.ix require?",
+      "answer": "1. Escort visitors and monitor activity. 2. Maintain audit logs of physical access. 3. Control and manage physical access devices."
+    },
+    {
+      "id": "d4_012",
+      "question": "What is a DMZ and when is SC.L1-b.1.xi NOT APPLICABLE?",
+      "answer": "A DMZ is a subnetwork physically or logically separated from internal networks. N/A if no publicly accessible systems exist within scope."
+    },
+    {
+      "id": "d4_013",
+      "question": "What are the 14 CMMC domains?",
+      "answer": "AC, AU, AT, CM, IA, IR, MA, MP, PS, PE, RA, CA, SC, SI."
+    },
+    {
+      "id": "d4_014",
+      "question": "Which 6 domains have Level 1 practices?",
+      "answer": "AC (Access Control), IA (Identification and Authentication), MP (Media Protection), PE (Physical Protection), SC (System and Communications Protection), SI (System and Information Integrity)."
+    },
+    {
+      "id": "d4_015",
+      "question": "What does AU stand for and what is its purpose?",
+      "answer": "Audit and Accountability. Creates and retains system logs so you can detect, investigate, and report unauthorized activity."
+    },
+    {
+      "id": "d4_016",
+      "question": "What does CM stand for and what is its purpose?",
+      "answer": "Configuration Management. Establishes and maintains secure configurations — controls what software is installed, tracks changes, maintains baselines."
+    },
+    {
+      "id": "d4_017",
+      "question": "What does IR stand for and what is its purpose?",
+      "answer": "Incident Response. Establishes capability to detect, contain, and recover from security incidents. Having a plan before something goes wrong."
+    },
+    {
+      "id": "d4_018",
+      "question": "What does CA stand for and what is its purpose?",
+      "answer": "Security Assessment. Periodically verifies security controls are working as intended and develops plans of action for deficiencies. This is where ongoing POA&Ms originate."
+    },
+    {
+      "id": "d4_019",
+      "question": "What is CA.L2-3.12.2 and how is it different from an assessment POA&M?",
+      "answer": "CA.L2-3.12.2 requires organizations to maintain an ongoing internal plan of action tracking security gaps discovered during normal operations. An assessment POA&M is created during a formal CMMC assessment when practices score NOT MET. Related but not the same."
+    },
+    {
+      "id": "d4_020",
+      "question": "What are the five communication principles for conducting assessment interviews?",
+      "answer": "1. Use open-ended questions. 2. Avoid leading questions. 3. Interview multiple levels (leadership + operational staff). 4. Document carefully — statements are evidence. 5. Stay neutral — gather evidence, don't coach."
+    },
+    {
+      "id": "d4_021",
+      "question": "What does PS stand for and what is its purpose?",
+      "answer": "Personnel Security. Screens individuals before system access and ensures access is terminated when they leave. Background checks and offboarding."
+    },
+    {
+      "id": "d4_022",
+      "question": "What does RA stand for and what is its purpose?",
+      "answer": "Risk Assessment. Periodically assesses risk to organizational operations from system vulnerabilities. Know what your threats are."
+    },
+    {
+      "id": "d4_023",
+      "question": "What does MA stand for and what is its purpose?",
+      "answer": "Maintenance. Controls how system maintenance is performed including remote maintenance. Maintenance personnel have deep system access — this domain governs that."
+    },
+    {
+      "id": "d4_024",
+      "question": "What does AT stand for and what is its purpose?",
+      "answer": "Awareness and Training. Ensures personnel understand security risks and their responsibilities. People are the biggest vulnerability."
+    }
+  ]
+}
