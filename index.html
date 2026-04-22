@@ -813,102 +813,186 @@ function generateExamBank() {
   const DOMAIN_NAMES = {1:'CMMC Ecosystem',2:'Ethics & CoPC',3:'Governance & Docs',4:'Model & Level 1',5:'Assessment Process',6:'Scoping'};
 
   // Domain-specific distractor pools for high-quality wrong answers
+  // ---- DISTRACTOR POOLS ----
+  // Each entry is a plausible-sounding but WRONG statement.
+  // Pattern: correct terminology + correct entities + wrong specific detail.
+  // A candidate who studied but is fuzzy on specifics should find these tempting.
   const DISTRACTOR_POOLS = {
     1: [
-      "C3PAOs both prepare organizations and conduct their assessments",
-      "CCPs can make scoring determinations if supervised by a CCA",
-      "RPs may serve as voting members on assessment teams after two years of experience",
-      "LTPs create the training curriculum and LPPs deliver it to candidates",
-      "The CMMC-AB reports directly to the DoD CIO rather than operating independently",
-      "CCA certification can be obtained without first holding CCP",
-      "Lead Assessors coordinate logistics but CCAs make the final scoring decisions",
-      "DCMA DIBCAC conducts both Level 2 and Level 3 assessments",
-      "Provisional Assessors will transition automatically to CCA without additional testing",
-      "RPOs must be accredited by a C3PAO before advising contractors",
-      "OSCs may select which C3PAO assessors are assigned to their team",
-      "Level 1 self-assessments must be validated by an RPO before submission",
-      "CCPs may participate on assessment teams only after completing two supervised assessments",
-      "The CMMC-AB sets the technical requirements for each maturity level"
+      // Swapped roles: RPO vs C3PAO
+      "RPOs conduct official CMMC assessments while C3PAOs prepare organizations for those assessments.",
+      // CCP authority inflated
+      "CCPs may make scoring determinations on Level 1 practices when supervised by a CCA on the same team.",
+      // LPP/LTP swapped
+      "LTPs develop and publish the authorized CMMC training curriculum; LPPs deliver that curriculum to candidates.",
+      // CCA without CCP
+      "Candidates with sufficient cybersecurity experience may sit for the CCA exam without first obtaining CCP certification.",
+      // Lead Assessor role diminished
+      "The Lead Assessor coordinates assessment logistics and scheduling, but CCAs make all final scoring determinations.",
+      // DIBCAC scope expanded
+      "DCMA DIBCAC conducts both Level 2 and Level 3 CMMC assessments for the Department of Defense.",
+      // RP on assessment teams
+      "Registered Practitioners may serve on C3PAO assessment teams in a limited evidence-collection role.",
+      // Provisional Assessor transition
+      "Provisional Assessors automatically receive CCA certification once the transition period concludes.",
+      // CMMC-AB vs DoD confusion
+      "The Cyber AB (CMMC-AB) defines the technical security requirements for each CMMC maturity level.",
+      // OSC self-assessment validation
+      "Level 1 self-assessments must be reviewed and validated by a Registered Practitioner before posting to SPRS.",
+      // CCP waiting period
+      "Newly certified CCPs must complete a 90-day probationary period before participating on assessment teams.",
+      // C3PAO selection
+      "OSCs select individual assessors from a C3PAO roster rather than accepting the C3PAO's assigned team.",
+      // Level 2 self-assessment
+      "Level 2 allows annual self-assessment as an alternative to C3PAO assessment for contracts below $5M.",
+      // Who accredits C3PAOs
+      "DCMA DIBCAC accredits C3PAOs and oversees their assessment quality."
     ],
     2: [
-      "Confidentiality obligations under the CoPC expire 12 months after the assessment concludes",
-      "Conflicts of interest are limited to direct financial relationships with the OSC",
-      "An assessor may share anonymized assessment details with other credentialed professionals",
-      "If the OSC provides written consent, the assessor may waive the objectivity requirement",
-      "Assessors may clarify what type of evidence would satisfy a practice during interviews",
-      "The CoPC permits adjusting findings if the OSC demonstrates intent to remediate",
-      "An assessor who previously consulted for the OSC may assess them after a 6-month cooling period",
-      "NDA obligations apply only to CUI and classified information, not general assessment findings",
-      "Assessors may discuss general assessment trends with colleagues without naming the OSC",
-      "The CoPC allows the Lead Assessor to override objectivity concerns if the assessment timeline is at risk",
-      "Due professional care means the assessor must help the OSC achieve the best possible score",
-      "An assessor may accept a future consulting engagement with an OSC they assessed if the results were favorable"
+      // NDA time-limited
+      "NDA confidentiality obligations remain in effect for 3 years after the assessment, after which they expire.",
+      // Conflict scope narrowed
+      "Conflicts of interest under the CoPC are limited to direct financial relationships such as stock ownership or consulting fees.",
+      // Anonymized sharing OK
+      "Assessors may share anonymized, non-attributable assessment findings with other credentialed CMMC professionals for training purposes.",
+      // Consent waiver
+      "The OSC may waive the objectivity requirement by providing written informed consent prior to the assessment.",
+      // Coaching framed as clarification
+      "Assessors may clarify what category of evidence would satisfy a practice to help the OSC present their best case.",
+      // Cooling period
+      "An assessor who previously performed consulting work for the OSC may assess them after a 12-month cooling-off period.",
+      // Intent to remediate
+      "The CoPC permits assessors to weigh demonstrated intent to remediate when making borderline scoring decisions.",
+      // Trend sharing
+      "Assessors may discuss general industry trends observed across multiple assessments with colleagues, provided no OSC is named.",
+      // Due professional care misread
+      "Due professional care under the CoPC requires the assessor to ensure the OSC fully understands each finding before finalizing the report.",
+      // Post-assessment consulting
+      "An assessor may accept a consulting engagement with an OSC they assessed, provided the C3PAO documents the arrangement.",
+      // CoPC principle count
+      "The Code of Professional Conduct contains seven guiding principles: objectivity, integrity, confidentiality, competence, due care, independence, and transparency.",
+      // Information integrity
+      "The information integrity principle allows assessors to use reasonable estimates when direct measurement is impractical."
     ],
     3: [
-      "DFARS 252.204-7019 requires contractors to implement NIST 800-171; DFARS 7012 requires the SPRS score",
-      "32 CFR Part 2002 is the DoD-specific CUI regulation while EO 13556 is government-wide policy",
-      "NIST SP 800-171 Rev 3 is the current revision used for CMMC Level 2 assessments",
-      "FedRAMP authorization means the cloud provider's controls satisfy all CMMC requirements for the OSC",
-      "DFARS 252.204-7021 established the requirement for cyber incident reporting within 72 hours",
-      "CUI Specified and CUI Basic both require the same set of NIST 800-171 controls",
-      "32 CFR Part 170 is the CMMC rule codified as a Presidential Executive Order",
-      "The Civil Cyber-Fraud Initiative is enforced by the Department of Defense Inspector General",
-      "EO 13556 directly requires defense contractors to implement NIST 800-171 controls",
-      "CMMC 2.0 added a fourth level to address advanced persistent threats beyond Level 3",
-      "DFARS 252.227-7013 is the clause that establishes cybersecurity requirements for defense contractors",
-      "The Streamlined Model tenet primarily addressed the lack of third-party assessments in CMMC 1.0",
-      "DoDI 5200.48 is the regulation that created the government-wide CUI program in 2010",
-      "DFARS 7012 requires all contractors handling FCI to achieve CMMC Level 2 certification"
+      // DFARS clauses swapped
+      "DFARS 252.204-7019 requires implementation of NIST 800-171 controls; DFARS 252.204-7012 requires posting the self-assessment score to SPRS.",
+      // 32 CFR vs EO swapped
+      "32 CFR Part 2002 is the DoD-specific CUI implementation regulation, while EO 13556 is the government-wide CUI policy framework.",
+      // Rev 3 vs Rev 2
+      "CMMC Level 2 assessments are conducted against NIST SP 800-171 Revision 3, the most current published revision.",
+      // FedRAMP scope
+      "A FedRAMP Moderate authorization satisfies all CMMC cloud-related security requirements for the OSC using that service.",
+      // 7021 vs 7012 incident reporting
+      "DFARS 252.204-7021 is the clause that established the 72-hour cyber incident reporting requirement to DoD.",
+      // CUI Basic vs Specified
+      "CUI Basic and CUI Specified require the same NIST 800-171 control set; Specified simply adds additional marking and handling procedures.",
+      // Civil Cyber-Fraud enforcer
+      "The Civil Cyber-Fraud Initiative is enforced by the Department of Defense Inspector General under authority delegated from the Attorney General.",
+      // EO 13556 scope
+      "Executive Order 13556 requires defense contractors to implement NIST 800-171 controls when handling CUI.",
+      // CMMC 1.0 vs 2.0 levels
+      "CMMC 1.0 had three maturity levels; CMMC 2.0 expanded to five levels to provide more granular assessment.",
+      // DFARS 7013 confusion
+      "DFARS 252.227-7013 establishes cybersecurity incident reporting requirements for technical data.",
+      // Streamlined tenet scope
+      "The Streamlined Model tenet addressed the lack of mandatory third-party assessments that existed under CMMC 1.0.",
+      // DoDI 5200.48 role
+      "DoDI 5200.48 is the instruction that created the government-wide CUI registry and established the original CUI categories.",
+      // 32 CFR Part 170 origin
+      "32 CFR Part 170 was established by Presidential Executive Order rather than through the standard federal rulemaking process.",
+      // Flexible Implementation tenet
+      "The Flexible Implementation tenet introduced POA&Ms and self-assessment options primarily to reduce cost for large defense primes."
     ],
     4: [
-      "Level 1 is based on a subset of NIST 800-171 controls that protect CUI at a basic level",
-      "Evidence in draft form may be scored MET if the content is technically complete and accurate",
-      "NOT APPLICABLE means the practice was not assessed and does not count toward the score",
-      "An assessor may award partial credit when most but not all objectives of a practice are met",
-      "The Examine method reveals what people believe is happening through direct observation",
-      "The Interview method shows what documentation says is happening by questioning personnel",
-      "The Test method validates that policies exist by reviewing written procedures",
-      "Level 1 has 17 practices derived from FAR 52.204-21 basic safeguarding requirements",
-      "Adequate evidence means having a sufficient quantity of evidence to demonstrate compliance",
-      "Sufficient evidence means having the correct type or category of evidence",
-      "Access Control (AC) has the most Level 1 practices with 5 of the 15 total",
-      "Media sanitization and media destruction are interchangeable terms in CMMC",
-      "Default passwords are acceptable on internal systems if the network perimeter is properly secured",
-      "Level 1 requires a C3PAO-conducted third-party assessment for certification",
-      "CMMC covers 17 security domains at Level 2, with 6 of those having Level 1 practices",
-      "A system security plan is required at Level 1 to document how practices are implemented",
-      "Visitors who have been issued permanent visitor badges do not require escort",
-      "The 6 Level 1 domains are AC, IA, MP, PE, SC, and AU"
+      // Level 1 source confused
+      "Level 1 practices are derived from a subset of NIST SP 800-171 controls selected for basic CUI protection.",
+      // Draft evidence
+      "Evidence in draft form may be scored MET at Level 1 provided the content is technically complete and covers all objectives.",
+      // N/A scoring
+      "A practice scored NOT APPLICABLE is excluded from the denominator and does not count as either MET or NOT MET.",
+      // Partial credit
+      "When most but not all assessment objectives for a practice are satisfied, the assessor may award a partial MET score.",
+      // Examine/Interview/Test swapped
+      "The Examine method determines what people believe is happening by reviewing documentation and artifacts.",
+      "The Interview method reveals what documentation specifies by questioning personnel about their understanding.",
+      "The Test method validates that written policies and procedures exist by reviewing them against practice requirements.",
+      // Practice count
+      "Level 1 contains 17 practices derived from the FAR 52.204-21 basic safeguarding requirements.",
+      // Adequate vs Sufficient swapped
+      "Adequate evidence means having a sufficient quantity of evidence to demonstrate the practice is consistently followed.",
+      "Sufficient evidence means having the correct type or form of evidence that maps to the assessment objective.",
+      // Domain count at L1
+      "Access Control (AC) contains the most Level 1 practices with 5 of the 15 total.",
+      // Sanitize vs destroy
+      "Media sanitization and media destruction are equivalent methods — both satisfy MP.L1-b.1.viii.",
+      // SSP at Level 1
+      "Level 1 requires a System Security Plan documenting how each of the 15 practices is implemented.",
+      // L1 assessment type
+      "Level 1 certification requires a third-party C3PAO assessment identical in process to Level 2.",
+      // Domain count
+      "CMMC defines 17 security domains at Level 2, of which 6 contain Level 1 practices.",
+      // L1 domain list wrong
+      "The six Level 1 domains are Access Control, Identification and Authentication, Media Protection, Physical Protection, System and Communications Protection, and Audit and Accountability.",
+      // Visitor badge
+      "Visitors issued recurring access badges for regular business visits are not required to sign the visitor log each visit.",
+      // Default password scope
+      "Default manufacturer passwords are acceptable on internal-only systems that are not directly connected to FCI processing."
     ],
     5: [
-      "Phase 1 (Conduct Assessment) is where the team collects and evaluates evidence",
-      "Phase 2 (Plan and Prepare) establishes the assessment scope and timeline",
-      "POA&M items may be scored as Conditionally MET during Phase 2 pending remediation",
-      "The CCA leads the assessment team and submits the final report to SPRS",
-      "The Readiness Review is a Phase 2 activity conducted at the start of evidence collection",
-      "Conditional certification grants the OSC permanent certification with documented gaps",
-      "Any NOT MET practice automatically qualifies for POA&M remediation regardless of severity",
-      "The Lead Assessor submits assessment results directly to SPRS after C3PAO notification",
-      "The operational plan of action required by CA.L2-3.12.2 is the same document as an assessment POA&M",
-      "CCPs may make preliminary scoring recommendations that the Lead Assessor then approves",
-      "Phase 3 includes a 30-day window for the OSC to dispute findings before report submission",
-      "The C3PAO's role is limited to administrative processing and does not include quality review",
-      "Assessment evidence must be retained by the OSC for 1 year following certification",
-      "A POA&M closeout assessment requires the full assessment team to reconvene"
+      // Phase 1/2 swapped
+      "Phase 1 (Conduct Assessment) is where the assessment team collects evidence, conducts interviews, and performs testing.",
+      "Phase 2 (Plan and Prepare) is where the assessment team establishes scope, reviews documentation, and confirms readiness.",
+      // POA&M scored conditionally
+      "Practices on a POA&M may receive a Conditionally MET score during Phase 2, pending successful remediation in Phase 4.",
+      // CCA vs Lead Assessor authority
+      "The CCA leads the assessment team and is responsible for submitting the final assessment report to SPRS.",
+      // Readiness Review phase
+      "The Readiness Review is conducted at the beginning of Phase 2 as the first evidence-collection activity.",
+      // Conditional certification scope
+      "Conditional certification provides the OSC with full contractual compliance while remediation is in progress.",
+      // POA&M eligibility
+      "Any practice scored NOT MET is eligible for POA&M remediation regardless of the nature or severity of the deficiency.",
+      // Submission chain
+      "The Lead Assessor submits final assessment results directly to SPRS after providing the C3PAO with a courtesy copy.",
+      // CA.L2-3.12.2 confusion
+      "The operational plan of action required by CA.L2-3.12.2 and the assessment POA&M serve the same function and may be the same document.",
+      // CCP scoring role
+      "CCPs may draft preliminary scoring recommendations for the Lead Assessor to review and approve during Phase 2.",
+      // Phase 3 dispute window
+      "Phase 3 (Report Results) includes a formal 30-day window for the OSC to dispute findings before the report is finalized.",
+      // C3PAO quality role
+      "The C3PAO's role in the submission chain is limited to administrative processing; it does not perform quality review of scoring.",
+      // Evidence retention
+      "Assessment evidence must be retained by the OSC for a minimum of 1 year following the certification decision.",
+      // POA&M closeout team
+      "A POA&M closeout assessment requires the original Lead Assessor and at least one member of the original assessment team."
     ],
     6: [
-      "An asset must process, store, AND transmit FCI or CUI to be in scope for CMMC",
-      "Supporting Units that do not directly handle FCI are categorized as out of scope",
-      "Specialized assets like OT are excluded from scope when they cannot meet standard controls",
-      "External Service Providers are out of scope because the OSC does not control their environment",
-      "Government Furnished Equipment is always the government's responsibility and excluded from scope",
-      "If an ESP is FedRAMP authorized, the OSC inherits full compliance for those controls",
-      "Assets must be documented as out of scope only if they were previously in scope",
-      "OT systems must fully comply with all applicable CMMC controls with no exceptions",
-      "Scoping categories are limited to CUI Assets, Security Protection Assets, and Out-of-Scope Assets",
-      "The OSC may unilaterally exclude assets from scope by documenting a business justification",
-      "A contractor employee's personal mobile phone used for work email is automatically in scope",
-      "Network segments that carry encrypted FCI traffic are out of scope because the data is protected"
+      // Three-verb AND vs OR
+      "An asset must process, store, AND transmit CUI or FCI — all three activities — to fall within the CMMC assessment scope.",
+      // Supporting Units excluded
+      "Supporting Units that provide shared services but never directly handle FCI are categorized as out of scope for CMMC.",
+      // Specialized asset exclusion
+      "Specialized assets such as OT systems that cannot implement standard security controls are excluded from the CMMC scope entirely.",
+      // ESP responsibility
+      "External Service Providers operate under their own compliance obligations; the OSC is not responsible for assessing ESP controls.",
+      // GFE excluded
+      "Government Furnished Equipment falls under the government's own compliance framework and is excluded from the OSC's CMMC scope.",
+      // FedRAMP inheritance
+      "When an OSC uses a FedRAMP-authorized ESP, the OSC inherits the ESP's security controls and may claim them as implemented.",
+      // Out-of-scope documentation
+      "Assets only need to be documented in the scope description if they are in scope; out-of-scope assets require no documentation.",
+      // OT full compliance
+      "Operational Technology must fully comply with all applicable CMMC practices; there are no exceptions for technical limitations.",
+      // Scoping categories incomplete
+      "The three CMMC scoping categories for assets are: CUI Assets, Security Protection Assets, and Out-of-Scope Assets.",
+      // Encryption = out of scope
+      "Network segments carrying only encrypted FCI traffic are out of scope because the encryption renders the data unreadable.",
+      // BYOD auto-scope
+      "Any personal device that accesses the OSC's email system is automatically in scope regardless of whether it touches FCI.",
+      // Business justification exclusion
+      "The OSC may exclude assets from scope by documenting a business justification approved by their CISO."
     ]
   };
 
@@ -928,17 +1012,36 @@ function generateExamBank() {
   }
 
   // Strategy 1: Standard MCQ from flashcard
+  // Generates 4-option MCQ where 3 wrong answers are plausible distractors
+  // that use correct terminology but get specific details wrong.
   function makeStandardMCQ(card) {
-    const correct = shorten(card.answer, 160);
+    const correct = shorten(card.answer, 180);
     const pool = DISTRACTOR_POOLS[card.domain] || DISTRACTOR_POOLS[4];
-    // Filter distractors that are too similar to correct answer
-    const available = pool.filter(d => {
+
+    // Score each distractor by dissimilarity to the correct answer.
+    // We want distractors that share some keywords (plausible) but differ enough to be distinct options.
+    const correctWords = new Set(correct.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/).filter(w => w.length > 3));
+    const scored = pool.map(d => {
       const dLow = d.toLowerCase();
       const cLow = correct.toLowerCase();
-      return !cLow.includes(dLow.substring(0,20)) && !dLow.includes(cLow.substring(0,20));
-    });
-    const distractors = pickRandom(available, 3);
+      // Reject if too similar (substring overlap > 40 chars)
+      if (cLow.substring(0, 40) === dLow.substring(0, 40)) return null;
+      if (cLow.includes(dLow) || dLow.includes(cLow)) return null;
+      // Count shared keywords — some overlap is GOOD (makes it plausible)
+      const dWords = new Set(dLow.replace(/[^a-z0-9\s]/g,'').split(/\s+/).filter(w => w.length > 3));
+      let shared = 0;
+      for (const w of dWords) { if (correctWords.has(w)) shared++; }
+      // Ideal: 1-3 shared keywords (plausible but wrong). 0 shared = obviously different domain. 4+ = too similar.
+      const relevance = shared >= 1 && shared <= 4 ? shared : (shared === 0 ? 0.1 : 0.5);
+      return { text: d, score: relevance };
+    }).filter(Boolean);
+
+    // Sort by relevance score descending, pick top candidates, then randomize among them
+    scored.sort((a, b) => b.score - a.score);
+    const topCandidates = scored.slice(0, Math.min(8, scored.length));
+    const distractors = pickRandom(topCandidates, 3).map(d => d.text);
     if (distractors.length < 3) return null;
+
     const options = [...distractors];
     const insertAt = Math.floor(Math.random() * 4);
     options.splice(insertAt, 0, correct);
@@ -952,17 +1055,34 @@ function generateExamBank() {
     };
   }
 
-  // Strategy 2: Trap "NOT" question
+  // Strategy 2: Trap "INCORRECT" question
+  // Uses 2 TRUE statements from the domain flashcards + 1 plausible FALSE statement from distractor pool.
+  // The false statement uses correct terminology with a subtle detail error.
   function makeTrapMCQ(card, allCards) {
-    // Find 3 TRUE statements from same domain, create one FALSE
     const sameDomain = allCards.filter(c => c.domain === card.domain && c.id !== card.id);
     if (sameDomain.length < 2) return null;
     const pool = DISTRACTOR_POOLS[card.domain] || [];
     if (pool.length < 1) return null;
-    const falseStatement = pickRandom(pool, 1)[0];
-    const trueStatements = pickRandom(sameDomain, 2).map(c => shorten(c.answer, 120));
-    const correctShort = shorten(card.answer, 120);
-    // The FALSE one is the correct answer to select
+
+    // Pick the false statement — prefer ones that share keywords with the card (more deceptive)
+    const cardWords = new Set(card.answer.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/).filter(w => w.length > 3));
+    const rankedFalse = pool.map(f => {
+      const fWords = new Set(f.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/).filter(w => w.length > 3));
+      let shared = 0;
+      for (const w of fWords) { if (cardWords.has(w)) shared++; }
+      return { text: f, score: shared };
+    });
+    rankedFalse.sort((a, b) => b.score - a.score);
+    // Pick from top 5 related false statements
+    const topFalse = rankedFalse.slice(0, Math.min(5, rankedFalse.length));
+    const falseStatement = pickRandom(topFalse, 1)[0].text;
+
+    // Pick 2 true statements, shorten them to similar length as the false statement
+    const trueCards = pickRandom(sameDomain, 2);
+    const trueStatements = trueCards.map(c => shorten(c.answer, 140));
+    const correctShort = shorten(card.answer, 140);
+
+    // Build options: 3 true (2 from other cards + 1 from this card) and 1 false
     const options = [...trueStatements, correctShort];
     const insertAt = Math.floor(Math.random() * 4);
     options.splice(insertAt, 0, falseStatement);
